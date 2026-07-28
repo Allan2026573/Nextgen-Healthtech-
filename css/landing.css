@@ -1,0 +1,228 @@
+/* ==========================================================================
+   LANDING PAGE STYLES (index.html only)
+   ========================================================================== */
+
+/* ---- Hero -----------------------------------------------------------------
+   The background circuit-trace pattern is a deliberate nod to the logo's
+   own circuit-board icon rather than a generic decorative gradient — see
+   .hero__traces (inline SVG rendered in index.html).
+-------------------------------------------------------------------------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%);
+  color: var(--white);
+  padding-block: var(--space-9) var(--space-8);
+}
+.hero__traces {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  opacity: 0.16;
+  pointer-events: none;
+}
+.hero__inner {
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--space-8);
+  align-items: center;
+}
+.hero__eyebrow {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  font-family: var(--font-display); font-size: 0.78rem; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text-on-dark-muted);
+  margin-bottom: var(--space-4);
+}
+.hero__eyebrow .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
+
+.hero h1 {
+  color: var(--white);
+  font-size: clamp(2.1rem, 3.6vw, 3rem);
+  margin-bottom: var(--space-5);
+}
+.hero h1 span { color: var(--green); }
+
+.hero p.lead {
+  font-size: 1.08rem;
+  color: var(--text-on-dark);
+  max-width: 46ch;
+  margin-bottom: var(--space-6);
+}
+.hero__ctas { display: flex; gap: var(--space-4); flex-wrap: wrap; margin-bottom: var(--space-7); }
+
+.hero__stats { display: flex; gap: var(--space-7); flex-wrap: wrap; }
+.hero__stat strong {
+  display: block; font-family: var(--font-display); font-size: 1.7rem; color: var(--white);
+}
+.hero__stat span { font-size: 0.82rem; color: var(--text-on-dark-muted); }
+
+/* Pathway card — shows the Beginner → Intermediate → Advanced progression
+   right inside the hero instead of stock photography. This is a genuine
+   staged sequence, so numbering it is earned, not decorative. */
+.hero__pathway {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  backdrop-filter: blur(6px);
+}
+.hero__pathway h3 { color: var(--white); font-size: 1rem; margin-bottom: var(--space-5); }
+.pathway-step {
+  display: flex; align-items: center; gap: var(--space-4);
+  padding-block: var(--space-3);
+}
+.pathway-step + .pathway-step { border-top: 1px solid rgba(255,255,255,0.1); }
+.pathway-step__num {
+  flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-weight: 700; font-size: 0.9rem;
+  background: rgba(68, 158, 43, 0.18); color: var(--green);
+  border: 1px solid rgba(68, 158, 43, 0.4);
+}
+.pathway-step__body strong { display: block; color: var(--white); font-size: 0.92rem; }
+.pathway-step__body span { font-size: 0.8rem; color: var(--text-on-dark-muted); }
+
+@media (max-width: 900px) {
+  .hero__inner { grid-template-columns: 1fr; }
+}
+
+/* ---- Section headers (shared pattern across About / Curriculum / Services)*/
+.section-head { max-width: 60ch; margin-bottom: var(--space-7); }
+.section-head .eyebrow {
+  display: block; font-family: var(--font-display); font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal);
+  margin-bottom: var(--space-3);
+}
+.section-head h2 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); margin-bottom: var(--space-4); }
+.section-head p { color: var(--text-muted); font-size: 1.02rem; }
+
+/* ---- About ------------------------------------------------------------- */
+.about { background: var(--white); }
+.about__grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8);
+  align-items: start;
+}
+.about__pillars { display: grid; gap: var(--space-5); }
+.pillar { display: flex; gap: var(--space-4); }
+.pillar__icon {
+  flex-shrink: 0; width: 46px; height: 46px; border-radius: var(--radius-md);
+  display: flex; align-items: center; justify-content: center;
+  background: var(--success-bg); color: var(--green-deep);
+}
+.pillar h4 { font-size: 1rem; margin-bottom: var(--space-1); }
+.pillar p { font-size: 0.92rem; color: var(--text-muted); }
+
+.about__quote {
+  background: var(--bg-subtle);
+  border-left: 4px solid var(--teal);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+}
+.about__quote p {
+  font-family: var(--font-serif); font-style: italic; font-size: 1.15rem;
+  color: var(--navy); margin-bottom: var(--space-4);
+}
+.about__quote cite {
+  display: block; font-style: normal; font-family: var(--font-display);
+  font-weight: 700; font-size: 0.85rem; color: var(--text-body);
+}
+.about__quote cite span { display: block; font-weight: 400; color: var(--text-muted); font-size: 0.8rem; }
+
+@media (max-width: 860px) {
+  .about__grid { grid-template-columns: 1fr; }
+}
+
+/* ---- Curriculum grid -------------------------------------------------- */
+.curriculum { background: var(--bg-subtle); }
+.curriculum__grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6);
+}
+.course-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+.course-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+
+.course-card__icon {
+  width: 48px; height: 48px; border-radius: var(--radius-md);
+  display: flex; align-items: center; justify-content: center;
+  background: var(--navy); color: var(--white); margin-bottom: var(--space-4);
+}
+.course-card h3 { font-size: 1.15rem; margin-bottom: var(--space-2); }
+.course-card p.desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: var(--space-5); }
+
+/* Level tabs — switch the visible description per level without navigation */
+.level-tabs {
+  display: flex; gap: var(--space-2); margin-bottom: var(--space-4);
+  border-bottom: 1px solid var(--border);
+}
+.level-tab {
+  padding: var(--space-2) var(--space-1);
+  font-family: var(--font-display); font-size: 0.78rem; font-weight: 700;
+  color: var(--text-muted);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+.level-tab.is-active { color: var(--navy); border-color: var(--green); }
+.level-panel { display: none; font-size: 0.86rem; color: var(--text-muted); margin-bottom: var(--space-5); }
+.level-panel.is-active { display: block; }
+.level-panel ul { display: grid; gap: var(--space-2); margin-top: var(--space-3); }
+.level-panel li { display: flex; align-items: flex-start; gap: var(--space-2); }
+.level-panel li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+
+.course-card__footer {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: var(--space-4); border-top: 1px solid var(--border);
+}
+.course-card__cpd { font-size: 0.78rem; color: var(--text-muted); }
+.course-card__cpd strong { color: var(--navy); }
+
+@media (max-width: 980px) {
+  .curriculum__grid { grid-template-columns: 1fr; }
+}
+
+/* ---- Services ------------------------------------------------------------*/
+.services { background: var(--navy); color: var(--text-on-dark); }
+.services .section-head p { color: var(--text-on-dark-muted); }
+.services .section-head .eyebrow { color: var(--green); }
+.services .section-head h2 { color: var(--white); }
+
+.services__grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); }
+.service-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-lg);
+  padding: var(--space-7);
+}
+.service-card__icon {
+  width: 52px; height: 52px; border-radius: var(--radius-md);
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(68,158,43,0.16); color: var(--green); margin-bottom: var(--space-5);
+}
+.service-card h3 { color: var(--white); font-size: 1.3rem; margin-bottom: var(--space-3); }
+.service-card p { color: var(--text-on-dark-muted); margin-bottom: var(--space-5); font-size: 0.94rem; }
+.service-card ul { display: grid; gap: var(--space-2); margin-bottom: var(--space-6); }
+.service-card li { display: flex; gap: var(--space-2); font-size: 0.88rem; color: var(--text-on-dark); }
+.service-card li::before { content: '→'; color: var(--green); flex-shrink: 0; }
+
+@media (max-width: 780px) {
+  .services__grid { grid-template-columns: 1fr; }
+}
+
+/* ---- Final CTA banner ------------------------------------------------- */
+.cta-banner {
+  background: linear-gradient(120deg, var(--green-deep), var(--teal));
+  color: var(--white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  margin-inline: var(--space-5);
+  margin-block: 0 var(--space-8);
+  text-align: center;
+}
+.cta-banner h2 { color: var(--white); margin-bottom: var(--space-3); }
+.cta-banner p { color: rgba(255,255,255,0.9); max-width: 50ch; margin-inline: auto; margin-bottom: var(--space-6); }

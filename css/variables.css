@@ -1,0 +1,88 @@
+/* ==========================================================================
+   NEXTGEN HEALTHTECH ACADEMY — DESIGN TOKENS
+   --------------------------------------------------------------------------
+   Every color below was sampled directly from the official logo artwork
+   (pixel-averaged from the source file), not chosen arbitrarily. If the
+   logo is ever updated, re-sample it and update the values here — every
+   other stylesheet in this project reads from these variables only.
+   ========================================================================== */
+
+:root {
+  /* ---- Brand colors (sampled from logo) -------------------------------- */
+  --navy: #0a1440;          /* "NEXTGEN" wordmark + shield fill            */
+  --navy-deep: #050b28;     /* darker navy for gradients / hero depth      */
+  --teal: #03858e;          /* circuit-block icon color                    */
+  --teal-dim: #0a5b62;      /* muted teal for borders on dark surfaces     */
+  --green: #449e2b;         /* "HEALTH" wordmark + circuit accent dots     */
+  --green-deep: #2f7a1d;    /* hover / pressed state for green             */
+  --blue: #0681a6;          /* "TECH" wordmark                             */
+  --ink: #101012;           /* "ACADEMY" wordmark + primary body text      */
+
+  /* ---- Neutrals ---------------------------------------------------------*/
+  --white: #ffffff;
+  --bg-page: #f6f8f9;       /* page background, cool off-white             */
+  --bg-card: #ffffff;
+  --bg-subtle: #eef2f4;     /* zebra rows, subtle section backgrounds      */
+  --border: #dfe6ea;
+  --border-strong: #c3ccd1;
+  --text-body: #33414f;     /* softer than pure navy, easier at length     */
+  --text-muted: #6b7a88;
+  --text-on-dark: #e7edf1;
+  --text-on-dark-muted: #9fb1bd;
+
+  /* ---- Semantic ----------------------------------------------------------*/
+  --success: var(--green);
+  --success-bg: #eaf6e6;
+  --error: #b03a2e;
+  --error-bg: #fbeceb;
+  --warning: #b7791f;       /* used for certificate / achievement accents  */
+  --warning-bg: #fbf1e0;
+
+  /* ---- Typography --------------------------------------------------------
+     Sora  → headings / display: mirrors the bold geometric weight of the
+             NEXTGEN / HEALTH / TECH wordmarks.
+     Inter → body copy, forms, UI labels: high legibility at small sizes.
+     Lora  → serif accent for "Academy" moments (certificates, credential
+             names, pull-quotes) — echoing the logo's own serif "ACADEMY".
+  -------------------------------------------------------------------------- */
+  --font-display: 'Sora', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  --font-serif: 'Lora', Georgia, serif;
+
+  /* ---- Spacing scale (4px base) ------------------------------------------*/
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+
+  /* ---- Radii / shadows / motion ------------------------------------------*/
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 1px 2px rgba(10, 20, 64, 0.06);
+  --shadow-md: 0 4px 14px rgba(10, 20, 64, 0.08);
+  --shadow-lg: 0 12px 32px rgba(10, 20, 64, 0.14);
+
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 150ms var(--ease);
+  --transition-base: 250ms var(--ease);
+
+  --container-width: 1180px;
+}
+
+/* Respect reduced-motion preference site-wide */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

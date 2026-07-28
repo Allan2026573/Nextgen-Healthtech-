@@ -1,0 +1,63 @@
+/* ==========================================================================
+   DASHBOARD PAGE STYLES (dashboard.html)
+   ========================================================================== */
+
+.welcome-banner {
+  background: linear-gradient(120deg, var(--navy), var(--navy-deep));
+  color: var(--white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-7);
+  margin-bottom: var(--space-6);
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-5);
+}
+.welcome-banner h2 { color: var(--white); font-size: 1.5rem; margin-bottom: var(--space-2); }
+.welcome-banner p { color: var(--text-on-dark-muted); }
+
+.dashboard-grid {
+  display: grid; grid-template-columns: 2fr 1fr; gap: var(--space-6);
+}
+
+/* ---- Enrolled course progress cards --------------------------------------*/
+.enrolled-course {
+  display: flex; align-items: center; gap: var(--space-4);
+  padding: var(--space-4) 0;
+}
+.enrolled-course + .enrolled-course { border-top: 1px solid var(--border); }
+.enrolled-course__icon {
+  flex-shrink: 0; width: 46px; height: 46px; border-radius: var(--radius-md);
+  background: var(--bg-subtle); display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
+}
+.enrolled-course__body { flex: 1; min-width: 0; }
+.enrolled-course__top { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-2); gap: var(--space-3); }
+.enrolled-course__top h4 { font-size: 0.95rem; }
+.enrolled-course__pct { font-size: 0.8rem; font-weight: 700; color: var(--green-deep); flex-shrink: 0; }
+
+/* ---- Certificates panel ----------------------------------------------------
+   Requested as a dedicated, prominent panel — styled with the serif accent
+   face to feel earned/formal rather than just another list. */
+.cert-list { display: grid; gap: var(--space-4); }
+.cert-card {
+  display: flex; align-items: center; gap: var(--space-4);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+}
+.cert-card__seal {
+  flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%;
+  background: var(--warning-bg); color: var(--warning);
+  display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+  border: 1.5px dashed var(--warning);
+}
+.cert-card__body { flex: 1; min-width: 0; }
+.cert-card__body h4 { font-family: var(--font-serif); font-style: italic; font-size: 0.98rem; color: var(--navy); }
+.cert-card__body span { font-size: 0.78rem; color: var(--text-muted); }
+.cert-card__locked { opacity: 0.55; }
+.cert-card__locked .cert-card__seal { color: var(--text-muted); border-color: var(--border-strong); background: var(--bg-page); }
+
+.cert-empty {
+  text-align: center; padding: var(--space-6) var(--space-4);
+  color: var(--text-muted); font-size: 0.9rem;
+}
+
+@media (max-width: 980px) { .dashboard-grid { grid-template-columns: 1fr; } }

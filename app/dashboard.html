@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Dashboard — NextGen HealthTech Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&family=Lora:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/variables.css">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="css/app-shared.css">
+<link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- ============================= SIDEBAR ============================= -->
+  <aside class="sidebar">
+    <div class="sidebar__logo"><img src="../assets/logo.png" alt="NextGen HealthTech Academy"></div>
+    <nav class="sidebar__nav">
+      <a href="dashboard.html" class="sidebar__link is-active"><span class="icon">🏠</span> Dashboard</a>
+      <a href="course.html" class="sidebar__link"><span class="icon">📚</span> My Courses</a>
+      <a href="dashboard.html#certificates" class="sidebar__link"><span class="icon">🎓</span> Certificates</a>
+      <a href="admin.html" class="sidebar__link"><span class="icon">⚙️</span> Admin View</a>
+    </nav>
+    <div class="sidebar__footer">
+      <button class="sidebar__logout" id="logoutBtn"><span class="icon">⏻</span> Log Out</button>
+    </div>
+  </aside>
+
+  <!-- ============================= MAIN ============================= -->
+  <div class="app-main">
+    <header class="topbar">
+      <button id="sidebarToggle" class="navbar__burger" style="display:none;" aria-label="Toggle sidebar"><span></span><span></span><span></span></button>
+      <h1>My Dashboard</h1>
+      <div class="topbar__user">
+        <div class="topbar__user-info">
+          <span class="topbar__user-name" id="topbarUserName">Loading…</span>
+          <span class="topbar__user-role" id="topbarUserRole"></span>
+        </div>
+        <div class="topbar__avatar" id="topbarAvatar">—</div>
+      </div>
+    </header>
+
+    <main class="app-content">
+
+      <div class="welcome-banner">
+        <div>
+          <h2 id="welcomeHeading">Welcome back!</h2>
+          <p>You're making great progress. Let's keep the momentum going.</p>
+        </div>
+        <a href="course.html" class="btn btn-accent">Resume Learning</a>
+      </div>
+
+      <div class="dashboard-grid">
+
+        <!-- Progress tracker -->
+        <div>
+          <div class="card" style="margin-bottom: var(--space-6);">
+            <div class="card-head"><h3>Your Enrolled Courses</h3></div>
+            <div id="enrolledCoursesList"><!-- populated by dashboard.js --></div>
+          </div>
+        </div>
+
+        <!-- Certificates panel -->
+        <div id="certificates">
+          <div class="card">
+            <div class="card-head"><h3>🎓 Certificates</h3></div>
+            <div class="cert-list" id="certificatesList"><!-- populated by dashboard.js --></div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+</div>
+
+<script src="js/mock-data.js"></script>
+<script src="js/auth-guard.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

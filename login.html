@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login — NextGen HealthTech Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&family=Lora:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+<div class="auth">
+
+  <!-- Left brand panel -->
+  <div class="auth__brand">
+    <svg class="auth__brand-traces" viewBox="0 0 500 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="#44C0CC" stroke-width="2" fill="none">
+        <path d="M0 150 H180 V280 H360"/>
+        <path d="M0 500 H140 V620 H400 V720"/>
+      </g>
+      <g fill="#5CD65C"><circle cx="360" cy="280" r="6"/><circle cx="400" cy="720" r="6"/></g>
+    </svg>
+    <div class="auth__brand-content">
+      <img class="logo" src="assets/logo.png" alt="NextGen HealthTech Academy">
+      <h2>Welcome back to your learning journey.</h2>
+      <p>Pick up exactly where you left off — your progress, certificates, and courses are all waiting.</p>
+    </div>
+    <div class="auth__brand-quote">
+      <p>&ldquo;Understanding AI, even at a basic level, makes you a better clinician.&rdquo;</p>
+      <cite>— NextGen HealthTech Academy</cite>
+    </div>
+  </div>
+
+  <!-- Right form panel -->
+  <div class="auth__form-panel">
+    <div class="auth__form-card">
+      <img class="mobile-logo" src="assets/logo.png" alt="NextGen HealthTech Academy">
+      <a href="index.html" class="auth__back">← Back to home</a>
+      <h1>Log in to your account</h1>
+      <p class="subtitle">Enter your details to continue your training.</p>
+
+      <div id="loginAlert"></div>
+
+      <form id="loginForm" novalidate>
+        <div class="field" id="fieldEmail">
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+          <p class="field-error">Please enter a valid email address.</p>
+        </div>
+
+        <div class="field" id="fieldPassword">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="••••••••" autocomplete="current-password" required>
+          <p class="field-error">Password is required.</p>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; margin-bottom: var(--space-5);">
+          <a href="forgot-password.html" style="font-size:0.85rem; color:var(--teal); font-weight:600;">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" id="loginSubmit">Log In</button>
+      </form>
+
+      <p class="auth__footer-link">Don't have an account? <a href="signup.html">Sign up for free</a></p>
+    </div>
+  </div>
+
+</div>
+
+<script src="js/auth.js"></script>
+</body>
+</html>

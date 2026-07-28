@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NextGen HealthTech Academy — Digital & AI Skills for Healthcare Workers</title>
+<meta name="description" content="Practical AI, digital skills, and data analysis training built for healthcare professionals — in Beginner, Intermediate and Advanced levels.">
+
+<!-- Google Fonts: Sora (display), Inter (body), Lora (serif accent) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&family=Lora:ital@1&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/landing.css">
+<script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+
+<!-- ============================= NAVBAR ============================= -->
+<header class="navbar" id="navbar">
+  <div class="container navbar__inner">
+    <a href="index.html" class="navbar__logo">
+      <!-- Replace assets/logo.png if the brand mark is ever updated -->
+      <img src="assets/logo.png" alt="NextGen HealthTech Academy">
+    </a>
+
+    <nav class="navbar__links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#curriculum">Curriculum</a>
+      <a href="#services">Services</a>
+      <a href="login.html">Login</a>
+    </nav>
+
+    <div class="navbar__actions">
+      <a href="#" onclick="netlifyIdentity.open()" class="btn btn-ghost btn-sm">Login</a>
+      <a href="signup.html" class="btn btn-primary btn-sm">Enroll Now</a>
+      <button class="navbar__burger" id="burgerBtn" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============================= HERO ============================= -->
+<section class="hero">
+  <!-- Circuit-trace background pattern, echoing the logo's own icon language -->
+  <svg class="hero__traces" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#44C0CC" stroke-width="2" fill="none">
+      <path d="M0 120 H260 V220 H520"/>
+      <path d="M0 340 H180 V420 H460 V520"/>
+      <path d="M1200 90 H940 V190 H700"/>
+      <path d="M1200 460 H1000 V300 H760 V240"/>
+      <path d="M300 700 V600 H540 V520"/>
+    </g>
+    <g fill="#5CD65C">
+      <circle cx="520" cy="220" r="6"/><circle cx="460" cy="520" r="6"/>
+      <circle cx="700" cy="190" r="6"/><circle cx="760" cy="240" r="6"/>
+      <circle cx="540" cy="520" r="6"/>
+    </g>
+  </svg>
+
+  <div class="container hero__inner">
+    <div>
+      <span class="hero__eyebrow"><span class="dot"></span> Built by a nurse. Trusted by healthcare teams.</span>
+      <h1>Digital &amp; AI skills, taught in a language <span>healthcare professionals</span> already speak.</h1>
+      <p class="lead">Practical training in AI, digital skills, and data analysis for nurses, clinicians, and hospital administrators — no tech background required, no jargon included.</p>
+      <div class="hero__ctas">
+        <a href="signup.html" class="btn btn-accent">Enroll Now</a>
+        <a href="#curriculum" class="btn btn-ghost-light">See the Curriculum</a>
+      </div>
+      <div class="hero__stats">
+        <div class="hero__stat"><strong>3</strong><span>Core Programmes</span></div>
+        <div class="hero__stat"><strong>3</strong><span>Levels Per Track</span></div>
+        <div class="hero__stat"><strong>100%</strong><span>Healthcare-Focused</span></div>
+      </div>
+    </div>
+
+    <div class="hero__pathway">
+      <h3>Your Learning Pathway</h3>
+      <div class="pathway-step">
+        <div class="pathway-step__num">1</div>
+        <div class="pathway-step__body"><strong>Beginner</strong><span>Foundations — no prior experience needed</span></div>
+      </div>
+      <div class="pathway-step">
+        <div class="pathway-step__num">2</div>
+        <div class="pathway-step__body"><strong>Intermediate</strong><span>Apply skills to real clinical &amp; admin work</span></div>
+      </div>
+      <div class="pathway-step">
+        <div class="pathway-step__num">3</div>
+        <div class="pathway-step__body"><strong>Advanced</strong><span>Lead adoption within your organisation</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= ABOUT ============================= -->
+<section class="about" id="about">
+  <div class="container about__grid">
+    <div>
+      <div class="section-head">
+        <span class="eyebrow">Our Mission</span>
+        <h2>Healthcare workers deserve digital training built for their world — not repurposed from someone else's.</h2>
+        <p>NextGen HealthTech Academy was founded by Allan K Chirume, a registered nurse who taught himself AI and cloud computing from scratch — and built the training he wished existed.</p>
+      </div>
+      <div class="about__pillars">
+        <div class="pillar">
+          <div class="pillar__icon">✓</div>
+          <div><h4>Practical, Not Theoretical</h4><p>Every lesson uses real clinical and administrative scenarios, not generic tech examples.</p></div>
+        </div>
+        <div class="pillar">
+          <div class="pillar__icon">✓</div>
+          <div><h4>Built By Healthcare Professionals</h4><p>Our facilitators understand ward rounds, patient files, and medical aid queries — not just software.</p></div>
+        </div>
+        <div class="pillar">
+          <div class="pillar__icon">✓</div>
+          <div><h4>CPD-Aligned Curriculum </h4><p>Structured for professional development points as accreditation is finalised with regulatory bodies.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about__quote">
+      <p>&ldquo;If a nurse with zero IT background can learn AI and cloud computing, any healthcare professional can — with the right structure and support.&rdquo;</p>
+      <cite>Founding Belief<span>NextGen HealthTech Academy</span></cite>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= CURRICULUM ============================= -->
+<section class="curriculum" id="curriculum">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Curriculum</span>
+      <h2>Three programmes. Three levels each. Zero jargon.</h2>
+      <p>Every course is offered at Beginner, Intermediate, and Advanced level — progress at your own pace, or jump straight to the level that matches your experience.</p>
+    </div>
+
+    <div class="curriculum__grid">
+
+      <!-- Course 1 -->
+      <article class="course-card">
+        <div class="course-card__icon">🧠</div>
+        <h3>Artificial Intelligence in Healthcare</h3>
+        <p class="desc">Understand and use AI tools safely in clinical and administrative work.</p>
+
+        <div class="level-tabs" data-course="ai">
+          <button class="level-tab is-active" data-level="beginner">Beginner</button>
+          <button class="level-tab" data-level="intermediate">Intermediate</button>
+          <button class="level-tab" data-level="advanced">Advanced</button>
+        </div>
+        <div class="level-panel is-active" data-level="beginner">
+          What AI is, tools you already use, ethics &amp; safety basics.
+          <ul><li>Plain-English AI foundations</li><li>5 free tools you can use today</li></ul>
+        </div>
+        <div class="level-panel" data-level="intermediate">
+          AI-assisted diagnostics, clinical decision support, data literacy.
+          <ul><li>Applied clinical scenarios</li><li>Bias &amp; accountability deep-dive</li></ul>
+        </div>
+        <div class="level-panel" data-level="advanced">
+          AI strategy, implementation leadership, research applications.
+          <ul><li>Lead adoption in your facility</li><li>Advanced case studies</li></ul>
+        </div>
+
+        <div class="course-card__footer">
+          <span class="course-card__cpd">Up to <strong>10 CPD</strong> points</span>
+          <a href="signup.html" class="btn btn-ghost btn-sm">Enroll</a>
+        </div>
+      </article>
+
+      <!-- Course 2 -->
+      <article class="course-card">
+        <div class="course-card__icon">💻</div>
+        <h3>Digital Skills for Healthcare Workers</h3>
+        <p class="desc">From computer basics to systems used across modern facilities.</p>
+
+        <div class="level-tabs" data-course="digital">
+          <button class="level-tab is-active" data-level="beginner">Beginner</button>
+          <button class="level-tab" data-level="intermediate">Intermediate</button>
+          <button class="level-tab" data-level="advanced">Advanced</button>
+        </div>
+        <div class="level-panel is-active" data-level="beginner">
+          Computer &amp; internet essentials, EHR introduction, cybersecurity basics.
+          <ul><li>No prior IT knowledge required</li><li>Hands-on EHR practice</li></ul>
+        </div>
+        <div class="level-panel" data-level="intermediate">
+          EHR administration, health information systems, troubleshooting.
+          <ul><li>Systems used in real facilities</li><li>Digital records management</li></ul>
+        </div>
+        <div class="level-panel" data-level="advanced">
+          Digital transformation leadership, systems administration at scale.
+          <ul><li>Governance &amp; risk management</li><li>Vendor &amp; procurement basics</li></ul>
+        </div>
+
+        <div class="course-card__footer">
+          <span class="course-card__cpd">Up to <strong>8 CPD</strong> points</span>
+          <a href="signup.html" class="btn btn-ghost btn-sm">Enroll</a>
+        </div>
+      </article>
+
+      <!-- Course 3 -->
+      <article class="course-card">
+        <div class="course-card__icon">📊</div>
+        <h3>Data Analysis in Healthcare</h3>
+        <p class="desc">Turn routine facility data into decisions you can act on.</p>
+
+        <div class="level-tabs" data-course="data">
+          <button class="level-tab is-active" data-level="beginner">Beginner</button>
+          <button class="level-tab" data-level="intermediate">Intermediate</button>
+          <button class="level-tab" data-level="advanced">Advanced</button>
+        </div>
+        <div class="level-panel is-active" data-level="beginner">
+          Data literacy, Excel/Sheets for health data, basic statistics.
+          <ul><li>Build your first dashboard</li><li>Patient-data ethics primer</li></ul>
+        </div>
+        <div class="level-panel" data-level="intermediate">
+          Deeper analysis techniques, visual reporting for leadership.
+          <ul><li>Facility performance tracking</li><li>Practical reporting templates</li></ul>
+        </div>
+        <div class="level-panel" data-level="advanced">
+          Advanced analytics for strategic, facility-wide decisions.
+          <ul><li>Predictive trend awareness</li><li>Board-ready reporting</li></ul>
+        </div>
+
+        <div class="course-card__footer">
+          <span class="course-card__cpd">Up to <strong>6 CPD</strong> points</span>
+          <a href="signup.html" class="btn btn-ghost btn-sm">Enroll</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================= SERVICES ============================= -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Beyond Training</span>
+      <h2>Specialised services for healthcare organisations</h2>
+      <p>Two additional ways we support facilities that want to go further than individual training.</p>
+    </div>
+
+    <div class="services__grid">
+      <div class="service-card">
+        <div class="service-card__icon">🩺</div>
+        <h3>Digital Consultancy</h3>
+        <p>A free digital-readiness assessment followed by a practical roadmap tailored to your facility's actual starting point.</p>
+        <ul>
+          <li>Current digital &amp; AI usage audit</li>
+          <li>Risk &amp; governance review</li>
+          <li>Phased adoption roadmap</li>
+        </ul>
+        <a href="signup.html" class="btn btn-ghost-light btn-sm">Request a Consultation</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-card__icon">🌐</div>
+        <h3>Web Design &amp; Development</h3>
+        <p>Professional, mobile-friendly websites built specifically for clinics, hospitals, and health organisations.</p>
+        <ul>
+          <li>Patient-friendly, mobile-first design</li>
+          <li>Appointment &amp; contact integrations</li>
+          <li>Multi-language support available</li>
+        </ul>
+        <a href="signup.html" class="btn btn-ghost-light btn-sm">Start a Project</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= FINAL CTA ============================= -->
+<div class="cta-banner">
+  <div class="container">
+    <h2>Ready to build your digital confidence?</h2>
+    <p>Join the healthcare professionals already learning practical AI and digital skills built for their world.</p>
+    <a href="signup.html" class="btn btn-primary">Create Your Free Account</a>
+  </div>
+</div>
+
+<!-- ============================= FOOTER ============================= -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <img src="assets/logo.png" alt="NextGen HealthTech Academy">
+        <p>Empowering Zimbabwe's healthcare workforce through digital &amp; AI skills.</p>
+      </div>
+      <div>
+        <h4>Platform</h4>
+        <ul><li><a href="#curriculum">Curriculum</a></li><li><a href="#services">Services</a></li><li><a href="signup.html">Enroll Now</a></li></ul>
+      </div>
+      <div>
+        <h4>Account</h4>
+        <ul><li><a href="login.html">Login</a></li><li><a href="signup.html">Sign Up</a></li><li><a href="forgot-password.html">Forgot Password</a></li></ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul><li>healthtechacademynexrgen@gmail.com</li><li>+263 77 889 4316</li><li>Harare, Zimbabwe</li></ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 NextGen HealthTech Academy. All rights reserved.</span>
+      <span>Empowering Zimbabwe's Healthcare Workforce Through Digital &amp; AI Skills</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

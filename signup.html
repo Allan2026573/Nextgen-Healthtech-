@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up — NextGen HealthTech Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&family=Lora:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+<div class="auth">
+
+  <div class="auth__brand">
+    <svg class="auth__brand-traces" viewBox="0 0 500 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="#44C0CC" stroke-width="2" fill="none">
+        <path d="M500 150 H320 V280 H140"/>
+        <path d="M500 550 H360 V650 H100 V740"/>
+      </g>
+      <g fill="#5CD65C"><circle cx="140" cy="280" r="6"/><circle cx="100" cy="740" r="6"/></g>
+    </svg>
+    <div class="auth__brand-content">
+      <img class="logo" src="assets/logo.png" alt="NextGen HealthTech Academy">
+      <h2>Join a growing community of digitally confident healthcare professionals.</h2>
+      <p>Create your free account in under a minute — no credit card, no tech background required.</p>
+    </div>
+    <div class="auth__brand-quote">
+      <p>&ldquo;Every scenario is written for a healthcare professional who has never studied technology — because that's exactly who we built this for.&rdquo;</p>
+      <cite>— NextGen HealthTech Academy</cite>
+    </div>
+  </div>
+
+  <div class="auth__form-panel">
+    <div class="auth__form-card">
+      <img class="mobile-logo" src="assets/logo.png" alt="NextGen HealthTech Academy">
+      <a href="index.html" class="auth__back">← Back to home</a>
+      <h1>Create your free account</h1>
+      <p class="subtitle">Start learning practical AI and digital skills today.</p>
+
+      <div id="signupAlert"></div>
+
+      <form id="signupForm" novalidate>
+        <div class="field" id="fieldName">
+          <label for="fullName">Full name</label>
+          <input type="text" id="fullName" name="fullName" placeholder="e.g. Tendai Moyo" autocomplete="name" required>
+          <p class="field-error">Please enter your full name.</p>
+        </div>
+
+        <div class="field" id="fieldEmail">
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+          <p class="field-error">Please enter a valid email address.</p>
+        </div>
+
+        <div class="field" id="fieldProfession">
+          <label for="profession">Profession</label>
+          <select id="profession" name="profession" required>
+            <option value="" disabled selected>Select your profession</option>
+            <option value="nurse">Nurse / Midwife</option>
+            <option value="doctor">Doctor / Clinician</option>
+            <option value="admin">Hospital Administrator</option>
+            <option value="chw">Community Health Worker</option>
+            <option value="pharmacist">Pharmacist</option>
+            <option value="other">Other Healthcare Professional</option>
+          </select>
+          <p class="field-error">Please select your profession.</p>
+        </div>
+
+        <div class="field" id="fieldPassword">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Minimum 8 characters" autocomplete="new-password" required>
+          <div class="pw-meter" id="pwMeter" data-strength="0">
+            <div class="pw-meter__bar"></div><div class="pw-meter__bar"></div>
+            <div class="pw-meter__bar"></div><div class="pw-meter__bar"></div>
+          </div>
+          <p class="field-hint" id="pwHint">Use 8+ characters with a mix of letters and numbers.</p>
+          <p class="field-error">Password must be at least 8 characters.</p>
+        </div>
+
+        <div class="field" id="fieldConfirm">
+          <label for="confirmPassword">Confirm password</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter your password" autocomplete="new-password" required>
+          <p class="field-error">Passwords do not match.</p>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" id="signupSubmit">Create Account</button>
+      </form>
+
+      <p class="auth__footer-link">Already have an account? <a href="login.html">Log in</a></p>
+    </div>
+  </div>
+
+</div>
+
+<script src="js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+/* ==========================================================================
+   AUTH PAGES STYLES (login.html, signup.html, forgot-password.html)
+   Split-screen layout: brand panel on the left, form on the right.
+   ========================================================================== */
+
+.auth {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* ---- Left brand panel ------------------------------------------------- */
+.auth__brand {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%);
+  color: var(--white);
+  padding: var(--space-8);
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.auth__brand-traces { position: absolute; inset: 0; opacity: 0.14; pointer-events: none; }
+.auth__brand-content { position: relative; z-index: 1; max-width: 40ch; }
+.auth__brand img.logo { height: 34px; filter: brightness(0) invert(1); margin-bottom: var(--space-8); }
+.auth__brand h2 { color: var(--white); font-size: 1.7rem; margin-bottom: var(--space-4); }
+.auth__brand p { color: var(--text-on-dark-muted); font-size: 0.98rem; }
+
+.auth__brand-quote {
+  position: relative; z-index: 1;
+  border-top: 1px solid rgba(255,255,255,0.14);
+  padding-top: var(--space-5);
+}
+.auth__brand-quote p {
+  font-family: var(--font-serif); font-style: italic; color: var(--text-on-dark);
+  margin-bottom: var(--space-3);
+}
+.auth__brand-quote cite { font-style: normal; font-size: 0.82rem; color: var(--text-on-dark-muted); }
+
+/* ---- Right form panel --------------------------------------------------*/
+.auth__form-panel {
+  display: flex; align-items: center; justify-content: center;
+  padding: var(--space-6);
+  background: var(--white);
+}
+.auth__form-card { width: 100%; max-width: 420px; }
+.auth__form-card .mobile-logo { display: none; height: 32px; margin-bottom: var(--space-6); }
+.auth__form-card h1 { font-size: 1.6rem; margin-bottom: var(--space-2); }
+.auth__form-card > p.subtitle { color: var(--text-muted); font-size: 0.94rem; margin-bottom: var(--space-6); }
+
+.auth__form-card form { margin-bottom: var(--space-5); }
+
+.auth__row-two { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+
+.auth__footer-link { text-align: center; font-size: 0.9rem; color: var(--text-muted); }
+.auth__footer-link a { color: var(--teal); font-weight: 600; }
+.auth__footer-link a:hover { text-decoration: underline; }
+
+.auth__back {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  font-size: 0.85rem; font-weight: 600; color: var(--text-muted);
+  margin-bottom: var(--space-6);
+}
+.auth__back:hover { color: var(--navy); }
+
+/* Password strength meter (signup only) */
+.pw-meter { display: flex; gap: 4px; margin-top: var(--space-2); }
+.pw-meter__bar { height: 4px; flex: 1; border-radius: 2px; background: var(--border); transition: background var(--transition-fast); }
+.pw-meter[data-strength="1"] .pw-meter__bar:nth-child(1) { background: var(--error); }
+.pw-meter[data-strength="2"] .pw-meter__bar:nth-child(-n+2) { background: var(--warning); }
+.pw-meter[data-strength="3"] .pw-meter__bar:nth-child(-n+3) { background: var(--teal); }
+.pw-meter[data-strength="4"] .pw-meter__bar { background: var(--green); }
+
+/* Success state (forgot-password confirmation) */
+.auth__success {
+  text-align: center; padding-block: var(--space-6);
+}
+.auth__success-icon {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: var(--success-bg); color: var(--green-deep);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto var(--space-5);
+}
+.auth__success h2 { margin-bottom: var(--space-3); }
+.auth__success p { color: var(--text-muted); margin-bottom: var(--space-6); }
+
+@media (max-width: 940px) {
+  .auth { grid-template-columns: 1fr; }
+  .auth__brand { display: none; }
+  .auth__form-card .mobile-logo { display: block; }
+}

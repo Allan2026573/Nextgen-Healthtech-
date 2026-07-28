@@ -1,0 +1,213 @@
+/* ==========================================================================
+   NEXTGEN HEALTHTECH ACADEMY — MAIN STYLESHEET
+   Shared across every public page: reset, typography, buttons, navbar,
+   footer, and base form styling. Page-specific styles live in
+   landing.css / auth.css so this file stays reusable and small.
+   ========================================================================== */
+
+@import url('variables.css');
+
+/* ---- Reset --------------------------------------------------------------*/
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-body);
+  background: var(--bg-page);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+button { font: inherit; cursor: pointer; border: none; background: none; }
+input, select, textarea { font: inherit; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--navy);
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: var(--space-5);
+}
+
+section { padding-block: var(--space-9); }
+
+/* Visually-hidden but accessible to screen readers */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+/* ---- Buttons --------------------------------------------------------------
+   Three variants used throughout the whole product (public + app):
+   .btn-primary  → navy, high-emphasis actions ("Enroll Now", "Sign Up")
+   .btn-accent   → green, positive/progress actions ("Resume Module")
+   .btn-ghost    → outline, low-emphasis actions ("Login", "Cancel")
+-------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+  white-space: nowrap;
+}
+.btn:active { transform: translateY(1px); }
+.btn:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+
+.btn-primary { background: var(--navy); color: var(--white); box-shadow: var(--shadow-sm); }
+.btn-primary:hover { background: var(--navy-deep); box-shadow: var(--shadow-md); }
+
+.btn-accent { background: var(--green); color: var(--white); box-shadow: var(--shadow-sm); }
+.btn-accent:hover { background: var(--green-deep); box-shadow: var(--shadow-md); }
+
+.btn-ghost { background: transparent; color: var(--navy); border: 1.5px solid var(--border-strong); }
+.btn-ghost:hover { border-color: var(--navy); background: var(--bg-subtle); }
+
+.btn-ghost-light { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.4); }
+.btn-ghost-light:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+
+.btn-block { width: 100%; }
+.btn-sm { padding: 0.5rem 1.1rem; font-size: 0.85rem; }
+
+/* ---- Navbar ---------------------------------------------------------------*/
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+.navbar__inner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-block: var(--space-3);
+}
+.navbar__logo { display: flex; align-items: center; }
+.navbar__logo img { height: 38px; width: auto; }
+
+.navbar__links {
+  display: flex; align-items: center; gap: var(--space-6);
+}
+.navbar__links a {
+  font-family: var(--font-display);
+  font-size: 0.92rem; font-weight: 600;
+  color: var(--text-body);
+  transition: color var(--transition-fast);
+}
+.navbar__links a:hover { color: var(--teal); }
+
+.navbar__actions { display: flex; align-items: center; gap: var(--space-3); }
+
+.navbar__burger {
+  display: none;
+  flex-direction: column; gap: 5px;
+  padding: var(--space-2);
+}
+.navbar__burger span { width: 24px; height: 2.5px; background: var(--navy); border-radius: 2px; }
+
+@media (max-width: 860px) {
+  .navbar__links { display: none; }
+  .navbar__burger { display: flex; }
+  .navbar--open .navbar__links {
+    display: flex; flex-direction: column;
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: var(--white); padding: var(--space-5);
+    border-bottom: 1px solid var(--border); box-shadow: var(--shadow-md);
+    gap: var(--space-4);
+  }
+}
+
+/* ---- Footer ---------------------------------------------------------------*/
+.footer {
+  background: var(--navy-deep);
+  color: var(--text-on-dark-muted);
+  padding-block: var(--space-8) var(--space-6);
+}
+.footer__grid {
+  display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: var(--space-7);
+  padding-bottom: var(--space-7);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.footer__brand img { height: 34px; margin-bottom: var(--space-4); filter: brightness(0) invert(1); opacity: 0.92; }
+.footer__brand p { max-width: 32ch; font-size: 0.9rem; }
+.footer h4 { color: var(--white); font-size: 0.95rem; margin-bottom: var(--space-4); }
+.footer ul { display: flex; flex-direction: column; gap: var(--space-3); }
+.footer a { font-size: 0.9rem; transition: color var(--transition-fast); }
+.footer a:hover { color: var(--white); }
+.footer__bottom {
+  padding-top: var(--space-5);
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--space-3);
+  font-size: 0.82rem;
+}
+
+@media (max-width: 780px) {
+  .footer__grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ---- Shared form styling (used by auth.css + admin course modal) ---------*/
+.field { margin-bottom: var(--space-5); }
+.field label {
+  display: block; font-family: var(--font-display); font-weight: 600;
+  font-size: 0.85rem; color: var(--navy); margin-bottom: var(--space-2);
+}
+.field input,
+.field select {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1.5px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  font-size: 0.95rem;
+  color: var(--ink);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.field input:focus,
+.field select:focus {
+  outline: none; border-color: var(--teal);
+  box-shadow: 0 0 0 4px rgba(3, 133, 142, 0.12);
+}
+.field input.is-invalid { border-color: var(--error); }
+.field input.is-valid { border-color: var(--success); }
+.field-error {
+  display: none;
+  font-size: 0.8rem; color: var(--error); margin-top: var(--space-2);
+}
+.field.has-error .field-error { display: block; }
+.field-hint { font-size: 0.78rem; color: var(--text-muted); margin-top: var(--space-2); }
+
+.alert {
+  display: flex; align-items: flex-start; gap: var(--space-3);
+  padding: var(--space-4); border-radius: var(--radius-sm);
+  font-size: 0.88rem; margin-bottom: var(--space-5);
+}
+.alert-success { background: var(--success-bg); color: var(--green-deep); }
+.alert-error { background: var(--error-bg); color: var(--error); }
+
+/* ---- Badges (course level pills, status tags) -----------------------------*/
+.badge {
+  display: inline-flex; align-items: center;
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-display); font-weight: 600; font-size: 0.72rem;
+  letter-spacing: 0.03em; text-transform: uppercase;
+}
+.badge-beginner { background: var(--success-bg); color: var(--green-deep); }
+.badge-intermediate { background: #e6f2f6; color: var(--blue); }
+.badge-advanced { background: #eee6f6; color: #6b3fa0; }
+.badge-navy { background: rgba(10,20,64,0.08); color: var(--navy); }

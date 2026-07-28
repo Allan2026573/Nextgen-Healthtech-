@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard — NextGen HealthTech Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&family=Lora:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../public/css/variables.css">
+<link rel="stylesheet" href="css/app-shared.css">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<div class="app-shell">
+
+  <aside class="sidebar">
+    <div class="sidebar__logo"><img src="../public/assets/logo.png" alt="NextGen HealthTech Academy"></div>
+    <nav class="sidebar__nav">
+      <a href="dashboard.html" class="sidebar__link"><span class="icon">🏠</span> Dashboard</a>
+      <a href="course.html" class="sidebar__link"><span class="icon">📚</span> My Courses</a>
+      <a href="dashboard.html#certificates" class="sidebar__link"><span class="icon">🎓</span> Certificates</a>
+      <a href="admin.html" class="sidebar__link is-active"><span class="icon">⚙️</span> Admin View</a>
+    </nav>
+    <div class="sidebar__footer">
+      <button class="sidebar__logout" id="logoutBtn"><span class="icon">⏻</span> Log Out</button>
+    </div>
+  </aside>
+
+  <div class="app-main">
+    <header class="topbar">
+      <button id="sidebarToggle" class="navbar__burger" style="display:none;" aria-label="Toggle sidebar"><span></span><span></span><span></span></button>
+      <h1>Admin Dashboard</h1>
+      <div class="topbar__user">
+        <div class="topbar__user-info">
+          <span class="topbar__user-name" id="topbarUserName">Loading…</span>
+          <span class="topbar__user-role" id="topbarUserRole"></span>
+        </div>
+        <div class="topbar__avatar" id="topbarAvatar">—</div>
+      </div>
+    </header>
+
+    <main class="app-content">
+
+      <!-- Analytics overview -->
+      <div class="stat-grid">
+        <div class="stat-tile"><div class="stat-tile__label">Active Students</div><div class="stat-tile__value" id="statActiveStudents">—</div><div class="stat-tile__delta">↑ 12% this month</div></div>
+        <div class="stat-tile"><div class="stat-tile__label">Total Enrollments</div><div class="stat-tile__value" id="statEnrollments">—</div><div class="stat-tile__delta">↑ 8% this month</div></div>
+        <div class="stat-tile"><div class="stat-tile__label">Certificates Issued</div><div class="stat-tile__value" id="statCertificates">—</div><div class="stat-tile__delta">↑ 15% this month</div></div>
+        <div class="stat-tile"><div class="stat-tile__label">Avg. Completion Rate</div><div class="stat-tile__value" id="statCompletion">—</div><div class="stat-tile__delta">↑ 3% this month</div></div>
+      </div>
+
+      <!-- Tabs: Users / Courses -->
+      <div class="admin-tabs">
+        <button class="admin-tab is-active" data-panel="users">Manage Users</button>
+        <button class="admin-tab" data-panel="courses">Manage Courses</button>
+      </div>
+
+      <!-- Users panel -->
+      <div class="admin-panel is-active" data-panel="users">
+        <div class="card">
+          <div class="card-head"><h3>All Users</h3><input type="text" placeholder="Search users…" style="padding:0.5rem 0.9rem; border:1px solid var(--border); border-radius: var(--radius-sm); font-size:0.85rem;"></div>
+          <table class="data-table">
+            <thead><tr><th>User</th><th>Profession</th><th>Enrolled</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="usersTableBody"><!-- populated by admin.js --></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Courses panel -->
+      <div class="admin-panel" data-panel="courses">
+        <div class="card">
+          <div class="card-head">
+            <h3>Course Catalogue</h3>
+            <button class="btn btn-primary btn-sm" id="addCourseBtn">+ Add Course</button>
+          </div>
+          <div class="admin-course-grid" id="adminCourseGrid"><!-- populated by admin.js --></div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+</div>
+
+<!-- Add/Edit Course Modal -->
+<div class="modal-overlay" id="courseModalOverlay">
+  <div class="modal">
+    <div class="modal__head">
+      <h3 id="modalTitle">Add New Course</h3>
+      <button class="modal__close" id="modalCloseBtn">✕</button>
+    </div>
+    <form id="courseForm">
+      <div class="field">
+        <label for="courseTitleInput">Course Title</label>
+        <input type="text" id="courseTitleInput" placeholder="e.g. Telemedicine Fundamentals" required>
+      </div>
+      <div class="field">
+        <label for="courseLevelInput">Level</label>
+        <select id="courseLevelInput">
+          <option>Beginner</option><option>Intermediate</option><option>Advanced</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="courseCpdInput">CPD Points</label>
+        <input type="number" id="courseCpdInput" placeholder="e.g. 6" min="1" required>
+      </div>
+      <div class="modal__actions">
+        <button type="button" class="btn btn-ghost" id="modalCancelBtn">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save Course</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="toast" id="toast"><span class="icon">✓</span><span id="toastMessage">Saved successfully</span></div>
+
+<script src="js/mock-data.js"></script>
+<script src="js/auth-guard.js"></script>
+<script src="js/admin.js"></script>
+<!-- Admin Security Lock -->
+<script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  // 1. Ask Netlify who is currently logged in
+  const user = netlifyIdentity.currentUser();
+  
+  // 2. Replace this with your exact login email address
+  const adminEmail = "chirumeallan64@gmail.com"; 
+
+  // 3. If nobody is logged in, OR their email does not match yours, kick them out!
+  if (!user || user.email !== adminEmail) {
+      window.location.replace("dashboard.html");
+  }
+</script>
+</body>
+</html>

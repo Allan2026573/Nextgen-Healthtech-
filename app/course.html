@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artificial Intelligence in Healthcare — NextGen HealthTech Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&family=Lora:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/variables.css">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="css/app-shared.css">
+<link rel="stylesheet" href="css/course.css">
+</head>
+<body>
+
+<div class="app-shell">
+
+  <aside class="sidebar">
+    <div class="sidebar__logo"><img src="../assets/logo.png" alt="NextGen HealthTech Academy"></div>
+    <nav class="sidebar__nav">
+      <a href="dashboard.html" class="sidebar__link"><span class="icon">🏠</span> Dashboard</a>
+      <a href="course.html" class="sidebar__link is-active"><span class="icon">📚</span> My Courses</a>
+      <a href="dashboard.html#certificates" class="sidebar__link"><span class="icon">🎓</span> Certificates</a>
+      <a href="admin.html" class="sidebar__link"><span class="icon">⚙️</span> Admin View</a>
+    </nav>
+    <div class="sidebar__footer">
+      <button class="sidebar__logout" id="logoutBtn"><span class="icon">⏻</span> Log Out</button>
+    </div>
+  </aside>
+
+  <div class="app-main">
+    <header class="topbar">
+      <button id="sidebarToggle" class="navbar__burger" style="display:none;" aria-label="Toggle sidebar"><span></span><span></span><span></span></button>
+      <h1>Artificial Intelligence in Healthcare</h1>
+      <div class="topbar__user">
+        <div class="topbar__user-info">
+          <span class="topbar__user-name" id="topbarUserName">Loading…</span>
+          <span class="topbar__user-role" id="topbarUserRole"></span>
+        </div>
+        <div class="topbar__avatar" id="topbarAvatar">—</div>
+      </div>
+    </header>
+
+    <main class="app-content">
+      <div class="learn-layout">
+
+        <!-- Main learning column -->
+        <div>
+          <div class="video-player" id="videoPlayer">
+            <div class="video-player__play">▶</div>
+            <span class="video-player__caption" id="currentModuleCaption">Module 1 · What Is AI? Demystifying the Basics</span>
+          </div>
+
+          <div class="lesson-header">
+            <h1 id="lessonTitle">What Is AI? Demystifying the Basics</h1>
+            <div class="meta"><span>⏱ 18 min</span><span>Beginner Level</span></div>
+          </div>
+
+          <div class="learn-tabs">
+            <button class="learn-tab is-active" data-tab="resources">Resources</button>
+            <button class="learn-tab" data-tab="quiz">Quiz</button>
+          </div>
+
+          <!-- Resources tab -->
+          <div class="learn-tab-panel is-active" data-tab="resources">
+            <div class="resource-item">
+              <div class="resource-item__icon">📄</div>
+              <div class="resource-item__body"><strong>Module Slides (PDF)</strong><span>2.1 MB</span></div>
+              <button class="btn btn-ghost btn-sm" onclick="alert('Simulated download: Module-1-Slides.pdf')">Download</button>
+            </div>
+            <div class="resource-item">
+              <div class="resource-item__icon">📝</div>
+              <div class="resource-item__body"><strong>Prompt Cheat-Sheet</strong><span>1 page</span></div>
+              <button class="btn btn-ghost btn-sm" onclick="alert('Simulated download: Prompt-Cheat-Sheet.pdf')">Download</button>
+            </div>
+          </div>
+
+          <!-- Quiz tab -->
+          <div class="learn-tab-panel" data-tab="quiz">
+            <div class="quiz-question">
+              <p class="q-text">1. What is the best analogy for how AI supports a clinician's decision?</p>
+              <div class="quiz-options" data-correct="1">
+                <div class="quiz-option">A confident junior colleague whose suggestions must always be checked</div>
+                <div class="quiz-option">A senior consultant whose decisions should never be questioned</div>
+                <div class="quiz-option">A replacement for clinical judgement</div>
+              </div>
+              <p class="quiz-feedback"></p>
+            </div>
+            <div class="quiz-question">
+              <p class="q-text">2. What should you never paste into a public AI tool?</p>
+              <div class="quiz-options" data-correct="0">
+                <div class="quiz-option">Identifiable patient information</div>
+                <div class="quiz-option">A general clinical question</div>
+                <div class="quiz-option">An anonymised scenario</div>
+              </div>
+              <p class="quiz-feedback"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Collapsible curriculum sidebar -->
+        <aside class="curriculum-sidebar" id="curriculumSidebar">
+          <div class="curriculum-sidebar__head">
+            <h3>Course Curriculum</h3>
+            <button class="curriculum-sidebar__toggle" id="sidebarCollapseBtn">▾</button>
+          </div>
+          <div class="curriculum-sidebar__body">
+            <div class="curriculum-sidebar__progress">
+              <span id="courseProgressLabel">1 of 4 modules complete</span>
+              <div class="progress-track"><div class="progress-fill" id="courseProgressFill" style="width:25%;"></div></div>
+            </div>
+            <div class="module-group__title">Beginner Level</div>
+            <div id="moduleList"><!-- populated by course.js --></div>
+          </div>
+        </aside>
+
+      </div>
+    </main>
+  </div>
+
+</div>
+
+<script src="js/mock-data.js"></script>
+<script src="js/auth-guard.js"></script>
+<script src="js/course.js"></script>
+</body>
+</html>
