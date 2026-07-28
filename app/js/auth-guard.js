@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Logout button (present in the sidebar on every secure page)
   document.getElementById('logoutBtn')?.addEventListener('click', () => {
     localStorage.removeItem('nexgen_session');
-    window.location.href = '../public/login.html';
+    window.location.href = '../login.html';
   });
 
   // Mobile sidebar toggle (present in the topbar on every secure page)
