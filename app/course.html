@@ -18,100 +18,35 @@
         .sub-title { color: #34495e; margin-top: 20px; font-size: 18px; }
         .analogy-box { background-color: #f0f7fb; border-left: 4px solid #3498db; padding: 18px; margin: 20px 0; border-radius: 0 6px 6px 0; }
         .analogy-box h4 { margin-top: 0; color: #2980b9; }
-        .quiz-box { background-color: #f8fafc; padding: 25px; border-radius: 8px; margin-top: 35px; border: 1px solid #cbd5e1; }
-        .quiz-title { color: #1e293b; margin-top: 0; font-size: 18px; }
-        .quiz-option { display: block; background: #ffffff; padding: 12px 15px; margin-bottom: 10px; border: 1px solid #e2e8f0; border-radius: 6px; cursor: pointer; transition: background 0.2s; }
+        .quiz-box { background-color: #f8fafc; padding: 35px; border-radius: 8px; margin-top: 20px; border: 1px solid #cbd5e1; }
+        .quiz-title { color: #1e293b; margin-top: 0; font-size: 22px; border-bottom: 2px solid #cbd5e1; padding-bottom: 10px; margin-bottom: 20px; }
+        .quiz-option { display: block; background: #ffffff; padding: 15px; margin-bottom: 10px; border: 1px solid #e2e8f0; border-radius: 6px; cursor: pointer; transition: background 0.2s; font-size: 16px; }
         .quiz-option:hover { background: #f1f5f9; }
-        .quiz-option input { margin-right: 10px; }
-        .btn-primary { background-color: #2c3e50; color: #ffffff; border: none; padding: 12px 25px; border-radius: 6px; cursor: pointer; font-size: 15px; font-weight: 600; margin-top: 10px; }
+        .quiz-option input { margin-right: 15px; transform: scale(1.2); }
+        .btn-primary { background-color: #2c3e50; color: #ffffff; border: none; padding: 12px 25px; border-radius: 6px; cursor: pointer; font-size: 16px; font-weight: 600; margin-top: 20px; transition: background 0.3s; }
         .btn-primary:hover { background-color: #1a252f; }
-        .error-msg { color: #dc2626; display: none; font-weight: bold; margin-top: 12px; font-size: 14px; }
+        .btn-proceed { background-color: #3498db; width: 100%; font-size: 18px; padding: 15px; margin-top: 30px; }
+        .btn-proceed:hover { background-color: #2980b9; }
+        .error-msg { color: #dc2626; display: none; font-weight: bold; margin-top: 15px; font-size: 15px; padding: 10px; background: #fee2e2; border-radius: 5px; }
         
         /* Premium Certificate Styles */
-        .cert-wrapper { 
-            display: none; 
-            background: #ffffff; 
-            margin-top: 20px; 
-        }
-        .cert-outer-border {
-            border: 12px solid #002d5b; 
-            padding: 8px;
-            background: #fff;
-        }
-        .cert-inner-border {
-            border: 3px solid #4caf50; 
-            padding: 40px 50px;
-            text-align: center;
-            position: relative;
-        }
-        .cert-logo { 
-            height: 100px; 
-            margin-bottom: 20px; 
-            object-fit: contain; 
-        }
-        .cert-title { 
-            font-size: 42px; 
-            color: #002d5b; 
-            text-transform: uppercase; 
-            margin: 10px 0; 
-            font-family: 'Times New Roman', Times, serif; 
-            letter-spacing: 4px; 
-        }
-        .cert-name { 
-            font-size: 36px; 
-            color: #002d5b; 
-            border-bottom: 2px solid #4caf50; 
-            display: inline-block; 
-            padding: 5px 50px; 
-            margin: 25px 0; 
-            font-family: 'Times New Roman', Times, serif; 
-            font-style: italic; 
-            font-weight: bold; 
-        }
-        .cert-footer { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: flex-end; 
-            margin-top: 60px; 
-            padding: 0 30px; 
-        }
-        .cert-signature-box { 
-            width: 280px; 
-            text-align: center; 
-        }
-        .cert-signature-line { 
-            border-top: 1px solid #002d5b; 
-            padding-top: 8px; 
-            font-size: 15px; 
-            color: #002d5b; 
-            margin-top: 5px; 
-        }
-        .cert-signature-img { 
-            height: 80px; 
-            margin-bottom: -15px; 
-            object-fit: contain;
-            mix-blend-mode: multiply; 
-        }
+        .cert-wrapper { display: none; background: #ffffff; margin-top: 20px; }
+        .cert-outer-border { border: 12px solid #002d5b; padding: 8px; background: #fff; }
+        .cert-inner-border { border: 3px solid #4caf50; padding: 40px 50px; text-align: center; position: relative; }
+        .cert-logo { height: 100px; margin-bottom: 20px; object-fit: contain; }
+        .cert-title { font-size: 42px; color: #002d5b; text-transform: uppercase; margin: 10px 0; font-family: 'Times New Roman', Times, serif; letter-spacing: 4px; }
+        .cert-name { font-size: 36px; color: #002d5b; border-bottom: 2px solid #4caf50; display: inline-block; padding: 5px 50px; margin: 25px 0; font-family: 'Times New Roman', Times, serif; font-style: italic; font-weight: bold; }
+        .cert-footer { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 60px; padding: 0 30px; }
+        .cert-signature-box { width: 280px; text-align: center; }
+        .cert-signature-line { border-top: 1px solid #002d5b; padding-top: 8px; font-size: 15px; color: #002d5b; margin-top: 5px; }
+        .cert-signature-img { height: 80px; margin-bottom: -15px; object-fit: contain; mix-blend-mode: multiply; }
 
-        /* Print Settings to remove browser headers and force Landscape */
         @media print {
             @page { size: A4 landscape; margin: 0; }
             body { margin: 0; padding: 0; background-color: #ffffff; }
             body * { visibility: hidden; }
             #certificate-render, #certificate-render * { visibility: visible; }
-            #certificate-render {
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 100vw;
-                height: 100vh;
-                margin: 0;
-                padding: 40px;
-                box-sizing: border-box;
-                display: flex !important;
-                flex-direction: column;
-                justify-content: center;
-            }
+            #certificate-render { position: absolute; left: 0; top: 0; width: 100vw; height: 100vh; margin: 0; padding: 40px; box-sizing: border-box; display: flex !important; flex-direction: column; justify-content: center; }
             .no-print { display: none !important; }
         }
     </style>
@@ -124,7 +59,7 @@
     </div>
 
     <!-- ================= MODULE 1 ================= -->
-    <div id="module-1" class="module-section">
+    <div id="module-1-content" class="module-section">
         <div class="header-banner">
             <h1>ARTIFICIAL INTELLIGENCE IN HEALTHCARE</h1>
             <h2>BEGINNERS EDITION</h2>
@@ -132,247 +67,343 @@
         </div>
 
         <h2 class="mod-title">Foreword</h2>
-        <p>This guide was written by a nurse who sat exactly where you are sitting right now. When I graduated as a Registered Nurse from the University of Lusaka in 2025, I knew how to take a blood pressure reading, manage a patient with malaria, and comfort a frightened family. What I did not know was anything about AI or cloud systems reshaping healthcare.</p>
-        <p>I taught myself through trial and error. AI is not complicated once explained through clinical language and Zimbabwean scenarios. Understanding it makes you a better clinician.</p>
+        <p>This guide was written by a nurse who sat exactly where you are sitting right now. When I graduated as a Registered Nurse from the University of Lusaka in 2025, I knew how to take a blood pressure reading, manage a patient with malaria, write a nursing care plan, and comfort a frightened family in the middle of the night. What I did not know was anything about artificial intelligence, cloud computing, or the digital systems that were quietly reshaping the hospitals and clinics where I would spend my career.</p>
+        <p>So I decided to teach myself — through online courses, late nights, and a lot of trial and error. And what I discovered shocked me. Not because the technology was complicated. But because it was not complicated at all. Once someone explained it in language I already understood — clinical language, Zimbabwean examples, healthcare scenarios — everything clicked.</p>
+        <p>Welcome to NextGen HealthTech Academy. This is your beginning.</p>
         <p><strong>Allan Kudzai Chirume</strong><br>CEO & Co-Founder, NextGen HealthTech Academy<br>Registered Nurse | Digital Health Trainer</p>
 
         <h2 class="mod-title">Module 1: What Is Artificial Intelligence?</h2>
         <h3 class="sub-title">1.1 & 1.2 A Practical Definition</h3>
-        <p>Artificial intelligence is computer software that learns from data to make decisions, predictions, or suggestions — without being explicitly programmed for every scenario.</p>
+        <p>Artificial intelligence is computer software that learns from data and uses that learning to make decisions, predictions, or suggestions — without being directly programmed for every possible situation.</p>
         
         <div class="analogy-box">
             <h4>The Keen Intern Analogy</h4>
-            <p>Imagine Takudzwa, a keen intern at Parirenyatwa Hospital. He knows every medical textbook by heart, but has never touched a patient or felt a swollen spleen. He can suggest a diagnosis, but needs you to make the final call. AI is Takudzwa: brilliant with data, dependent on you for clinical decisions.</p>
+            <p>Imagine a very keen intern — let us call him Takudzwa — who joins your ward at Parirenyatwa Hospital. Takudzwa has read every medical textbook, every clinical guideline, every research paper ever published. He can recall facts faster than anyone you have ever met. But Takudzwa has never actually touched a patient. He has never felt a swollen spleen, never heard a chest full of fluid, never looked a family in the eye with difficult news. He can suggest a diagnosis based on symptoms — but he needs you to examine the patient, confirm his thinking, and make the final call. Artificial intelligence is Takudzwa. Brilliant with data. Dependent on you for everything that actually matters.</p>
         </div>
 
         <h3 class="sub-title">1.3 What AI Is Not</h3>
         <ul>
-            <li><strong>Not a robot:</strong> It is software on a phone or computer.</li>
-            <li><strong>Not infallible:</strong> It can hallucinate and make confident errors.</li>
-            <li><strong>Not replacing clinicians:</strong> A stethoscope didn't replace nurses; AI won't replace healthcare workers.</li>
+            <li><strong>AI is not a robot.</strong> Clinical AI is software. It runs on a computer or a smartphone.</li>
+            <li><strong>AI is not infallible.</strong> AI makes mistakes. Sometimes it makes very confident mistakes. This is why every AI output in healthcare must be reviewed by a qualified professional.</li>
+            <li><strong>AI is not replacing healthcare professionals.</strong> A stethoscope did not replace nurses. AI will not replace you either.</li>
         </ul>
 
+        <button class="btn-primary btn-proceed" onclick="showQuiz(1)">Proceed to Module 1 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 1 QUIZ (Hidden initially) -->
+    <div id="module-1-quiz" class="module-section" style="display: none;">
         <div class="quiz-box">
-            <h3 class="quiz-title">Module 1 Knowledge Check</h3>
-            <p>According to the Takudzwa analogy, what is the role of AI in clinical practice?</p>
-            <label class="quiz-option"><input type="radio" name="q1" value="w1"> A) To replace clinical staff in bedside decision making</label>
-            <label class="quiz-option"><input type="radio" name="q1" value="w2"> B) To give infallible answers that require no review</label>
-            <label class="quiz-option"><input type="radio" name="q1" value="correct"> C) To act as data-driven decision support while the clinician retains final judgment</label>
-            <p id="quiz1-error" class="error-msg">Please select the correct answer to proceed.</p>
-            <button type="button" class="btn-primary" onclick="validateModule(1, 2)">Submit & Unlock Module 2</button>
+            <h3 class="quiz-title">Module 1: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">According to the 'Keen Intern Takudzwa' analogy, what is the correct relationship between AI and a healthcare professional?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q1" value="w1"> A) AI is a robot that will eventually take over patient assessments.</label>
+            <label class="quiz-option"><input type="radio" name="q1" value="w2"> B) AI is infallible and its clinical suggestions should be followed immediately without question.</label>
+            <label class="quiz-option"><input type="radio" name="q1" value="correct"> C) AI is brilliant with data, but depends on the healthcare professional's clinical judgment for the final call.</label>
+            
+            <p id="quiz1-error" class="error-msg">Incorrect. Hint: Think about what Takudzwa lacks when it comes to actually examining a patient.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(1, 2)">Submit Answer</button>
         </div>
     </div>
 
     <!-- ================= MODULE 2 ================= -->
-    <div id="module-2" class="module-section" style="display: none;">
+    <div id="module-2-content" class="module-section" style="display: none;">
         <h2 class="mod-title">Module 2: AI Is Already in Your Hospital</h2>
-        <h3 class="sub-title">2.1 Everyday Clinical AI</h3>
-        <p>AI is already active in EHR autocomplete suggestions, critical lab value alert flags, and pharmacy drug interaction checks.</p>
+        <p>One of the most surprising things healthcare workers discover when they first learn about AI is that they have been using it for years without knowing it. AI is not coming to Zimbabwe's healthcare system — it is already here.</p>
         
-        <h3 class="sub-title">2.2 Deployed Solutions in Zimbabwe</h3>
-        <p><strong>CAD4TB:</strong> Deployed in Harare and Bulawayo, this AI reads chest X-rays in under two seconds to triage suspected tuberculosis cases.</p>
-        <p><strong>Epidemiological Forecasting:</strong> The Ministry of Health and Child Care uses predictive models combining rainfall and temperature data to forecast district malaria surges.</p>
+        <h3 class="sub-title">2.1 The AI You Use Every Day</h3>
+        <p>You arrive at work and log into the Electronic Health Records system. When you type the first few letters of a diagnosis, the system suggests the full name automatically. That autocomplete suggestion is powered by AI. A lab result comes back for a patient. The system automatically flags it as 'CRITICAL — HIGH' in red text. A patient is prescribed a new medication and the pharmacy system immediately warns that it may interact with another drug.</p>
+        
+        <h3 class="sub-title">2.2 AI Tools Already Deployed in Zimbabwe</h3>
+        <p><strong>CAD4TB</strong> is an AI system that reads chest X-rays and identifies signs of tuberculosis. It has been deployed at hospitals in Harare, Bulawayo, and several provincial centres. It reads an X-ray in under two seconds and flags high-risk cases for radiologist review — dramatically reducing the backlog that plagues Zimbabwe's radiology services.</p>
+        <p>The Ministry of Health and Child Care uses AI-driven epidemiological models to predict which districts in Zimbabwe are likely to see malaria surges in the coming weeks, based on rainfall data, temperature patterns, and historical case records.</p>
+        <p>During the COVID-19 pandemic, Zimbabwe deployed AI-assisted symptom assessment tools via USSD and WhatsApp. Community health workers used these tools to triage patients without physical contact.</p>
 
+        <button class="btn-primary btn-proceed" onclick="showQuiz(2)">Proceed to Module 2 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 2 QUIZ -->
+    <div id="module-2-quiz" class="module-section" style="display: none;">
         <div class="quiz-box">
-            <h3 class="quiz-title">Module 2 Knowledge Check</h3>
-            <p>Which AI tool is deployed in Zimbabwean hospitals to triage chest X-rays for TB?</p>
-            <label class="quiz-option"><input type="radio" name="q2" value="correct"> A) CAD4TB</label>
-            <label class="quiz-option"><input type="radio" name="q2" value="w1"> B) Whisper</label>
-            <label class="quiz-option"><input type="radio" name="q2" value="w2"> C) Copilot</label>
-            <p id="quiz2-error" class="error-msg">Incorrect. Review Section 2.2.</p>
-            <button type="button" class="btn-primary" onclick="validateModule(2, 3)">Submit & Unlock Module 3</button>
+            <h3 class="quiz-title">Module 2: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">Which AI tool is currently deployed in Zimbabwean facilities to read chest X-rays and identify signs of tuberculosis?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q2" value="w1"> A) ChatGPT</label>
+            <label class="quiz-option"><input type="radio" name="q2" value="correct"> B) CAD4TB</label>
+            <label class="quiz-option"><input type="radio" name="q2" value="w2"> C) Ada Health</label>
+            
+            <p id="quiz2-error" class="error-msg">Incorrect. Please try again.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(2, 3)">Submit Answer</button>
         </div>
     </div>
 
     <!-- ================= MODULE 3 ================= -->
-    <div id="module-3" class="module-section" style="display: none;">
-        <h2 class="mod-title">Module 3: The Four Types of AI in Healthcare</h2>
-        <ul>
-            <li><strong>Natural Language Processing (NLP):</strong> Reads and writes text (e.g., ChatGPT drafting referral letters or Whisper converting voice to notes).</li>
-            <li><strong>Computer Vision:</strong> Processes medical images (e.g., automated slide analysis for malaria parasites or diabetic retinopathy screening).</li>
-            <li><strong>Predictive AI:</strong> Analyzes historical patterns to forecast events (e.g., sepsis deterioration alerts or malaria surge mapping).</li>
-            <li><strong>Conversational AI:</strong> Interactive diagnostic dialogues (e.g., Ada Health symptom assessment).</li>
-        </ul>
+    <div id="module-3-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 3: The Four Types of AI You Will Encounter</h2>
+        
+        <h3 class="sub-title">3.1 Natural Language Processing — AI That Reads and Writes</h3>
+        <p>Natural Language Processing, or NLP, is the type of AI that understands human language. In healthcare, NLP powers tools like ChatGPT and Microsoft Copilot, which can read a patient's clinical notes and draft a discharge summary. Voice-to-text tools like Whisper use NLP to convert spoken clinical notes into typed text in real time.</p>
 
+        <h3 class="sub-title">3.2 Computer Vision — AI That Sees</h3>
+        <p>Computer Vision is AI that can analyse images. In healthcare, Computer Vision powers the AI radiology tools that read chest X-rays for TB signs, the dermatology tools that assess skin lesions from photographs, and the pathology tools that analyse blood slides for malaria parasites.</p>
+
+        <h3 class="sub-title">3.3 Predictive AI — AI That Forecasts</h3>
+        <p>Predictive AI analyses patterns in existing data to forecast what is likely to happen next. In Zimbabwe, predictive AI is used by the MOHCC to forecast malaria outbreak zones by district and season. In hospitals, predictive systems analyse patient vital signs and flag those at highest risk of deterioration in the next six hours.</p>
+
+        <h3 class="sub-title">3.4 Conversational AI — AI That Talks</h3>
+        <p>Conversational AI is the type of AI that holds a dialogue. Ada Health is a medical conversational AI used in over 190 countries: a patient describes their symptoms in plain language, and Ada asks follow-up questions before providing a list of possible conditions.</p>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(3)">Proceed to Module 3 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 3 QUIZ -->
+    <div id="module-3-quiz" class="module-section" style="display: none;">
         <div class="quiz-box">
-            <h3 class="quiz-title">Module 3 Knowledge Check</h3>
-            <p>Which branch of AI allows software to inspect blood slides or X-ray images?</p>
+            <h3 class="quiz-title">Module 3: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">Which type of AI is used to analyse a photograph of a skin lesion or read a microscope slide for malaria parasites?</p>
+            
             <label class="quiz-option"><input type="radio" name="q3" value="w1"> A) Natural Language Processing</label>
-            <label class="quiz-option"><input type="radio" name="q3" value="correct"> B) Computer Vision</label>
-            <label class="quiz-option"><input type="radio" name="q3" value="w2"> C) Conversational AI</label>
-            <p id="quiz3-error" class="error-msg">Incorrect. Think about visual perception in AI.</p>
-            <button type="button" class="btn-primary" onclick="validateModule(3, 4)">Submit & Unlock Module 4</button>
+            <label class="quiz-option"><input type="radio" name="q3" value="w2"> B) Predictive AI</label>
+            <label class="quiz-option"><input type="radio" name="q3" value="correct"> C) Computer Vision</label>
+            
+            <p id="quiz3-error" class="error-msg">Incorrect. Think about how the software processes visual information.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(3, 4)">Submit Answer</button>
         </div>
     </div>
 
     <!-- ================= MODULE 4 ================= -->
-    <div id="module-4" class="module-section" style="display: none;">
-        <h2 class="mod-title">Module 4: Essential AI Tools for Clinicians</h2>
-        <p>Modern AI tools are accessible directly on smartphones:</p>
-        <ul>
-            <li><strong>ChatGPT:</strong> Clinical drafting (discharge summaries, patient education).</li>
-            <li><strong>Ada Health:</strong> Structured clinical triage support for community outreach.</li>
-            <li><strong>Google Translate:</strong> Real-time translation of clinical discharge instructions into Shona and Ndebele.</li>
-            <li><strong>Whisper / Otter.ai:</strong> Speech-to-text transcription of ward notes.</li>
-        </ul>
+    <div id="module-4-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 4: AI Tools You Can Use Right Now</h2>
+        <p>The most powerful thing about modern AI tools is that most of them are free, require no installation, and work on any smartphone with internet access.</p>
 
+        <h3 class="sub-title">4.1 ChatGPT — Your AI Writing Assistant</h3>
+        <p>Discharge summaries, referral letters, patient education materials, pre-authorisation requests for medical aid — all of these can be drafted by ChatGPT in seconds when you give it the relevant clinical information. The AI drafts. You approve.</p>
+        
+        <h3 class="sub-title">4.2 Ada Health — Your AI Triage Partner</h3>
+        <p>Ada Health is a free AI symptom checker. It provides a structured triage framework when clinical supervision is not immediately available. For nurses managing high patient volumes, it provides a useful second perspective before escalation decisions.</p>
+
+        <h3 class="sub-title">4.3 Microsoft Copilot — AI in Your Office Tools</h3>
+        <p>Copilot can summarise long documents, draft emails, create reports from data, and translate content between languages. For hospital administrators, it dramatically reduces the time spent on routine documentation.</p>
+
+        <h3 class="sub-title">4.4 Google Translate — Breaking Language Barriers</h3>
+        <p>When a patient cannot read or understand English, a translated set of discharge instructions in their first language (Shona, Ndebele) is not just convenient — it is a clinical safety measure. Patients who understand their instructions are more likely to take their medication correctly.</p>
+
+        <h3 class="sub-title">4.5 Whisper and Otter.ai — Speak Your Notes</h3>
+        <p>For nurses and doctors writing clinical notes, voice-to-text AI tools eliminate the most time-consuming part of documentation — the typing itself.</p>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(4)">Proceed to Module 4 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 4 QUIZ -->
+    <div id="module-4-quiz" class="module-section" style="display: none;">
         <div class="quiz-box">
-            <h3 class="quiz-title">Module 4 Knowledge Check</h3>
-            <p>Why is real-time translation of discharge instructions clinically important in Zimbabwe?</p>
-            <label class="quiz-option"><input type="radio" name="q4" value="correct"> A) It enhances patient adherence and safety by providing instructions in first languages like Shona or Ndebele</label>
-            <label class="quiz-option"><input type="radio" name="q4" value="w1"> B) It replaces the need for nurses to speak to patients</label>
-            <p id="quiz4-error" class="error-msg">Incorrect. Review Section 4.4.</p>
-            <button type="button" class="btn-primary" onclick="validateModule(4, 5)">Submit & Unlock Module 5</button>
+            <h3 class="quiz-title">Module 4: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">Why is the use of translation tools like Google Translate considered a "clinical safety measure" in Zimbabwean healthcare settings?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q4" value="correct"> A) Because providing discharge instructions in a patient's first language increases the likelihood they will take medication correctly and recognize warning signs.</label>
+            <label class="quiz-option"><input type="radio" name="q4" value="w1"> B) Because it replaces the need to hire interpreters at the hospital.</label>
+            <label class="quiz-option"><input type="radio" name="q4" value="w2"> C) Because the Ministry of Health requires all documents to be in English.</label>
+            
+            <p id="quiz4-error" class="error-msg">Incorrect. Please try again.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(4, 5)">Submit Answer</button>
         </div>
     </div>
 
     <!-- ================= MODULE 5 ================= -->
-    <div id="module-5" class="module-section" style="display: none;">
-        <h2 class="mod-title">Module 5: Clinical Case Studies in Zimbabwe</h2>
-        <p><strong>Rural Triage at 2 AM:</strong> A solitary night nurse uses ChatGPT to structure resuscitation priorities and SBAR handover for a septic shock patient.</p>
-        <p><strong>CIMAS Pre-Authorisation:</strong> An administrator drafts an emergency justification letter for appendectomy within 30 seconds.</p>
-        <p><strong>Combating Misinformation:</strong> Translating evidence-based diabetes care instructions into Shona to refute harmful social media claims regarding insulin.</p>
+    <div id="module-5-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 5: AI in Clinical Practice — Real Zimbabwe Scenarios</h2>
+        
+        <h3 class="sub-title">5.1 The Nurse Alone at 2am</h3>
+        <p>Nurse Tendai is the only clinical staff member on duty at a rural health centre. A patient presents in septic shock. Tendai opens ChatGPT on her phone and types the vitals, asking for nursing priorities for the next fifteen minutes and what information to have ready for the doctor. Receiving a structured confirmation gives her the confidence to act systematically. The AI did not diagnose; the doctor did. The AI provided a structured framework for action under pressure.</p>
 
+        <h3 class="sub-title">5.2 The Pre-Authorisation That Could Not Wait</h3>
+        <p>An admin clerk needs a CIMAS pre-authorisation for an emergency appendectomy. She uses ChatGPT to draft a complete, professionally worded medical justification letter in thirty seconds. Authorisation is granted rapidly.</p>
+
+        <h3 class="sub-title">5.3 The WhatsApp Misinformation Crisis</h3>
+        <p>A diabetic patient stops insulin due to a WhatsApp forward claiming it causes kidney failure. Nurse Rudo uses ChatGPT to generate a simple, factual explanation of why insulin is safe, translated into Shona, replacing the misinformation with accessible facts.</p>
+
+        <h3 class="sub-title">5.4 The TB Backlog in Radiology</h3>
+        <p>Mpilo Central Hospital uses CAD4TB to process all incoming chest X-rays automatically. X-rays scoring above 70 are flagged as priority for the radiologist, dropping the average reporting time from nineteen days to four.</p>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(5)">Proceed to Module 5 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 5 QUIZ -->
+    <div id="module-5-quiz" class="module-section" style="display: none;">
         <div class="quiz-box">
-            <h3 class="quiz-title">Module 5 Knowledge Check</h3>
-            <p>In all clinical scenarios, what is the golden rule of decision making?</p>
-            <label class="quiz-option"><input type="radio" name="q5" value="w1"> A) The AI's recommendation is final</label>
-            <label class="quiz-option"><input type="radio" name="q5" value="correct"> B) AI drafts and assists; the clinician reviews, decides, and signs</label>
-            <p id="quiz5-error" class="error-msg">Incorrect. Clinical judgment is always paramount.</p>
-            <button type="button" class="btn-primary" onclick="validateModule(5, 6)">Submit & Unlock Module 6</button>
+            <h3 class="quiz-title">Module 5: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">In the scenario of the nurse working alone at 2am, what was the primary benefit of using the AI tool?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q5" value="w1"> A) The AI legally prescribed IV artesunate so the nurse didn't have to call the doctor.</label>
+            <label class="quiz-option"><input type="radio" name="q5" value="correct"> B) The AI provided a structured framework for nursing action and handover, helping the nurse act systematically under pressure.</label>
+            <label class="quiz-option"><input type="radio" name="q5" value="w2"> C) The AI took over the physical monitoring of the patient's vitals.</label>
+            
+            <p id="quiz5-error" class="error-msg">Incorrect. Remember the principle that AI assists but does not replace clinical duty.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(5, 6)">Submit Answer</button>
         </div>
     </div>
 
     <!-- ================= MODULE 6 ================= -->
-    <div id="module-6" class="module-section" style="display: none;">
-        <h2 class="mod-title">Module 6: Ethics, Data Protection & Bias</h2>
-        <h3 class="sub-title">6.1 Patient Confidentiality</h3>
-        <p>Under Zimbabwe's <strong>Cyber and Data Protection Act (2021)</strong>, never enter identifiable patient details (names, national ID, hospital numbers) into public AI platforms. Use strictly anonymized clinical scenarios.</p>
+    <div id="module-6-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 6: Ethics, Safety, and What AI Cannot Do</h2>
+        
+        <h3 class="sub-title">6.1 The Patient Data Rule — Non-Negotiable</h3>
+        <p>Never paste a patient's name, ID number, hospital number, or any information that could identify a specific individual into ChatGPT or any public AI tool. Zimbabwe's Cyber and Data Protection Act (2021) creates strict legal obligations around patient data. Use anonymised clinical scenarios only.</p>
 
-        <h3 class="sub-title">6.2 Demographic Bias</h3>
-        <p>Many diagnostic models were trained on European and North American populations. Clinicians must actively verify outputs for local demographics and darker skin presentations.</p>
+        <h3 class="sub-title">6.2 AI Makes Mistakes — Always Verify</h3>
+        <p>AI can produce confident, well-written, completely incorrect output (hallucinations). Before acting on any AI-generated clinical information, verify it against your training or the Zimbabwe EDLIZ formulary.</p>
 
+        <h3 class="sub-title">6.3 AI Is Biased Against African Patients</h3>
+        <p>The vast majority of AI clinical tools were trained primarily on data from North American and European populations. Research shows they can underperform on darker-skinned patients or local epidemiological profiles. As a Zimbabwean healthcare professional, you are the most important safeguard against AI bias.</p>
+
+        <h3 class="sub-title">6.4 Professional Accountability Stays With You</h3>
+        <p>If an AI-assisted clinical decision leads to patient harm, the legal and professional accountability rests with the registered professional who made the decision. Using AI does not transfer accountability.</p>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(6)">Proceed to Module 6 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 6 QUIZ -->
+    <div id="module-6-quiz" class="module-section" style="display: none;">
         <div class="quiz-box">
-            <h3 class="quiz-title">Module 6 Knowledge Check</h3>
-            <p>What data is legally prohibited from being pasted into public AI models?</p>
-            <label class="quiz-option"><input type="radio" name="q6" value="correct"> A) Identifiable personal information such as patient names, IDs, or hospital numbers</label>
-            <label class="quiz-option"><input type="radio" name="q6" value="w1"> B) Generic clinical symptoms</label>
-            <p id="quiz6-error" class="error-msg">Incorrect. Review Section 6.1.</p>
-            <button type="button" class="btn-primary" onclick="validateModule(6, 7)">Submit & Unlock Module 7</button>
+            <h3 class="quiz-title">Module 6: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">Why must healthcare professionals in Zimbabwe be particularly cautious about AI diagnostic tools regarding skin conditions or specific local diseases?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q6" value="w1"> A) Because AI tools are illegal to use in Zimbabwe.</label>
+            <label class="quiz-option"><input type="radio" name="q6" value="w2"> B) Because the internet connection is too slow to load the images.</label>
+            <label class="quiz-option"><input type="radio" name="q6" value="correct"> C) Because many tools were trained on Western datasets and may exhibit algorithmic bias against African patient profiles.</label>
+            
+            <p id="quiz6-error" class="error-msg">Incorrect. Please review Section 6.3 regarding bias.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(6, 7)">Submit Answer</button>
         </div>
     </div>
 
     <!-- ================= MODULE 7 ================= -->
-    <div id="module-7" class="module-section" style="display: none;">
-        <h2 class="mod-title">Module 7: Role-Specific AI Workflows</h2>
-        <p><strong>Nurses & Midwives:</strong> Focus on documentation efficiency and multilingual patient discharge notes.</p>
-        <p><strong>Doctors & Clinicians:</strong> Diagnostic decision cross-checks and medical literature summarisation.</p>
-        <p><strong>Administrators:</strong> Expedited medical aid letters, report generation, and bed management data summaries.</p>
+    <div id="module-7-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 7: AI for Your Specific Role</h2>
+        
+        <p><strong>7.1 For Nurses and Midwives:</strong> AI assists in clinical documentation (discharge summaries, care plans) and patient communication (translation of instructions).</p>
+        <p><strong>7.2 For Doctors and Clinicians:</strong> AI extends diagnostic capacity (radiology/pathology tools) and provides rapid summarisation of clinical literature for evidence-based practice.</p>
+        <p><strong>7.3 For Hospital Administrators:</strong> Administrators find AI immediately transformative. Pre-authorisation letters, bed management reports, and meeting summaries can be drafted in seconds.</p>
+        <p><strong>7.4 For Community Health Workers:</strong> AI provides structured triage support (Ada Health) and helps generate culturally appropriate health education in local languages for rural outreach.</p>
 
+        <button class="btn-primary btn-proceed" onclick="showQuiz(7)">Proceed to Module 7 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 7 QUIZ -->
+    <div id="module-7-quiz" class="module-section" style="display: none;">
         <div class="quiz-box">
-            <h3 class="quiz-title">Module 7 Knowledge Check</h3>
-            <p>How does AI primarily assist healthcare administrators?</p>
-            <label class="quiz-option"><input type="radio" name="q7" value="correct"> A) Automating routine documentation, pre-authorisation letters, and report drafts</label>
-            <label class="quiz-option"><input type="radio" name="q7" value="w1"> B) Making surgical decisions</label>
-            <p id="quiz7-error" class="error-msg">Incorrect. Review Section 7.3.</p>
-            <button type="button" class="btn-primary" onclick="validateModule(7, 8)">Submit & Unlock Module 8</button>
+            <h3 class="quiz-title">Module 7: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">For a hospital administrator, what is considered the most immediately transformative use of AI?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q7" value="correct"> A) Drastically reducing the time spent drafting routine documents, reports, and medical aid letters.</label>
+            <label class="quiz-option"><input type="radio" name="q7" value="w1"> B) Performing autonomous surgical procedures.</label>
+            <label class="quiz-option"><input type="radio" name="q7" value="w2"> C) Interpreting complex MRI scans.</label>
+            
+            <p id="quiz7-error" class="error-msg">Incorrect. Please try again.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(7, 8)">Submit Answer</button>
         </div>
     </div>
 
     <!-- ================= MODULE 8 ================= -->
-    <div id="module-8" class="module-section" style="display: none;">
-        <h2 class="mod-title">Module 8: Your Practical AI Implementation Plan</h2>
-        <p>A structured 7-day adoption protocol:</p>
+    <div id="module-8-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 8: Getting Started — Your First Week with AI</h2>
+        <p>Understanding AI intellectually is only the beginning. The real learning happens when you start using these tools in your actual working environment.</p>
+
         <ul>
-            <li><strong>Day 1:</strong> First prompt (malaria discharge instructions).</li>
-            <li><strong>Day 2:</strong> Multilingual translation verification.</li>
-            <li><strong>Day 3:</strong> Triage simulation with Ada Health.</li>
-            <li><strong>Day 4:</strong> Peer teaching to build facility capacity.</li>
-            <li><strong>Days 5-7:</strong> Real-world anonymized workflow integration.</li>
+            <li><strong>Day One:</strong> Create a ChatGPT account and run your first prompt using an anonymised scenario (e.g., uncomplicated malaria discharge instructions).</li>
+            <li><strong>Day Two:</strong> Use Google Translate to translate those instructions into Shona or Ndebele and verify accuracy with a colleague.</li>
+            <li><strong>Day Three:</strong> Explore Ada Health by running through a fictional symptom assessment.</li>
+            <li><strong>Day Four:</strong> Teach one colleague. Teaching creates accountability and multiplies impact across Zimbabwe's health system.</li>
+            <li><strong>Day Five Through Seven:</strong> Apply AI to real work tasks (referral letters, handover summaries) and measure the time saved.</li>
         </ul>
 
+        <button class="btn-primary btn-proceed" onclick="showQuiz(8)">Proceed to Module 8 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 8 QUIZ -->
+    <div id="module-8-quiz" class="module-section" style="display: none;">
         <div class="quiz-box">
-            <h3 class="quiz-title">Module 8 Knowledge Check</h3>
-            <p>What is the recommended goal for Day 4 of the 7-day AI plan?</p>
-            <label class="quiz-option"><input type="radio" name="q8" value="correct"> A) Teach a colleague how to responsibly use AI tools</label>
-            <label class="quiz-option"><input type="radio" name="q8" value="w1"> B) Build an EHR software platform</label>
-            <p id="quiz8-error" class="error-msg">Incorrect. Review Section 8.4.</p>
-            <button type="button" class="btn-primary" onclick="validateModule(8, 9)">Submit & Unlock Module 9</button>
+            <h3 class="quiz-title">Module 8: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">According to the 7-day implementation plan, what action is recommended to multiply the impact of digital readiness across the health system?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q8" value="w1"> A) Keep the AI tools a secret to maintain a competitive advantage.</label>
+            <label class="quiz-option"><input type="radio" name="q8" value="correct"> B) Teach one colleague what you have learned about using AI responsibly.</label>
+            <label class="quiz-option"><input type="radio" name="q8" value="w2"> C) Purchase expensive enterprise software on Day 4.</label>
+            
+            <p id="quiz8-error" class="error-msg">Incorrect. Review the actions for Day Four.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(8, 9)">Submit Answer</button>
         </div>
     </div>
 
     <!-- ================= MODULE 9 ================= -->
-    <div id="module-9" class="module-section" style="display: none;">
-        <h2 class="mod-title">Module 9: Summary & Next Steps</h2>
-        <p>NextGen HealthTech Academy delivers digital health and AI workforce training across Zimbabwe, designed for CPD alignment with HPAZ, NCZ, and MDPCZ.</p>
+    <div id="module-9-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 9: Your Next Steps With NextGen HealthTech Academy</h2>
+        <p>NextGen HealthTech Academy provides practical, healthcare-specific digital and AI skills training through in-person workshops across Zimbabwe's ten provinces, and online self-paced learning.</p>
+        <p>Our programmes are structured for CPD accreditation through the Health Professions Authority of Zimbabwe (HPAZ), the Nursing Council of Zimbabwe, and the Medical and Dental Practitioners Council of Zimbabwe (MDPCZ).</p>
         
         <div class="analogy-box" style="border-left-color: #f39c12; background-color: #fef9e7;">
             <h4 style="color: #d35400;">The Golden Rules of Clinical AI</h4>
             <ol>
-                <li>Never share identifiable patient data.</li>
-                <li>Always clinically verify AI outputs.</li>
-                <li>Actively counter demographic training bias.</li>
-                <li>Professional accountability never transfers to software.</li>
-                <li>AI drafts. You review, approve, and sign.</li>
+                <li><strong>Rule 1:</strong> Never share identifiable patient information with public AI tools.</li>
+                <li><strong>Rule 2:</strong> Always clinically verify AI outputs.</li>
+                <li><strong>Rule 3:</strong> AI is biased against African patients. You are the correction mechanism.</li>
+                <li><strong>Rule 4:</strong> Professional accountability never transfers to software.</li>
+                <li><strong>Rule 5:</strong> AI drafts. You review, approve, and sign.</li>
             </ol>
         </div>
 
-        <div class="quiz-box" style="background-color: #edf7ed; border-color: #c8e6c9;">
-            <h3 class="quiz-title" style="color: #2e7d32;">Course Content Complete!</h3>
-            <p>You have reviewed all 9 modules. To receive your official Certificate of Completion, you must pass the final certification exam.</p>
-            <button type="button" class="btn-primary" style="background-color: #2e7d32;" onclick="startFinalExam()">Proceed to Final Certification Exam</button>
-        </div>
+        <button class="btn-primary btn-proceed" style="background-color: #27ae60;" onclick="startFinalExam()">Proceed to Final Certification Exam ➔</button>
     </div>
 
     <!-- ================= FINAL EXAM ================= -->
     <div id="final-exam-section" class="module-section" style="display: none;">
         <h2 class="mod-title">Final Certification Exam</h2>
-        <p>Answer all questions correctly to generate your certificate.</p>
+        <p style="font-size: 18px; color: #555;">Please complete this comprehensive assessment. You must answer all questions correctly to generate your certificate.</p>
 
         <form id="final-exam-form">
-            <div class="quiz-box">
-                <p><strong>1. Under the Cyber and Data Protection Act (2021), what information must be excluded from public AI queries?</strong></p>
-                <label class="quiz-option"><input type="radio" name="fe1" value="correct"> A) Patient names, hospital numbers, national IDs, and specific identifiers</label>
-                <label class="quiz-option"><input type="radio" name="fe1" value="w"> B) General medical terms and standard drug classes</label>
+            <div class="quiz-box" style="margin-top: 20px;">
+                <p style="font-size: 18px;"><strong>1. Under the Cyber and Data Protection Act (2021), what information must be completely excluded from queries placed into public AI platforms like ChatGPT?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe1" value="correct"> A) Identifiable personal data including patient names, national IDs, and hospital numbers</label>
+                <label class="quiz-option"><input type="radio" name="fe1" value="w"> B) General medical terminology and generic treatment protocols</label>
             </div>
 
             <div class="quiz-box">
-                <p><strong>2. In clinical practice, who retains legal and professional accountability for an AI-supported decision?</strong></p>
-                <label class="quiz-option"><input type="radio" name="fe2" value="w"> A) The software vendor or AI company</label>
-                <label class="quiz-option"><input type="radio" name="fe2" value="correct"> B) The licensed healthcare practitioner who approved and signed the action</label>
+                <p style="font-size: 18px;"><strong>2. If a clinician acts on an AI-generated recommendation that results in an adverse clinical outcome, who holds the legal and professional accountability?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe2" value="w"> A) The developers who created the AI software</label>
+                <label class="quiz-option"><input type="radio" name="fe2" value="correct"> B) The licensed healthcare practitioner who approved the decision</label>
             </div>
 
             <div class="quiz-box">
-                <p><strong>3. What is an AI "hallucination" in a medical context?</strong></p>
-                <label class="quiz-option"><input type="radio" name="fe3" value="correct"> A) When an AI presents inaccurate or fabricated information as factual certainty</label>
-                <label class="quiz-option"><input type="radio" name="fe3" value="w"> B) When a server experiences internet disconnects</label>
+                <p style="font-size: 18px;"><strong>3. What does the term "hallucination" refer to in the context of conversational AI in healthcare?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe3" value="correct"> A) The tendency of the AI to confidently generate fabricated, inaccurate, or non-existent medical facts</label>
+                <label class="quiz-option"><input type="radio" name="fe3" value="w"> B) The visual delay when rendering medical images on a slow internet connection</label>
             </div>
 
             <div class="quiz-box">
-                <p><strong>4. Why must clinicians in Zimbabwe remain watchful for algorithmic bias in AI diagnostics?</strong></p>
-                <label class="quiz-option"><input type="radio" name="fe4" value="correct"> A) Many tools were trained on foreign datasets and may underperform on African skin presentations or local pathology</label>
-                <label class="quiz-option"><input type="radio" name="fe4" value="w"> B) AI tools cannot run in southern hemisphere timezones</label>
+                <p style="font-size: 18px;"><strong>4. Why is it clinically necessary to actively cross-check AI diagnostic tools when treating patients in Zimbabwe?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe4" value="correct"> A) Because models trained predominantly on Western demographics can exhibit algorithmic bias and underperform on African physiological profiles</label>
+                <label class="quiz-option"><input type="radio" name="fe4" value="w"> B) Because AI cannot understand the English language as spoken in Southern Africa</label>
             </div>
 
             <div class="quiz-box">
-                <p><strong>5. What is the fundamental principle of AI workflow in healthcare?</strong></p>
-                <label class="quiz-option"><input type="radio" name="fe5" value="correct"> A) AI drafts and assists; the clinician verifies, approves, and takes responsibility</label>
-                <label class="quiz-option"><input type="radio" name="fe5" value="w"> B) Complete clinical automation without human oversight</label>
+                <p style="font-size: 18px;"><strong>5. Which of the following best describes the intended relationship between clinical staff and artificial intelligence?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe5" value="correct"> A) AI acts as a rapid drafting and decision-support tool, while the clinician retains full authority for review and final execution</label>
+                <label class="quiz-option"><input type="radio" name="fe5" value="w"> B) AI acts as a definitive replacement for clinical intuition to eliminate human error</label>
             </div>
 
-            <p id="exam-error" class="error-msg">You must score 100% on the final exam to generate your certificate. Please review your answers.</p>
-            <button type="button" class="btn-primary" style="background-color: #27ae60; font-size: 17px; width: 100%;" onclick="submitFinalExam()">Grade Exam & Issue Certificate</button>
+            <p id="exam-error" class="error-msg" style="font-size: 18px; text-align: center;">You must score 100% on the final exam to generate your certificate. Please review your answers.</p>
+            <button type="button" class="btn-primary" style="background-color: #27ae60; font-size: 20px; width: 100%; padding: 20px; margin-top: 30px;" onclick="submitFinalExam()">Grade Exam & Issue Certificate</button>
         </form>
     </div>
 
     <!-- ================= CERTIFICATE ISSUANCE ================= -->
     <div id="cert-issuance-section" class="module-section" style="display: none;">
-        <div class="quiz-box" style="text-align: center; background: #eef2ff; border-color: #c7d2fe;">
-            <h2 style="color: #3730a3; margin-top: 0;">🎉 Congratulations! You Passed!</h2>
-            <p>Please enter your Full Name exactly as it should appear on your certificate:</p>
-            <input type="text" id="student-name-input" placeholder="e.g. Tendai Moyo" style="width: 80%; max-width: 400px; padding: 12px; font-size: 16px; border: 2px solid #6366f1; border-radius: 6px; margin-bottom: 15px;">
+        <div class="quiz-box" style="text-align: center; background: #eef2ff; border-color: #c7d2fe; padding: 50px;">
+            <h2 style="color: #3730a3; margin-top: 0; font-size: 32px;">🎉 Congratulations! You Passed!</h2>
+            <p style="font-size: 20px; margin-bottom: 30px;">Please enter your Full Name exactly as it should appear on your official certificate:</p>
+            <input type="text" id="student-name-input" placeholder="e.g. Tendai Moyo" style="width: 80%; max-width: 500px; padding: 15px; font-size: 20px; border: 2px solid #6366f1; border-radius: 6px; margin-bottom: 25px;">
             <br>
-            <button type="button" class="btn-primary" style="background-color: #4f46e5;" onclick="generateCertificate()">Generate Certificate</button>
+            <button type="button" class="btn-primary" style="background-color: #4f46e5; font-size: 22px; padding: 15px 40px;" onclick="generateCertificate()">Generate My Certificate</button>
         </div>
     </div>
 
@@ -381,7 +412,7 @@
         <div class="cert-outer-border">
             <div class="cert-inner-border">
                 
-                <!-- LOGO SLOT -->
+                <!-- LOGO -->
                 <img src="https://i.postimg.cc/v1QSBVDj/Whats-App-Nextgen-Logo.jpg" alt="NextGen HealthTech Academy Logo" class="cert-logo">
                 
                 <h2 class="cert-title">Certificate of Completion</h2>
@@ -402,7 +433,7 @@
                     </div>
                     <div class="cert-signature-box">
                         
-                        <!-- SIGNATURE SLOT -->
+                        <!-- SIGNATURE -->
                         <img src="https://i.postimg.cc/sB6KgHks/Whats-App-Image-2026-08-16-at-22-42-47.jpg" alt="Director Signature" class="cert-signature-img"><br>
                         
                         <strong style="font-size: 18px;">Allan Kudzai Chirume</strong>
@@ -421,19 +452,28 @@
 </div>
 
 <script>
+    // Updates the progress bar at the top of the screen
     function updateProgress(step) {
         const percentage = Math.min(100, Math.round((step / 9) * 100));
         document.getElementById('course-progress').style.width = percentage + '%';
     }
 
+    // Swaps the Content View for the Quiz View
+    function showQuiz(modNum) {
+        document.getElementById('module-' + modNum + '-content').style.display = 'none';
+        document.getElementById('module-' + modNum + '-quiz').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Validates the Quiz and unlocks the next Module Content
     function validateModule(currentMod, nextMod) {
         const selected = document.querySelector('input[name="q' + currentMod + '"]:checked');
         const errorEl = document.getElementById('quiz' + currentMod + '-error');
         
         if (selected && selected.value === 'correct') {
             errorEl.style.display = 'none';
-            document.getElementById('module-' + currentMod).style.display = 'none';
-            document.getElementById('module-' + nextMod).style.display = 'block';
+            document.getElementById('module-' + currentMod + '-quiz').style.display = 'none';
+            document.getElementById('module-' + nextMod + '-content').style.display = 'block';
             updateProgress(nextMod);
             window.scrollTo({ top: 0, behavior: 'smooth' });
         } else {
@@ -441,13 +481,15 @@
         }
     }
 
+    // Transitions from Module 9 to Final Exam
     function startFinalExam() {
-        document.getElementById('module-9').style.display = 'none';
+        document.getElementById('module-9-content').style.display = 'none';
         document.getElementById('final-exam-section').style.display = 'block';
         updateProgress(9);
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    // Validates Final Exam and unlocks Certificate Input
     function submitFinalExam() {
         const a1 = document.querySelector('input[name="fe1"]:checked');
         const a2 = document.querySelector('input[name="fe2"]:checked');
@@ -471,6 +513,7 @@
         }
     }
 
+    // Renders the final printable Certificate
     function generateCertificate() {
         const nameInput = document.getElementById('student-name-input').value.trim();
         if (!nameInput) {
@@ -485,6 +528,7 @@
 
         document.getElementById('cert-issuance-section').style.display = 'none';
         document.getElementById('certificate-render').style.display = 'block';
+        document.querySelector('.progress-bar-container').style.display = 'none'; // Hide progress bar on cert
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 </script>
