@@ -360,94 +360,139 @@
         <p style="font-size: 18px; color: #555;">Please complete this comprehensive 15-question assessment. You must answer all questions correctly to generate your certificate.</p>
 
         <form id="final-exam-form">
+            <!-- Q1 -->
             <div class="quiz-box" style="margin-top: 20px;">
                 <p style="font-size: 18px;"><strong>1. Under the Cyber and Data Protection Act (2021), what information must be completely excluded from queries placed into public AI platforms like ChatGPT?</strong></p>
                 <label class="quiz-option"><input type="radio" name="fe1" value="correct"> A) Identifiable personal data including patient names, national IDs, and hospital numbers</label>
-                <label class="quiz-option"><input type="radio" name="fe1" value="w"> B) General medical terminology and generic treatment protocols</label>
+                <label class="quiz-option"><input type="radio" name="fe1" value="w1"> B) General medical terminology and generic treatment protocols</label>
+                <label class="quiz-option"><input type="radio" name="fe1" value="w2"> C) The name of the hospital or clinic where the professional works</label>
+                <label class="quiz-option"><input type="radio" name="fe1" value="w3"> D) Broad statistical data regarding seasonal malaria trends</label>
             </div>
 
+            <!-- Q2 -->
             <div class="quiz-box">
                 <p style="font-size: 18px;"><strong>2. In clinical practice, who retains legal and professional accountability for an AI-supported decision?</strong></p>
-                <label class="quiz-option"><input type="radio" name="fe2" value="w"> A) The software vendor or AI company</label>
+                <label class="quiz-option"><input type="radio" name="fe2" value="w1"> A) The software vendor or AI company</label>
                 <label class="quiz-option"><input type="radio" name="fe2" value="correct"> B) The licensed healthcare practitioner who approved the decision</label>
+                <label class="quiz-option"><input type="radio" name="fe2" value="w2"> C) The Ministry of Health and Child Care</label>
+                <label class="quiz-option"><input type="radio" name="fe2" value="w3"> D) The hospital IT department administrator</label>
             </div>
 
+            <!-- Q3 -->
             <div class="quiz-box">
                 <p style="font-size: 18px;"><strong>3. What does the term "hallucination" refer to in the context of conversational AI in healthcare?</strong></p>
                 <label class="quiz-option"><input type="radio" name="fe3" value="correct"> A) The tendency of the AI to confidently generate fabricated, inaccurate, or non-existent medical facts</label>
-                <label class="quiz-option"><input type="radio" name="fe3" value="w"> B) The visual delay when rendering medical images on a slow internet connection</label>
+                <label class="quiz-option"><input type="radio" name="fe3" value="w1"> B) The visual delay when rendering medical images on a slow internet connection</label>
+                <label class="quiz-option"><input type="radio" name="fe3" value="w2"> C) A patient's adverse reaction to new digital health workflows</label>
+                <label class="quiz-option"><input type="radio" name="fe3" value="w3"> D) The AI system shutting down unexpectedly due to server overload</label>
             </div>
 
+            <!-- Q4 -->
             <div class="quiz-box">
                 <p style="font-size: 18px;"><strong>4. Why is it clinically necessary to actively cross-check AI diagnostic tools when treating patients in Zimbabwe?</strong></p>
-                <label class="quiz-option"><input type="radio" name="fe4" value="correct"> A) Because models trained predominantly on Western demographics can exhibit algorithmic bias and underperform on African physiological profiles</label>
-                <label class="quiz-option"><input type="radio" name="fe4" value="w"> B) Because AI cannot understand the English language as spoken in Southern Africa</label>
+                <label class="quiz-option"><input type="radio" name="fe4" value="w1"> A) Because AI cannot understand the English language as spoken in Southern Africa</label>
+                <label class="quiz-option"><input type="radio" name="fe4" value="w2"> B) Because AI tools are not legally permitted to be used in clinical settings in Zimbabwe</label>
+                <label class="quiz-option"><input type="radio" name="fe4" value="correct"> C) Because models trained predominantly on Western demographics can exhibit algorithmic bias and underperform on African physiological profiles</label>
+                <label class="quiz-option"><input type="radio" name="fe4" value="w3"> D) Because AI tools cannot process diagnostic images captured on standard smartphones</label>
             </div>
 
+            <!-- Q5 -->
             <div class="quiz-box">
                 <p style="font-size: 18px;"><strong>5. Which of the following best describes the intended relationship between clinical staff and artificial intelligence?</strong></p>
-                <label class="quiz-option"><input type="radio" name="fe5" value="correct"> A) AI acts as a rapid drafting and decision-support tool, while the clinician retains full authority for review and final execution</label>
-                <label class="quiz-option"><input type="radio" name="fe5" value="w"> B) AI acts as a definitive replacement for clinical intuition to eliminate human error</label>
+                <label class="quiz-option"><input type="radio" name="fe5" value="w1"> A) AI acts as a definitive replacement for clinical intuition to eliminate human error</label>
+                <label class="quiz-option"><input type="radio" name="fe5" value="correct"> B) AI acts as a rapid drafting and decision-support tool, while the clinician retains full authority for review and final execution</label>
+                <label class="quiz-option"><input type="radio" name="fe5" value="w2"> C) AI is only meant to be used by hospital IT departments, not clinical staff</label>
+                <label class="quiz-option"><input type="radio" name="fe5" value="w3"> D) AI is designed to legally prescribe medication without clinician oversight</label>
             </div>
 
+            <!-- Q6 -->
             <div class="quiz-box">
                 <p style="font-size: 18px;"><strong>6. How is Artificial Intelligence practically defined in a healthcare context?</strong></p>
-                <label class="quiz-option"><input type="radio" name="fe6" value="correct"> A) Computer software that learns from data to make decisions, predictions, or suggestions without being explicitly programmed for every scenario</label>
-                <label class="quiz-option"><input type="radio" name="fe6" value="w"> B) Robotic hardware designed specifically to perform surgical operations</label>
+                <label class="quiz-option"><input type="radio" name="fe6" value="w1"> A) Robotic hardware designed specifically to perform surgical operations</label>
+                <label class="quiz-option"><input type="radio" name="fe6" value="w2"> B) A filing system for organizing electronic health records alphabetically</label>
+                <label class="quiz-option"><input type="radio" name="fe6" value="correct"> C) Computer software that learns from data to make decisions, predictions, or suggestions without being explicitly programmed for every scenario</label>
+                <label class="quiz-option"><input type="radio" name="fe6" value="w3"> D) An automated billing system that communicates directly with medical aid societies</label>
             </div>
 
+            <!-- Q7 -->
             <div class="quiz-box">
                 <p style="font-size: 18px;"><strong>7. What does the "Keen Intern Takudzwa" analogy illustrate about AI?</strong></p>
-                <label class="quiz-option"><input type="radio" name="fe7" value="w"> A) AI is eager to learn but constantly makes fatal errors and should be ignored</label>
+                <label class="quiz-option"><input type="radio" name="fe7" value="w1"> A) AI is eager to learn but constantly makes fatal errors and should be ignored</label>
                 <label class="quiz-option"><input type="radio" name="fe7" value="correct"> B) AI is brilliant with data recall but lacks real-world clinical experience and relies entirely on human judgment to make the final call</label>
+                <label class="quiz-option"><input type="radio" name="fe7" value="w2"> C) AI will eventually replace all junior doctors and interns in Zimbabwean hospitals</label>
+                <label class="quiz-option"><input type="radio" name="fe7" value="w3"> D) AI is only useful for fetching lab results and running administrative errands</label>
             </div>
 
+            <!-- Q8 -->
             <div class="quiz-box">
                 <p style="font-size: 18px;"><strong>8. Which AI tool is currently deployed in Zimbabwean hospitals to quickly triage chest X-rays for tuberculosis?</strong></p>
                 <label class="quiz-option"><input type="radio" name="fe8" value="correct"> A) CAD4TB</label>
-                <label class="quiz-option"><input type="radio" name="fe8" value="w"> B) Microsoft Copilot</label>
+                <label class="quiz-option"><input type="radio" name="fe8" value="w1"> B) Microsoft Copilot</label>
+                <label class="quiz-option"><input type="radio" name="fe8" value="w2"> C) Ada Health</label>
+                <label class="quiz-option"><input type="radio" name="fe8" value="w3"> D) ChatGPT</label>
             </div>
 
+            <!-- Q9 -->
             <div class="quiz-box">
                 <p style="font-size: 18px;"><strong>9. What is the primary function of Natural Language Processing (NLP) in healthcare?</strong></p>
-                <label class="quiz-option"><input type="radio" name="fe9" value="w"> A) Reading microscope slides for malaria parasites</label>
-                <label class="quiz-option"><input type="radio" name="fe9" value="correct"> B) Understanding and generating human text or speech, such as drafting discharge summaries or transcribing voice notes</label>
+                <label class="quiz-option"><input type="radio" name="fe9" value="w1"> A) Reading microscope slides for malaria parasites</label>
+                <label class="quiz-option"><input type="radio" name="fe9" value="w2"> B) Predicting the geographic spread of communicable diseases</label>
+                <label class="quiz-option"><input type="radio" name="fe9" value="correct"> C) Understanding and generating human text or speech, such as drafting discharge summaries or transcribing voice notes</label>
+                <label class="quiz-option"><input type="radio" name="fe9" value="w3"> D) Managing the hospital's electrical and cooling systems</label>
             </div>
 
+            <!-- Q10 -->
             <div class="quiz-box">
                 <p style="font-size: 18px;"><strong>10. How does Predictive AI currently assist the Ministry of Health and Child Care in Zimbabwe?</strong></p>
                 <label class="quiz-option"><input type="radio" name="fe10" value="correct"> A) Forecasting malaria outbreak zones based on rainfall and historical case data</label>
-                <label class="quiz-option"><input type="radio" name="fe10" value="w"> B) Predicting exact staffing shortages in district hospitals</label>
+                <label class="quiz-option"><input type="radio" name="fe10" value="w1"> B) Predicting exact staffing shortages in district hospitals</label>
+                <label class="quiz-option"><input type="radio" name="fe10" value="w2"> C) Ordering pharmaceutical supplies from international vendors automatically</label>
+                <label class="quiz-option"><input type="radio" name="fe10" value="w3"> D) Translating health warnings into indigenous languages</label>
             </div>
 
+            <!-- Q11 -->
             <div class="quiz-box">
                 <p style="font-size: 18px;"><strong>11. Why is translating discharge instructions via AI tools like Google Translate considered a clinical safety measure?</strong></p>
-                <label class="quiz-option"><input type="radio" name="fe11" value="w"> A) Because it proves the hospital is technologically advanced</label>
+                <label class="quiz-option"><input type="radio" name="fe11" value="w1"> A) Because it proves the hospital is technologically advanced</label>
                 <label class="quiz-option"><input type="radio" name="fe11" value="correct"> B) Because providing instructions in a patient's first language increases adherence to medications and recognition of warning signs</label>
+                <label class="quiz-option"><input type="radio" name="fe11" value="w2"> C) Because the Ministry of Health requires all patient documents to be translated into French</label>
+                <label class="quiz-option"><input type="radio" name="fe11" value="w3"> D) Because it reduces the printing costs for the hospital pharmacy</label>
             </div>
 
+            <!-- Q12 -->
             <div class="quiz-box">
-                <p style="font-size: 18px;"><strong>12. When the solitary night nurse used an AI tool during an emergency, what was the clinical benefit?</strong></p>
-                <label class="quiz-option"><input type="radio" name="fe12" value="correct"> A) It provided a structured framework to organize her resuscitation priorities and handover information</label>
-                <label class="quiz-option"><input type="radio" name="fe12" value="w"> B) It diagnosed the patient so she didn't have to call the doctor</label>
+                <p style="font-size: 18px;"><strong>12. When the solitary night nurse used an AI tool during an emergency, what was the primary clinical benefit?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe12" value="w1"> A) It diagnosed the patient so she didn't have to call the doctor</label>
+                <label class="quiz-option"><input type="radio" name="fe12" value="w2"> B) It automatically administered the correct dosage of IV fluids</label>
+                <label class="quiz-option"><input type="radio" name="fe12" value="correct"> C) It provided a structured framework to organize her resuscitation priorities and handover information</label>
+                <label class="quiz-option"><input type="radio" name="fe12" value="w3"> D) It recorded the patient's vital signs directly from the monitors</label>
             </div>
 
+            <!-- Q13 -->
             <div class="quiz-box">
                 <p style="font-size: 18px;"><strong>13. How can hospital administrators most effectively utilize AI like Microsoft Copilot?</strong></p>
-                <label class="quiz-option"><input type="radio" name="fe13" value="w"> A) To automatically terminate failing employee contracts</label>
-                <label class="quiz-option"><input type="radio" name="fe13" value="correct"> B) To rapidly draft routine documents, pre-authorisation letters, and summarize bed management reports</label>
+                <label class="quiz-option"><input type="radio" name="fe13" value="w1"> A) To automatically terminate failing employee contracts</label>
+                <label class="quiz-option"><input type="radio" name="fe13" value="w2"> B) To independently approve or deny patient admissions</label>
+                <label class="quiz-option"><input type="radio" name="fe13" value="correct"> C) To rapidly draft routine documents, pre-authorisation letters, and summarize bed management reports</label>
+                <label class="quiz-option"><input type="radio" name="fe13" value="w3"> D) To conduct complex patient surgeries remotely</label>
             </div>
 
+            <!-- Q14 -->
             <div class="quiz-box">
                 <p style="font-size: 18px;"><strong>14. How does AI most directly benefit Community Health Workers in resource-limited environments?</strong></p>
                 <label class="quiz-option"><input type="radio" name="fe14" value="correct"> A) By providing structured symptom triage support and helping generate culturally appropriate health education</label>
-                <label class="quiz-option"><input type="radio" name="fe14" value="w"> B) By replacing the need for them to travel to remote villages</label>
+                <label class="quiz-option"><input type="radio" name="fe14" value="w1"> B) By replacing the need for them to travel to remote villages</label>
+                <label class="quiz-option"><input type="radio" name="fe14" value="w2"> C) By directly dispensing medications to patients via drone delivery</label>
+                <label class="quiz-option"><input type="radio" name="fe14" value="w3"> D) By automatically paying their monthly salaries</label>
             </div>
 
+            <!-- Q15 -->
             <div class="quiz-box">
                 <p style="font-size: 18px;"><strong>15. According to the NextGen HealthTech Academy's 7-day AI implementation plan, what is the crucial action for Day 4?</strong></p>
-                <label class="quiz-option"><input type="radio" name="fe15" value="w"> A) Transitioning all patient records entirely to AI systems</label>
-                <label class="quiz-option"><input type="radio" name="fe15" value="correct"> B) Teaching one colleague what you have learned to multiply impact and build facility capacity</label>
+                <label class="quiz-option"><input type="radio" name="fe15" value="w1"> A) Transitioning all patient records entirely to AI systems</label>
+                <label class="quiz-option"><input type="radio" name="fe15" value="w2"> B) Purchasing an enterprise-level subscription to an AI platform</label>
+                <label class="quiz-option"><input type="radio" name="fe15" value="correct"> C) Teaching one colleague what you have learned to multiply impact and build facility capacity</label>
+                <label class="quiz-option"><input type="radio" name="fe15" value="w3"> D) Writing a custom AI coding script for the local clinic</label>
             </div>
 
             <p id="exam-error" class="error-msg" style="font-size: 18px; text-align: center;">You must score 100% on the final exam to generate your certificate. Please review your answers.</p>
