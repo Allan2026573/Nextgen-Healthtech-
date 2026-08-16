@@ -91,7 +91,7 @@
         <button class="btn-primary btn-proceed" onclick="showQuiz(1)">Proceed to Module 1 Knowledge Check ➔</button>
     </div>
 
-    <!-- MODULE 1 QUIZ (Hidden initially) -->
+    <!-- MODULE 1 QUIZ -->
     <div id="module-1-quiz" class="module-section" style="display: none;">
         <div class="quiz-box">
             <h3 class="quiz-title">Module 1: Knowledge Check</h3>
@@ -337,9 +337,8 @@
 
     <!-- ================= MODULE 9 ================= -->
     <div id="module-9-content" class="module-section" style="display: none;">
-        <h2 class="mod-title">Module 9: Your Next Steps With NextGen HealthTech Academy</h2>
-        <p>NextGen HealthTech Academy provides practical, healthcare-specific digital and AI skills training through in-person workshops across Zimbabwe's ten provinces, and online self-paced learning.</p>
-        <p>Our programmes are structured for CPD accreditation through the Health Professions Authority of Zimbabwe (HPAZ), the Nursing Council of Zimbabwe, and the Medical and Dental Practitioners Council of Zimbabwe (MDPCZ).</p>
+        <h2 class="mod-title">Module 9: Summary & Next Steps</h2>
+        <p>NextGen HealthTech Academy delivers digital health and AI workforce training across Zimbabwe, designed for CPD alignment with HPAZ, NCZ, and MDPCZ.</p>
         
         <div class="analogy-box" style="border-left-color: #f39c12; background-color: #fef9e7;">
             <h4 style="color: #d35400;">The Golden Rules of Clinical AI</h4>
@@ -358,7 +357,7 @@
     <!-- ================= FINAL EXAM ================= -->
     <div id="final-exam-section" class="module-section" style="display: none;">
         <h2 class="mod-title">Final Certification Exam</h2>
-        <p style="font-size: 18px; color: #555;">Please complete this comprehensive assessment. You must answer all questions correctly to generate your certificate.</p>
+        <p style="font-size: 18px; color: #555;">Please complete this comprehensive 15-question assessment. You must answer all questions correctly to generate your certificate.</p>
 
         <form id="final-exam-form">
             <div class="quiz-box" style="margin-top: 20px;">
@@ -368,8 +367,8 @@
             </div>
 
             <div class="quiz-box">
-                <p style="font-size: 18px;"><strong>2. If a clinician acts on an AI-generated recommendation that results in an adverse clinical outcome, who holds the legal and professional accountability?</strong></p>
-                <label class="quiz-option"><input type="radio" name="fe2" value="w"> A) The developers who created the AI software</label>
+                <p style="font-size: 18px;"><strong>2. In clinical practice, who retains legal and professional accountability for an AI-supported decision?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe2" value="w"> A) The software vendor or AI company</label>
                 <label class="quiz-option"><input type="radio" name="fe2" value="correct"> B) The licensed healthcare practitioner who approved the decision</label>
             </div>
 
@@ -389,6 +388,66 @@
                 <p style="font-size: 18px;"><strong>5. Which of the following best describes the intended relationship between clinical staff and artificial intelligence?</strong></p>
                 <label class="quiz-option"><input type="radio" name="fe5" value="correct"> A) AI acts as a rapid drafting and decision-support tool, while the clinician retains full authority for review and final execution</label>
                 <label class="quiz-option"><input type="radio" name="fe5" value="w"> B) AI acts as a definitive replacement for clinical intuition to eliminate human error</label>
+            </div>
+
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>6. How is Artificial Intelligence practically defined in a healthcare context?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe6" value="correct"> A) Computer software that learns from data to make decisions, predictions, or suggestions without being explicitly programmed for every scenario</label>
+                <label class="quiz-option"><input type="radio" name="fe6" value="w"> B) Robotic hardware designed specifically to perform surgical operations</label>
+            </div>
+
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>7. What does the "Keen Intern Takudzwa" analogy illustrate about AI?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe7" value="w"> A) AI is eager to learn but constantly makes fatal errors and should be ignored</label>
+                <label class="quiz-option"><input type="radio" name="fe7" value="correct"> B) AI is brilliant with data recall but lacks real-world clinical experience and relies entirely on human judgment to make the final call</label>
+            </div>
+
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>8. Which AI tool is currently deployed in Zimbabwean hospitals to quickly triage chest X-rays for tuberculosis?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe8" value="correct"> A) CAD4TB</label>
+                <label class="quiz-option"><input type="radio" name="fe8" value="w"> B) Microsoft Copilot</label>
+            </div>
+
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>9. What is the primary function of Natural Language Processing (NLP) in healthcare?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe9" value="w"> A) Reading microscope slides for malaria parasites</label>
+                <label class="quiz-option"><input type="radio" name="fe9" value="correct"> B) Understanding and generating human text or speech, such as drafting discharge summaries or transcribing voice notes</label>
+            </div>
+
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>10. How does Predictive AI currently assist the Ministry of Health and Child Care in Zimbabwe?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe10" value="correct"> A) Forecasting malaria outbreak zones based on rainfall and historical case data</label>
+                <label class="quiz-option"><input type="radio" name="fe10" value="w"> B) Predicting exact staffing shortages in district hospitals</label>
+            </div>
+
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>11. Why is translating discharge instructions via AI tools like Google Translate considered a clinical safety measure?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe11" value="w"> A) Because it proves the hospital is technologically advanced</label>
+                <label class="quiz-option"><input type="radio" name="fe11" value="correct"> B) Because providing instructions in a patient's first language increases adherence to medications and recognition of warning signs</label>
+            </div>
+
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>12. When the solitary night nurse used an AI tool during an emergency, what was the clinical benefit?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe12" value="correct"> A) It provided a structured framework to organize her resuscitation priorities and handover information</label>
+                <label class="quiz-option"><input type="radio" name="fe12" value="w"> B) It diagnosed the patient so she didn't have to call the doctor</label>
+            </div>
+
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>13. How can hospital administrators most effectively utilize AI like Microsoft Copilot?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe13" value="w"> A) To automatically terminate failing employee contracts</label>
+                <label class="quiz-option"><input type="radio" name="fe13" value="correct"> B) To rapidly draft routine documents, pre-authorisation letters, and summarize bed management reports</label>
+            </div>
+
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>14. How does AI most directly benefit Community Health Workers in resource-limited environments?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe14" value="correct"> A) By providing structured symptom triage support and helping generate culturally appropriate health education</label>
+                <label class="quiz-option"><input type="radio" name="fe14" value="w"> B) By replacing the need for them to travel to remote villages</label>
+            </div>
+
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>15. According to the NextGen HealthTech Academy's 7-day AI implementation plan, what is the crucial action for Day 4?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe15" value="w"> A) Transitioning all patient records entirely to AI systems</label>
+                <label class="quiz-option"><input type="radio" name="fe15" value="correct"> B) Teaching one colleague what you have learned to multiply impact and build facility capacity</label>
             </div>
 
             <p id="exam-error" class="error-msg" style="font-size: 18px; text-align: center;">You must score 100% on the final exam to generate your certificate. Please review your answers.</p>
@@ -489,21 +548,22 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Validates Final Exam and unlocks Certificate Input
+    // Validates Final Exam (all 15 questions) and unlocks Certificate Input
     function submitFinalExam() {
-        const a1 = document.querySelector('input[name="fe1"]:checked');
-        const a2 = document.querySelector('input[name="fe2"]:checked');
-        const a3 = document.querySelector('input[name="fe3"]:checked');
-        const a4 = document.querySelector('input[name="fe4"]:checked');
-        const a5 = document.querySelector('input[name="fe5"]:checked');
+        let allCorrect = true;
+        
+        // Loop through all 15 questions to check answers
+        for (let i = 1; i <= 15; i++) {
+            const answer = document.querySelector('input[name="fe' + i + '"]:checked');
+            if (!answer || answer.value !== 'correct') {
+                allCorrect = false;
+                break;
+            }
+        }
+        
         const errorEl = document.getElementById('exam-error');
 
-        if (a1 && a1.value === 'correct' &&
-            a2 && a2.value === 'correct' &&
-            a3 && a3.value === 'correct' &&
-            a4 && a4.value === 'correct' &&
-            a5 && a5.value === 'correct') {
-            
+        if (allCorrect) {
             errorEl.style.display = 'none';
             document.getElementById('final-exam-section').style.display = 'none';
             document.getElementById('cert-issuance-section').style.display = 'block';
