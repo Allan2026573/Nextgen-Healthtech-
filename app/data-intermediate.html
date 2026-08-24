@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Analysis in Healthcare: Intermediate Edition - NextGen HealthTech Academy</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; padding: 20px; color: #333; line-height: 1.6; }
+        .course-container { max-width: 950px; margin: 0 auto; background: #ffffff; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); padding: 40px; }
+        .progress-bar-container { background-color: #e2e8f0; border-radius: 20px; height: 12px; width: 100%; margin-bottom: 25px; overflow: hidden; }
+        .progress-bar { background: linear-gradient(90deg, #0f766e, #14b8a6); height: 100%; width: 12.5%; transition: width 0.4s ease; }
+        .header-banner { text-align: center; border-bottom: 2px solid #0f766e; padding-bottom: 20px; margin-bottom: 30px; }
+        .header-banner h1 { color: #0f766e; margin: 0 0 5px 0; font-size: 28px; }
+        .header-banner h2 { color: #14b8a6; margin: 0 0 5px 0; font-size: 18px; }
+        .header-banner p { color: #475569; margin: 0; font-size: 14px; }
+        .mod-title { color: #0f766e; border-bottom: 2px solid #edf2f7; padding-bottom: 10px; margin-top: 25px; font-size: 22px; }
+        .sub-title { color: #0f172a; margin-top: 20px; font-size: 18px; font-weight: 600; }
+        .analogy-box { background-color: #f0fdfa; border-left: 4px solid #14b8a6; padding: 18px; margin: 20px 0; border-radius: 0 6px 6px 0; }
+        .analogy-box h4 { margin-top: 0; color: #0f766e; }
+        .resource-box { background-color: #fefce8; border-left: 4px solid #ca8a04; padding: 15px; margin: 20px 0; border-radius: 0 6px 6px 0; font-size: 14px; }
+        .resource-box h4 { margin: 0 0 8px 0; color: #854d0e; }
+        .resource-box a { color: #0f766e; text-decoration: none; font-weight: 600; }
+        .resource-box a:hover { text-decoration: underline; }
+        .quiz-box { background-color: #f8fafc; padding: 35px; border-radius: 8px; margin-top: 25px; border: 1px solid #cbd5e1; }
+        .quiz-title { color: #0f172a; margin-top: 0; font-size: 20px; border-bottom: 2px solid #cbd5e1; padding-bottom: 10px; margin-bottom: 20px; }
+        .quiz-option { display: block; background: #ffffff; padding: 15px; margin-bottom: 10px; border: 1px solid #e2e8f0; border-radius: 6px; cursor: pointer; transition: background 0.2s; font-size: 16px; }
+        .quiz-option:hover { background: #f1f5f9; }
+        .quiz-option input { margin-right: 15px; transform: scale(1.2); }
+        .btn-primary { background-color: #0f766e; color: #ffffff; border: none; padding: 12px 25px; border-radius: 6px; cursor: pointer; font-size: 16px; font-weight: 600; margin-top: 20px; transition: background 0.3s; }
+        .btn-primary:hover { background-color: #115e59; }
+        .btn-proceed { background-color: #14b8a6; width: 100%; font-size: 18px; padding: 15px; margin-top: 30px; }
+        .btn-proceed:hover { background-color: #0d9488; }
+        .error-msg { color: #dc2626; display: none; font-weight: bold; margin-top: 15px; font-size: 15px; padding: 10px; background: #fee2e2; border-radius: 5px; }
+        
+        /* Certificate Styles */
+        .cert-wrapper { display: none; background: #ffffff; margin-top: 20px; }
+        .cert-outer-border { border: 12px solid #0f766e; padding: 8px; background: #fff; }
+        .cert-inner-border { border: 3px solid #f59e0b; padding: 40px 50px; text-align: center; position: relative; }
+        .cert-logo { height: 100px; margin-bottom: 20px; object-fit: contain; }
+        .cert-title { font-size: 40px; color: #0f766e; text-transform: uppercase; margin: 10px 0; font-family: 'Times New Roman', Times, serif; letter-spacing: 3px; }
+        .cert-name { font-size: 34px; color: #0f766e; border-bottom: 2px solid #f59e0b; display: inline-block; padding: 5px 50px; margin: 25px 0; font-family: 'Times New Roman', Times, serif; font-style: italic; font-weight: bold; }
+        .cert-footer { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 60px; padding: 0 30px; }
+        .cert-signature-box { width: 280px; text-align: center; }
+        .cert-signature-line { border-top: 1px solid #0f766e; padding-top: 8px; font-size: 15px; color: #0f766e; margin-top: 5px; }
+        .cert-signature-img { height: 80px; margin-bottom: -15px; object-fit: contain; mix-blend-mode: multiply; }
+
+        @media print {
+            @page { size: A4 landscape; margin: 0mm; }
+            html, body { width: 297mm; height: 210mm; margin: 0; padding: 0; overflow: hidden; background-color: #ffffff; }
+            body * { visibility: hidden; }
+            #certificate-render, #certificate-render * { visibility: visible; }
+            #certificate-render { position: absolute; left: 0; top: 0; width: 297mm; height: 210mm; margin: 0; padding: 10mm; box-sizing: border-box; display: flex !important; flex-direction: column; justify-content: center; }
+            .cert-inner-border { padding: 25px 40px !important; }
+            .cert-footer { margin-top: 30px !important; }
+            .cert-logo { height: 85px !important; margin-bottom: 10px !important; }
+            .cert-title { font-size: 36px !important; }
+            .cert-name { margin: 15px 0 !important; font-size: 30px !important; }
+            .cert-signature-img { height: 70px !important; margin-bottom: -10px !important; }
+            .no-print { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="course-container" id="course-container">
+    <div class="progress-bar-container no-print">
+        <div class="progress-bar" id="course-progress"></div>
+    </div>
+
+    <!-- ================= MODULE 1 ================= -->
+    <div id="module-1-content" class="module-section">
+        <div class="header-banner">
+            <h1>DATA ANALYSIS IN HEALTHCARE</h1>
+            <h2>INTERMEDIATE EDITION: INTERPRETATION & ACTIONABLE INTELLIGENCE</h2>
+            <p>NEXTGEN HEALTHTECH ACADEMY ONLINE | Harare, Zimbabwe</p>
+        </div>
+
+        <h2 class="mod-title">Foreword from the Lead Educator</h2>
+        <p>Welcome to the Intermediate level of Health Data Analysis. In the beginner course, we focused on the vital importance of <em>data collection</em>—making sure the tally sheets and digital forms were accurate and timely. But data sitting in a database saves no lives.</p>
+        <p>As a provincial health leader, your job is to transform raw data into <strong>Actionable Intelligence</strong>. In this course, we move beyond just counting cases. We will learn how to interrogate DHIS2 pivot tables, calculate epidemic thresholds to detect cholera or malaria outbreaks before they overwhelm our wards, and conduct Root Cause Analyses when the numbers point to a systemic failure.</p>
+        <p>You are moving from a data collector to a data detective. Let's begin.</p>
+        
+        <h2 class="mod-title">Module 1: Descriptive vs. Diagnostic Analytics</h2>
+        <h3 class="sub-title">1.1 The Analytics Continuum</h3>
+        <p>In healthcare, we primarily deal with four stages of analytics. At the intermediate level, we focus on the first two:</p>
+        <ul>
+            <li><strong>Descriptive Analytics ("What happened?"):</strong> This is the foundation. It involves summarizing historical data. For example, looking at a DHIS2 dashboard and seeing that 150 cases of severe acute malnutrition (SAM) were recorded in the province last month.</li>
+            <li><strong>Diagnostic Analytics ("Why did it happen?"):</strong> This involves drilling down into the data to find correlations and root causes. You don't just accept the 150 SAM cases; you cross-reference the data by district, age group, and correlate it with recent drought mapping or agricultural output data to find the localized cause.</li>
+        </ul>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(1)">Proceed to Module 1 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 1 QUIZ -->
+    <div id="module-1-quiz" class="module-section" style="display: none;">
+        <div class="quiz-box">
+            <h3 class="quiz-title">Module 1: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">Which type of analytics involves drilling down into health data to understand <em>why</em> a specific trend or event (like a spike in malnutrition) occurred?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q1" value="w1"> A) Descriptive Analytics</label>
+            <label class="quiz-option"><input type="radio" name="q1" value="correct"> B) Diagnostic Analytics</label>
+            <label class="quiz-option"><input type="radio" name="q1" value="w2"> C) Predictive Analytics</label>
+            <label class="quiz-option"><input type="radio" name="q1" value="w3"> D) Prescriptive Analytics</label>
+            
+            <p id="quiz1-error" class="error-msg">Incorrect. Please review Section 1.1 on the Analytics Continuum.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(1, 2)">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- ================= MODULE 2 ================= -->
+    <div id="module-2-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 2: Navigating DHIS2 Analytical Tools</h2>
+        <p>Zimbabwe relies heavily on DHIS2. To find diagnostic answers, you must master its three core analytical applications:</p>
+
+        <h3 class="sub-title">2.1 Dashboards, Pivot Tables, and Data Visualizer</h3>
+        <ul>
+            <li><strong>Dashboards:</strong> Your daily command center. A dashboard gives you a high-level visual summary of key performance indicators (KPIs) like Maternal Mortality Ratio or ARV stockout rates.</li>
+            <li><strong>Data Visualizer:</strong> Converts raw data into charts (bar, line, pie). This is used for presentations and quick trend spotting.</li>
+            <li><strong>Pivot Tables:</strong> The most powerful tool for an intermediate analyst. A pivot table allows you to dynamically cross-tabulate data. You can take a massive dataset of "All OPD visits" and pivot it to show "Malaria Cases" (Rows) by "District" (Columns) filtered by "Children Under 5" (Filter).</li>
+        </ul>
+
+        <div class="resource-box">
+            <h4>Recommended Reading & Video Resources</h4>
+            <p>• Video Tutorial: <a href="https://www.youtube.com/results?search_query=DHIS2+Pivot+Table+App+Tutorial" target="_blank">DHIS2 Academy: Mastering the Pivot Table App</a></p>
+        </div>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(2)">Proceed to Module 2 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 2 QUIZ -->
+    <div id="module-2-quiz" class="module-section" style="display: none;">
+        <div class="quiz-box">
+            <h3 class="quiz-title">Module 2: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">Which built-in DHIS2 application is best suited for dynamically cross-tabulating large datasets (e.g., viewing disease cases by district and filtering by age group)?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q2" value="w1"> A) The Data Entry App</label>
+            <label class="quiz-option"><input type="radio" name="q2" value="w2"> B) The Dashboard App</label>
+            <label class="quiz-option"><input type="radio" name="q2" value="correct"> C) The Pivot Table App</label>
+            <label class="quiz-option"><input type="radio" name="q2" value="w3"> D) The Messaging App</label>
+            
+            <p id="quiz2-error" class="error-msg">Incorrect. Think about the tool used for cross-tabulation and filtering.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(2, 3)">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- ================= MODULE 3 ================= -->
+    <div id="module-3-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 3: Calculating Epidemic Thresholds</h2>
+        
+        <h3 class="sub-title">3.1 Endemic vs. Epidemic</h3>
+        <p>In many African regions, diseases like Malaria are <em>endemic</em>—they are always present at a baseline level. An <em>epidemic</em> occurs when cases rise significantly above that normal baseline. But how do we define "significantly above"? We use Epidemic Thresholds.</p>
+
+        <h3 class="sub-title">3.2 Action Lines and Moving Averages</h3>
+        <p>To detect an outbreak, data analysts calculate an <strong>Action Line (or Epidemic Threshold)</strong> based on historical data. A common method is taking the average number of weekly cases for the past 5 non-epidemic years, and adding two standard deviations. </p>
+        <p>If the current week's case count on your DHIS2 line graph crosses above this Action Line, it triggers an immediate public health response (e.g., deploying mobile testing units and bed nets), rather than waiting for hospitals to overflow.</p>
+
+        <div class="resource-box">
+            <h4>Recommended Reading & Video Resources</h4>
+            <p>• WHO Guide: <a href="https://www.who.int/emergencies/surveillance" target="_blank">Early Warning, Alert and Response System (EWARS)</a></p>
+        </div>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(3)">Proceed to Module 3 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 3 QUIZ -->
+    <div id="module-3-quiz" class="module-section" style="display: none;">
+        <div class="quiz-box">
+            <h3 class="quiz-title">Module 3: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">In disease surveillance, what happens when a district's weekly malaria case count crosses the calculated "Action Line" (Epidemic Threshold)?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q3" value="w1"> A) The data is deleted because it is considered an error</label>
+            <label class="quiz-option"><input type="radio" name="q3" value="correct"> B) It indicates a statistically significant surge above the baseline, triggering an immediate public health emergency response</label>
+            <label class="quiz-option"><input type="radio" name="q3" value="w2"> C) It means the disease has been successfully eradicated</label>
+            <label class="quiz-option"><input type="radio" name="q3" value="w3"> D) The hospital automatically shuts down to prevent infection</label>
+            
+            <p id="quiz3-error" class="error-msg">Incorrect. Review Section 3.2 on Action Lines.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(3, 4)">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- ================= MODULE 4 ================= -->
+    <div id="module-4-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 4: Data Quality Assurance (DQA)</h2>
+        
+        <h3 class="sub-title">4.1 Spotting Outliers</h3>
+        <p>Before you analyze data, you must clean it. A critical intermediate skill is identifying <strong>Outliers</strong>—data points that differ wildly from the norm. If a rural clinic that normally reports 10 births a month suddenly reports 1,000 births, that is an outlier. It is almost certainly a data entry typo (an extra two zeros), not a sudden population boom.</p>
+
+        <h3 class="sub-title">4.2 Routine Data Quality Assessment (RDQA)</h3>
+        <p>Health ministries mandate regular RDQAs. This involves a physical audit where an analyst visits a facility, takes the digital DHIS2 report, and manually recounts the physical paper ward registers for that month to check for discrepancies (Over-reporting or Under-reporting). High-quality analysis is impossible without rigorous DQA.</p>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(4)">Proceed to Module 4 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 4 QUIZ -->
+    <div id="module-4-quiz" class="module-section" style="display: none;">
+        <div class="quiz-box">
+            <h3 class="quiz-title">Module 4: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">During a Routine Data Quality Assessment (RDQA), what is the primary methodology used to verify the accuracy of digital data?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q4" value="correct"> A) Cross-referencing and manually recounting the source documents (e.g., physical ward registers) against the digital system reports</label>
+            <label class="quiz-option"><input type="radio" name="q4" value="w1"> B) Asking the patients if they remember their diagnoses</label>
+            <label class="quiz-option"><input type="radio" name="q4" value="w2"> C) Running an antivirus scan on the hospital computers</label>
+            <label class="quiz-option"><input type="radio" name="q4" value="w3"> D) Guessing the average number based on previous years</label>
+            
+            <p id="quiz4-error" class="error-msg">Incorrect. Review Section 4.2 on RDQA protocols.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(4, 5)">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- ================= MODULE 5 ================= -->
+    <div id="module-5-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 5: Root Cause Analysis (RCA) in Clinical Data</h2>
+        
+        <h3 class="sub-title">5.1 The "5 Whys" Framework</h3>
+        <p>When data reveals a critical failure—like a sudden spike in neonatal mortality or an ARV stockout—analysts use RCA tools to find the core issue. The simplest is the <strong>"5 Whys"</strong> technique. Ask "Why" iteratively until you hit the systemic root cause, rather than just the surface symptom.</p>
+
+        <h3 class="sub-title">5.2 The Ishikawa (Fishbone) Diagram</h3>
+        <p>For complex health data problems, we use the Fishbone diagram to categorize potential causes of a data trend. Categories typically include: <em>People (Staffing), Processes (Protocols), Equipment (Machinery/IT), Materials (Drugs/Supplies), and Environment.</em> This prevents hospital management from just blaming the nurses when the data shows a failure was actually caused by a broken supply chain process.</p>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(5)">Proceed to Module 5 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 5 QUIZ -->
+    <div id="module-5-quiz" class="module-section" style="display: none;">
+        <div class="quiz-box">
+            <h3 class="quiz-title">Module 5: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">When investigating a negative data trend (like frequent drug stockouts), what is the purpose of using an Ishikawa (Fishbone) diagram?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q5" value="w1"> A) To find out which specific nurse to discipline</label>
+            <label class="quiz-option"><input type="radio" name="q5" value="w2"> B) To calculate the financial cost of the lost drugs</label>
+            <label class="quiz-option"><input type="radio" name="q5" value="w3"> C) To graphically display the stock levels to the public</label>
+            <label class="quiz-option"><input type="radio" name="q5" value="correct"> D) To systematically categorize all potential root causes (People, Processes, Equipment, etc.) to identify the true systemic failure</label>
+            
+            <p id="quiz5-error" class="error-msg">Incorrect. Review Section 5.2.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(5, 6)">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- ================= MODULE 6 ================= -->
+    <div id="module-6-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 6: Data Storytelling & Visualization</h2>
+        
+        <h3 class="sub-title">6.1 Choosing the Right Chart</h3>
+        <p>Presenting data to a Provincial Medical Director requires clarity. If you use the wrong chart, your actionable intelligence is lost.</p>
+        <ul>
+            <li><strong>Line Graphs:</strong> Best for showing <em>Trends over Time</em> (e.g., Malaria cases from January to December).</li>
+            <li><strong>Bar Charts:</strong> Best for showing <em>Comparisons between categories</em> (e.g., Comparing bed occupancy rates across five different district hospitals).</li>
+            <li><strong>Pie Charts:</strong> Best for showing <em>Parts of a Whole</em> (e.g., Percentage breakdown of funding sources). Use sparingly in health data, as humans are bad at estimating angles.</li>
+        </ul>
+
+        <h3 class="sub-title">6.2 The Contextual Narrative</h3>
+        <p>A chart without a narrative is just a picture. A data analyst must always provide the "So What?" (e.g., "This line graph shows a 40% spike in diarrheal diseases in District A. <em>Therefore</em>, we must immediately dispatch water purification tablets to that specific region.")</p>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(6)">Proceed to Module 6 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 6 QUIZ -->
+    <div id="module-6-quiz" class="module-section" style="display: none;">
+        <div class="quiz-box">
+            <h3 class="quiz-title">Module 6: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">If you need to present a presentation showing the change in HIV infection rates in your province over the last 10 years, which visualization is most appropriate?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q6" value="w1"> A) A Pie Chart</label>
+            <label class="quiz-option"><input type="radio" name="q6" value="correct"> B) A Line Graph</label>
+            <label class="quiz-option"><input type="radio" name="q6" value="w2"> C) A Stacked Bar Chart</label>
+            <label class="quiz-option"><input type="radio" name="q6" value="w3"> D) A Scatter Plot</label>
+            
+            <p id="quiz6-error" class="error-msg">Incorrect. Review Section 6.1 regarding trends over time.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(6, 7)">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- ================= MODULE 7 ================= -->
+    <div id="module-7-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 7: Data Governance & Ethical Reporting</h2>
+        
+        <h3 class="sub-title">7.1 Zimbabwe Cyber and Data Protection Act (2021)</h3>
+        <p>As you transition into data analysis, you will handle massive datasets. Under Zimbabwean law, health data is highly sensitive. You must ensure that any dataset exported from DHIS2 or OpenMRS for analysis is completely <strong>De-identified (Anonymized)</strong>. Never share spreadsheets containing patient names, ID numbers, or exact addresses via insecure channels like WhatsApp.</p>
+        
+        <div class="analogy-box" style="border-left-color: #f59e0b; background-color: #fffbeb;">
+            <h4 style="color: #d97706;">The Analyst's Oath</h4>
+            <p>Data is not just numbers on a screen; it represents human lives, suffering, and outcomes. Ethical data analysis means protecting privacy, never manipulating axes on a chart to hide failures, and always seeking the truth to improve clinical care.</p>
+        </div>
+
+        <button class="btn-primary btn-proceed" style="background-color: #f59e0b; color: #000;" onclick="startFinalExam()">Proceed to the 20-Question Final Exam ➔</button>
+    </div>
+
+    <!-- ================= FINAL EXAM (20 QUESTIONS) ================= -->
+    <div id="final-exam-section" class="module-section" style="display: none;">
+        <h2 class="mod-title">Intermediate Certification Examination</h2>
+        <p style="font-size: 18px; color: #555;">Complete this comprehensive 20-question examination. You must score 100% to generate your Intermediate Accredited Certificate.</p>
+
+        <form id="final-exam-form">
+            <!-- Q1 -->
+            <div class="quiz-box" style="margin-top: 20px;">
+                <p style="font-size: 18px;"><strong>1. What does "Descriptive Analytics" primarily seek to answer in healthcare?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe1" value="correct"> A) "What happened?" (Summarizing historical data)</label>
+                <label class="quiz-option"><input type="radio" name="fe1" value="w1"> B) "Why did it happen?"</label>
+                <label class="quiz-option"><input type="radio" name="fe1" value="w2"> C) "What will happen next?"</label>
+                <label class="quiz-option"><input type="radio" name="fe1" value="w3"> D) "Who is to blame?"</label>
+            </div>
+
+            <!-- Q2 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>2. Which phase of the analytics continuum involves cross-referencing data to find the root cause of an event?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe2" value="w1"> A) Predictive Analytics</label>
+                <label class="quiz-option"><input type="radio" name="fe2" value="w2"> B) Descriptive Analytics</label>
+                <label class="quiz-option"><input type="radio" name="fe2" value="correct"> C) Diagnostic Analytics</label>
+                <label class="quiz-option"><input type="radio" name="fe2" value="w3"> D) Prescriptive Analytics</label>
+            </div>
+
+            <!-- Q3 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>3. In DHIS2, what is the primary function of a Pivot Table?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe3" value="w1"> A) To send text messages to community health workers</label>
+                <label class="quiz-option"><input type="radio" name="fe3" value="correct"> B) To dynamically cross-tabulate and filter large datasets (e.g., sorting diseases by age and district)</label>
+                <label class="quiz-option"><input type="radio" name="fe3" value="w2"> C) To write clinical notes for individual patients</label>
+                <label class="quiz-option"><input type="radio" name="fe3" value="w3"> D) To track the GPS location of ambulances</label>
+            </div>
+
+            <!-- Q4 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>4. What does a "Dashboard" provide for a Provincial Medical Director?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe4" value="correct"> A) A high-level, visual summary of key performance indicators (KPIs) in one central view</label>
+                <label class="quiz-option"><input type="radio" name="fe4" value="w1"> B) A detailed, 500-page text report on hospital finances</label>
+                <label class="quiz-option"><input type="radio" name="fe4" value="w2"> C) A tool for editing patient surgical histories</label>
+                <label class="quiz-option"><input type="radio" name="fe4" value="w3"> D) An email client for communicating with the Ministry</label>
+            </div>
+
+            <!-- Q5 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>5. In disease surveillance, what is an "endemic" baseline?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe5" value="w1"> A) A disease that has been completely eradicated</label>
+                <label class="quiz-option"><input type="radio" name="fe5" value="w2"> B) A sudden, massive spike in infections</label>
+                <label class="quiz-option"><input type="radio" name="fe5" value="w3"> D) A disease caused by poor data entry</label>
+                <label class="quiz-option"><input type="radio" name="fe5" value="correct"> C) The normal, expected level of a disease consistently present within a specific geographic area</label>
+            </div>
+
+            <!-- Q6 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>6. What triggers a public health emergency response during routine data monitoring?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe6" value="correct"> A) When the current case count crosses above the calculated Action Line (Epidemic Threshold)</label>
+                <label class="quiz-option"><input type="radio" name="fe6" value="w1"> B) Whenever a single case of a common cold is reported</label>
+                <label class="quiz-option"><input type="radio" name="fe6" value="w2"> C) When the DHIS2 server goes offline for maintenance</label>
+                <label class="quiz-option"><input type="radio" name="fe6" value="w3"> D) When a hospital runs out of printer paper</label>
+            </div>
+
+            <!-- Q7 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>7. What is a data "Outlier"?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe7" value="w1"> A) A patient who is transferred to another hospital</label>
+                <label class="quiz-option"><input type="radio" name="fe7" value="correct"> B) A data point that differs significantly and wildly from the normal historical trend, often indicating a data entry error</label>
+                <label class="quiz-option"><input type="radio" name="fe7" value="w2"> C) A perfectly average statistic</label>
+                <label class="quiz-option"><input type="radio" name="fe7" value="w3"> D) A missing file folder</label>
+            </div>
+
+            <!-- Q8 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>8. What is the core activity of a Routine Data Quality Assessment (RDQA)?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe8" value="w1"> A) Buying new computer hardware for the clinic</label>
+                <label class="quiz-option"><input type="radio" name="fe8" value="w2"> B) Training nurses on how to draw blood</label>
+                <label class="quiz-option"><input type="radio" name="fe8" value="correct"> C) Physically auditing and cross-referencing source paper documents against the digital database to find discrepancies</label>
+                <label class="quiz-option"><input type="radio" name="fe8" value="w3"> D) Changing the passwords on all hospital computers</label>
+            </div>
+
+            <!-- Q9 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>9. What is the purpose of the "5 Whys" technique in Root Cause Analysis?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe9" value="correct"> A) To repeatedly ask "Why" iteratively until you move past surface symptoms to discover the systemic root cause of a failure</label>
+                <label class="quiz-option"><input type="radio" name="fe9" value="w1"> B) To annoy hospital management into giving you more funding</label>
+                <label class="quiz-option"><input type="radio" name="fe9" value="w2"> C) To ask five different patients about their symptoms</label>
+                <label class="quiz-option"><input type="radio" name="fe9" value="w3"> D) To generate a random password</label>
+            </div>
+
+            <!-- Q10 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>10. An Ishikawa (Fishbone) diagram categorizes root causes into groups such as:</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe10" value="w1"> A) Monday, Tuesday, Wednesday, Thursday, Friday</label>
+                <label class="quiz-option"><input type="radio" name="fe10" value="correct"> B) People, Processes, Equipment, Materials, and Environment</label>
+                <label class="quiz-option"><input type="radio" name="fe10" value="w2"> C) Doctors, Nurses, Patients, and Janitors</label>
+                <label class="quiz-option"><input type="radio" name="fe10" value="w3"> D) North, South, East, and West provinces</label>
+            </div>
+
+            <!-- Q11 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>11. If you need to visually present the comparison of bed occupancy rates between five different hospitals, which chart is best?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe11" value="w1"> A) Line Graph</label>
+                <label class="quiz-option"><input type="radio" name="fe11" value="w2"> B) Pie Chart</label>
+                <label class="quiz-option"><input type="radio" name="fe11" value="correct"> C) Bar Chart</label>
+                <label class="quiz-option"><input type="radio" name="fe11" value="w3"> D) Scatter Plot</label>
+            </div>
+
+            <!-- Q12 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>12. Why are Pie Charts generally discouraged for complex health data visualization?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe12" value="w1"> A) Because they use too much printer ink</label>
+                <label class="quiz-option"><input type="radio" name="fe12" value="correct"> B) Because human visual perception is poor at accurately estimating and comparing angles and area sizes</label>
+                <label class="quiz-option"><input type="radio" name="fe12" value="w2"> C) Because DHIS2 cannot generate them</label>
+                <label class="quiz-option"><input type="radio" name="fe12" value="w3"> D) Because they are illegal under data protection laws</label>
+            </div>
+
+            <!-- Q13 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>13. What is the most important element a data analyst must add to a chart when presenting it to decision-makers?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe13" value="correct"> A) The Contextual Narrative (the "So What?" explaining what action needs to be taken)</label>
+                <label class="quiz-option"><input type="radio" name="fe13" value="w1"> B) A complicated mathematical formula</label>
+                <label class="quiz-option"><input type="radio" name="fe13" value="w2"> C) The analyst's personal signature in large font</label>
+                <label class="quiz-option"><input type="radio" name="fe13" value="w3"> D) A list of every single patient's name</label>
+            </div>
+
+            <!-- Q14 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>14. Before exporting a dataset from OpenMRS to perform analysis on your local laptop, what must you do to comply with the Zimbabwe Cyber and Data Protection Act?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe14" value="w1"> A) Email the raw file to yourself</label>
+                <label class="quiz-option"><input type="radio" name="fe14" value="w2"> B) Change the file extension to .txt</label>
+                <label class="quiz-option"><input type="radio" name="fe14" value="w3"> D) Print it out on paper instead</label>
+                <label class="quiz-option"><input type="radio" name="fe14" value="correct"> C) Ensure the data is completely De-identified (Anonymized) by removing all names, IDs, and precise locations</label>
+            </div>
+
+            <!-- Q15 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>15. In data ethics, manipulating the Y-axis of a bar chart to make a small increase look like a massive spike is considered:</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe15" value="w1"> A) Good marketing</label>
+                <label class="quiz-option"><input type="radio" name="fe15" value="correct"> B) Unethical data manipulation and misrepresentation</label>
+                <label class="quiz-option"><input type="radio" name="fe15" value="w2"> C) Standard statistical procedure</label>
+                <label class="quiz-option"><input type="radio" name="fe15" value="w3"> D) Necessary for saving server space</label>
+            </div>
+
+            <!-- Q16 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>16. If an analyst discovers a data entry error (an outlier) during a diagnostic review, what is the correct professional action?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe16" value="correct"> A) Investigate the source, correct the error at the root entry level, and document the change</label>
+                <label class="quiz-option"><input type="radio" name="fe16" value="w1"> B) Delete the entire dataset for that month</label>
+                <label class="quiz-option"><input type="radio" name="fe16" value="w2"> C) Ignore it because one error doesn't matter</label>
+                <label class="quiz-option"><input type="radio" name="fe16" value="w3"> D) Fire the nurse who made the error immediately</label>
+            </div>
+
+            <!-- Q17 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>17. Why is it dangerous to rely solely on Descriptive Analytics without applying Diagnostic Analytics?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe17" value="w1"> A) Because descriptive analytics cost too much money</label>
+                <label class="quiz-option"><input type="radio" name="fe17" value="w2"> B) Because descriptive analytics are illegal</label>
+                <label class="quiz-option"><input type="radio" name="fe17" value="correct"> C) Because knowing "what" happened without understanding "why" it happened prevents you from fixing systemic clinical failures</label>
+                <label class="quiz-option"><input type="radio" name="fe17" value="w3"> D) Because diagnostic analytics look better in PowerPoint</label>
+            </div>
+
+            <!-- Q18 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>18. A sudden, unexplained drop in reported vaccinations in a district could indicate which of the following root causes?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe18" value="w1"> A) A stockout of vaccines at the central pharmacy</label>
+                <label class="quiz-option"><input type="radio" name="fe18" value="w2"> B) A breakdown in the clinic's cold-chain refrigerators</label>
+                <label class="quiz-option"><input type="radio" name="fe18" value="w3"> D) A failure in data reporting (nurses lost internet access to enter data)</label>
+                <label class="quiz-option"><input type="radio" name="fe18" value="correct"> C) Any of the above; a Root Cause Analysis is required to find out which one is true</label>
+            </div>
+
+            <!-- Q19 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>19. What is a "Moving Average" used for in public health data tracking?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe19" value="correct"> A) To smooth out daily random fluctuations in data so broader, longer-term trends become visible</label>
+                <label class="quiz-option"><input type="radio" name="fe19" value="w1"> B) To track ambulances physically moving on a map</label>
+                <label class="quiz-option"><input type="radio" name="fe19" value="w2"> C) To calculate the average speed of data transfer</label>
+                <label class="quiz-option"><input type="radio" name="fe19" value="w3"> D) To estimate the hospital's electricity bill</label>
+            </div>
+
+            <!-- Q20 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>20. Ultimately, what is the primary goal of an intermediate data analyst in an African health system?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe20" value="w1"> A) To create the most complicated mathematical models possible</label>
+                <label class="quiz-option"><input type="radio" name="fe20" value="w2"> B) To replace clinical staff with computers</label>
+                <label class="quiz-option"><input type="radio" name="fe20" value="w3"> D) To ensure the hospital makes the maximum amount of profit</label>
+                <label class="quiz-option"><input type="radio" name="fe20" value="correct"> C) To transform raw numbers into actionable intelligence that improves patient outcomes and systemic efficiency</label>
+            </div>
+
+            <p id="exam-error" class="error-msg" style="font-size: 18px; text-align: center;">You must score 100% on the final intermediate examination to generate your certificate. Please review your answers.</p>
+            <button type="button" class="btn-primary" style="background-color: #0f766e; font-size: 20px; width: 100%; padding: 20px; margin-top: 30px;" onclick="submitFinalExam()">Grade Exam & Issue Intermediate Certificate</button>
+        </form>
+    </div>
+
+    <!-- ================= CERTIFICATE ISSUANCE ================= -->
+    <div id="cert-issuance-section" class="module-section" style="display: none;">
+        <div class="quiz-box" style="text-align: center; background: #f0fdfa; border-color: #5eead4; padding: 50px;">
+            <h2 style="color: #0f766e; margin-top: 0; font-size: 32px;">🎉 Congratulations! You Passed!</h2>
+            <p style="font-size: 20px; margin-bottom: 30px;">Please enter your Full Name exactly as it should appear on your official Intermediate Certificate:</p>
+            <input type="text" id="student-name-input" placeholder="e.g. Tendai Moyo" style="width: 80%; max-width: 500px; padding: 15px; font-size: 20px; border: 2px solid #14b8a6; border-radius: 6px; margin-bottom: 25px;">
+            <br>
+            <button type="button" class="btn-primary" style="background-color: #0d9488; font-size: 22px; padding: 15px 40px;" onclick="generateCertificate()">Generate My Certificate</button>
+        </div>
+    </div>
+
+    <!-- ================= CERTIFICATE RENDER ================= -->
+    <div id="certificate-render" class="cert-wrapper">
+        <div class="cert-outer-border">
+            <div class="cert-inner-border">
+                
+                <!-- LOGO -->
+                <img src="https://i.postimg.cc/v1QSBVDj/Whats-App-Nextgen-Logo.jpg" alt="NextGen HealthTech Academy Logo" class="cert-logo">
+                
+                <h2 class="cert-title">Certificate of Competency</h2>
+                <p style="font-size: 20px; color: #555; margin: 15px 0;">This is to certify that</p>
+                
+                <div class="cert-name" id="cert-display-name">[Student Name]</div>
+                
+                <p style="font-size: 18px; color: #444; max-width: 700px; margin: 0 auto; line-height: 1.6;">
+                    has successfully completed the comprehensive intermediate curriculum and passed the examination for
+                </p>
+                <h3 style="color: #0f766e; font-size: 26px; margin: 25px 0;">Data Analysis in Healthcare (Intermediate Edition)</h3>
+                <p style="font-size: 15px; color: #666; max-width: 800px; margin: 0 auto;">Demonstrating competency in Diagnostic Analytics, DHIS2 Pivot Tables, Epidemic Thresholds (Action Lines), Routine Data Quality Assessment (RDQA), Root Cause Analysis, and Ethical Data Visualization.</p>
+                
+                <div class="cert-footer">
+                    <div class="cert-signature-box">
+                        <strong id="cert-date-display" style="font-size: 18px;">Date: 25 August 2026</strong>
+                        <div class="cert-signature-line">Harare, Zimbabwe</div>
+                    </div>
+                    <div class="cert-signature-box">
+                        
+                        <!-- SIGNATURE -->
+                        <img src="https://i.postimg.cc/sB6KgHks/Whats-App-Image-2026-08-16-at-22-42-47.jpg" alt="Director Signature" class="cert-signature-img"><br>
+                        
+                        <strong style="font-size: 18px;">Allan Kudzai Chirume</strong>
+                        <div class="cert-signature-line">Director, NextGen HealthTech Academy</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="no-print" style="margin-top: 40px; text-align: center;">
+            <button class="btn-primary" onclick="window.print()" style="background-color: #f59e0b; color: #000; padding: 15px 35px; font-size: 18px;">🖨️ Print / Save as PDF</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function updateProgress(step) {
+        // 8 steps total: 7 modules + 1 final exam
+        const percentage = Math.min(100, Math.round((step / 8) * 100));
+        document.getElementById('course-progress').style.width = percentage + '%';
+    }
+
+    function showQuiz(modNum) {
+        document.getElementById('module-' + modNum + '-content').style.display = 'none';
+        document.getElementById('module-' + modNum + '-quiz').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function validateModule(currentMod, nextMod) {
+        const selected = document.querySelector('input[name="q' + currentMod + '"]:checked');
+        const errorEl = document.getElementById('quiz' + currentMod + '-error');
+        
+        if (selected && selected.value === 'correct') {
+            errorEl.style.display = 'none';
+            document.getElementById('module-' + currentMod + '-quiz').style.display = 'none';
+            document.getElementById('module-' + nextMod + '-content').style.display = 'block';
+            updateProgress(nextMod);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            errorEl.style.display = 'block';
+        }
+    }
+
+    function startFinalExam() {
+        document.getElementById('module-7-content').style.display = 'none';
+        document.getElementById('final-exam-section').style.display = 'block';
+        updateProgress(8);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function submitFinalExam() {
+        let allCorrect = true;
+        // Loop through all 20 questions
+        for (let i = 1; i <= 20; i++) {
+            const answer = document.querySelector('input[name="fe' + i + '"]:checked');
+            if (!answer || answer.value !== 'correct') {
+                allCorrect = false;
+                break;
+            }
+        }
+        
+        const errorEl = document.getElementById('exam-error');
+
+        if (allCorrect) {
+            errorEl.style.display = 'none';
+            document.getElementById('final-exam-section').style.display = 'none';
+            document.getElementById('cert-issuance-section').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            errorEl.style.display = 'block';
+        }
+    }
+
+    function generateCertificate() {
+        const nameInput = document.getElementById('student-name-input').value.trim();
+        if (!nameInput) {
+            alert('Please enter your full name.');
+            return;
+        }
+
+        document.getElementById('cert-display-name').innerText = nameInput;
+        const today = new Date();
+        const dateString = today.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+        document.getElementById('cert-date-display').innerText = 'Date: ' + dateString;
+
+        document.getElementById('cert-issuance-section').style.display = 'none';
+        document.getElementById('certificate-render').style.display = 'block';
+        document.querySelector('.progress-bar-container').style.display = 'none';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>

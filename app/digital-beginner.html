@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Health Skills: Beginners Edition - NextGen HealthTech Academy</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; padding: 20px; color: #333; line-height: 1.6; }
+        .course-container { max-width: 950px; margin: 0 auto; background: #ffffff; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); padding: 40px; }
+        .progress-bar-container { background-color: #e2e8f0; border-radius: 20px; height: 12px; width: 100%; margin-bottom: 25px; overflow: hidden; }
+        .progress-bar { background: linear-gradient(90deg, #9333ea, #c084fc); height: 100%; width: 12.5%; transition: width 0.4s ease; }
+        .header-banner { text-align: center; border-bottom: 2px solid #9333ea; padding-bottom: 20px; margin-bottom: 30px; }
+        .header-banner h1 { color: #9333ea; margin: 0 0 5px 0; font-size: 28px; }
+        .header-banner h2 { color: #a855f7; margin: 0 0 5px 0; font-size: 18px; }
+        .header-banner p { color: #475569; margin: 0; font-size: 14px; }
+        .mod-title { color: #9333ea; border-bottom: 2px solid #edf2f7; padding-bottom: 10px; margin-top: 25px; font-size: 22px; }
+        .sub-title { color: #0f172a; margin-top: 20px; font-size: 18px; font-weight: 600; }
+        .analogy-box { background-color: #faf5ff; border-left: 4px solid #a855f7; padding: 18px; margin: 20px 0; border-radius: 0 6px 6px 0; }
+        .analogy-box h4 { margin-top: 0; color: #7e22ce; }
+        .quiz-box { background-color: #f8fafc; padding: 35px; border-radius: 8px; margin-top: 25px; border: 1px solid #cbd5e1; }
+        .quiz-title { color: #0f172a; margin-top: 0; font-size: 20px; border-bottom: 2px solid #cbd5e1; padding-bottom: 10px; margin-bottom: 20px; }
+        .quiz-option { display: block; background: #ffffff; padding: 15px; margin-bottom: 10px; border: 1px solid #e2e8f0; border-radius: 6px; cursor: pointer; transition: background 0.2s; font-size: 16px; }
+        .quiz-option:hover { background: #f1f5f9; }
+        .quiz-option input { margin-right: 15px; transform: scale(1.2); }
+        .btn-primary { background-color: #9333ea; color: #ffffff; border: none; padding: 12px 25px; border-radius: 6px; cursor: pointer; font-size: 16px; font-weight: 600; margin-top: 20px; transition: background 0.3s; }
+        .btn-primary:hover { background-color: #7e22ce; }
+        .btn-proceed { background-color: #a855f7; width: 100%; font-size: 18px; padding: 15px; margin-top: 30px; }
+        .btn-proceed:hover { background-color: #9333ea; }
+        .error-msg { color: #dc2626; display: none; font-weight: bold; margin-top: 15px; font-size: 15px; padding: 10px; background: #fee2e2; border-radius: 5px; }
+        
+        /* Certificate Styles */
+        .cert-wrapper { display: none; background: #ffffff; margin-top: 20px; }
+        .cert-outer-border { border: 12px solid #9333ea; padding: 8px; background: #fff; }
+        .cert-inner-border { border: 3px solid #f59e0b; padding: 40px 50px; text-align: center; position: relative; }
+        .cert-logo { height: 100px; margin-bottom: 20px; object-fit: contain; }
+        .cert-title { font-size: 40px; color: #9333ea; text-transform: uppercase; margin: 10px 0; font-family: 'Times New Roman', Times, serif; letter-spacing: 3px; }
+        .cert-name { font-size: 34px; color: #9333ea; border-bottom: 2px solid #f59e0b; display: inline-block; padding: 5px 50px; margin: 25px 0; font-family: 'Times New Roman', Times, serif; font-style: italic; font-weight: bold; }
+        .cert-footer { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 60px; padding: 0 30px; }
+        .cert-signature-box { width: 280px; text-align: center; }
+        .cert-signature-line { border-top: 1px solid #9333ea; padding-top: 8px; font-size: 15px; color: #9333ea; margin-top: 5px; }
+        .cert-signature-img { height: 80px; margin-bottom: -15px; object-fit: contain; mix-blend-mode: multiply; }
+
+        @media print {
+            @page { size: A4 landscape; margin: 0mm; }
+            html, body { width: 297mm; height: 210mm; margin: 0; padding: 0; overflow: hidden; background-color: #ffffff; }
+            body * { visibility: hidden; }
+            #certificate-render, #certificate-render * { visibility: visible; }
+            #certificate-render { position: absolute; left: 0; top: 0; width: 297mm; height: 210mm; margin: 0; padding: 10mm; box-sizing: border-box; display: flex !important; flex-direction: column; justify-content: center; }
+            .cert-inner-border { padding: 25px 40px !important; }
+            .cert-footer { margin-top: 30px !important; }
+            .cert-logo { height: 85px !important; margin-bottom: 10px !important; }
+            .cert-title { font-size: 36px !important; }
+            .cert-name { margin: 15px 0 !important; font-size: 30px !important; }
+            .cert-signature-img { height: 70px !important; margin-bottom: -10px !important; }
+            .no-print { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="course-container" id="course-container">
+    <div class="progress-bar-container no-print">
+        <div class="progress-bar" id="course-progress"></div>
+    </div>
+
+    <!-- ================= MODULE 1 ================= -->
+    <div id="module-1-content" class="module-section">
+        <div class="header-banner">
+            <h1>DIGITAL HEALTH SKILLS</h1>
+            <h2>BEGINNERS EDITION: ESSENTIAL CLINICAL COMPUTING & WORKFLOWS</h2>
+            <p>NEXTGEN HEALTHTECH ACADEMY ONLINE | Harare, Zimbabwe</p>
+        </div>
+
+        <h2 class="mod-title">Foreword from the Lead Educator</h2>
+        <p>Across Africa, hospitals and clinics are rapidly phasing out paper ward registers, physical kardex files, and handwritten referral letters. In their place are laptops, tablets, and digital workstations.</p>
+        <p>For many healthcare workers, this transition creates anxiety. You were trained to insert IV lines, interpret ECGs, and deliver babies—not troubleshoot computer errors or navigate complex database interfaces. But basic digital literacy is now as fundamental to patient safety as sterile technique.</p>
+        <p>This beginner's course is built to give you total confidence on any clinical computer. We will break down the essential skills: navigating Electronic Health Records (EHRs), mastering clinical typing efficiency, avoiding password pitfalls, and recognizing cyber threats that target hospital networks.</p>
+
+        <h2 class="mod-title">Module 1: The Modern Digital Ward Environment</h2>
+        <h3 class="sub-title">1.1 Hardware Fundamentals for Clinicians</h3>
+        <p>A clinical digital setup typically consists of:</p>
+        <ul>
+            <li><strong>Workstations on Wheels (WOWs) or Fixed Terminals:</strong> Desktop computers stationed in wards and nursing stations connected directly to the hospital's local network.</li>
+            <li><strong>Point-of-Care Tablets:</strong> Mobile handheld devices used during ward rounds and triage to enter vitals directly at the patient's bedside.</li>
+            <li><strong>Barcode and Biometric Scanners:</strong> Peripheral devices used to scan patient wristbands, medication labels, or verify staff credentials.</li>
+        </ul>
+
+        <div class="analogy-box">
+            <h4>The Stethoscope Analogy</h4>
+            <p>A stethoscope does not replace a clinician's ears; it amplifies sound so you can make a better diagnosis. A computer or tablet does not replace clinical documentation; it organizes and transmits your notes instantly across departments so laboratory scientists, pharmacists, and doctors work from the exact same up-to-date patient story.</p>
+        </div>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(1)">Proceed to Module 1 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 1 QUIZ -->
+    <div id="module-1-quiz" class="module-section" style="display: none;">
+        <div class="quiz-box">
+            <h3 class="quiz-title">Module 1: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">What is the primary role of point-of-care digital devices (like ward tablets) in a modern hospital setting?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q1" value="w1"> A) To replace doctors and nurses in diagnosing patients</label>
+            <label class="quiz-option"><input type="radio" name="q1" value="correct"> B) To capture and transmit clinical observations directly at the bedside, ensuring all departments access real-time patient data</label>
+            <label class="quiz-option"><input type="radio" name="q1" value="w2"> C) To entertain patients during long hospital stays</label>
+            <label class="quiz-option"><input type="radio" name="q1" value="w3"> D) To eliminate the need for clinical handovers between shifts</label>
+            
+            <p id="quiz1-error" class="error-msg">Incorrect. Review Section 1.1 on hardware fundamentals.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(1, 2)">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- ================= MODULE 2 ================= -->
+    <div id="module-2-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 2: Navigating Electronic Health Records (EHR)</h2>
+        
+        <h3 class="sub-title">2.1 Core EHR Components</h3>
+        <p>Whether your hospital uses OpenMRS, DHIS2 Tracker, or a proprietary hospital management system, all EHRs share standard structural components:</p>
+        <ul>
+            <li><strong>Patient Master Index (PMI):</strong> The centralized directory where every patient is assigned a Unique Patient Identifier (UPI) to prevent duplicate records.</li>
+            <li><strong>Encounter / Visit Tab:</strong> Where current clinical notes, vital signs, and physical examination findings are recorded.</li>
+            <li><strong>Orders & Results:</strong> The module used to order lab tests, imaging, or pharmacy items, and view returned diagnostic reports.</li>
+        </ul>
+
+        <h3 class="sub-title">2.2 Avoiding Record Duplication</h3>
+        <p>A common error in African facilities is creating duplicate records when a returning patient forgets their hospital number. <strong>Always search by multiple identifiers (National ID, Date of Birth, Full Name, and Contact Number)</strong> before clicking "Register New Patient."</p>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(2)">Proceed to Module 2 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 2 QUIZ -->
+    <div id="module-2-quiz" class="module-section" style="display: none;">
+        <div class="quiz-box">
+            <h3 class="quiz-title">Module 2: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">What must a healthcare worker do in an EHR system before creating a new patient record to prevent dangerous duplicates?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q2" value="w1"> A) Immediately click 'Register New' to save time</label>
+            <label class="quiz-option"><input type="radio" name="q2" value="correct"> B) Search thoroughly across multiple demographic parameters (such as National ID, Date of Birth, and Full Name) in the Patient Master Index</label>
+            <label class="quiz-option"><input type="radio" name="q2" value="w2"> C) Ask the patient to choose a new username and password</label>
+            <label class="quiz-option"><input type="radio" name="q2" value="w3"> D) Create a temporary guest file and merge it next year</label>
+            
+            <p id="quiz2-error" class="error-msg">Incorrect. Review Section 2.2 on avoiding duplicate records.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(2, 3)">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- ================= MODULE 3 ================= -->
+    <div id="module-3-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 3: Clinical Efficiency & Keyboard Mastery</h2>
+        
+        <h3 class="sub-title">3.1 Essential Keyboard Shortcuts</h3>
+        <p>Using a mouse for every single click slows down documentation during busy shifts. Mastering universal keyboard shortcuts saves dozens of minutes every day:</p>
+        <ul>
+            <li><strong>Ctrl + C / Ctrl + V:</strong> Copy and Paste text.</li>
+            <li><strong>Ctrl + Z:</strong> Undo last action (instantly restores accidentally deleted text).</li>
+            <li><strong>Ctrl + F:</strong> Find (instantly searches a long lab report or patient history for specific words like "Penicillin" or "Haemoglobin").</li>
+            <li><strong>Tab Key:</strong> Moves the cursor smoothly to the next form field without lifting your hands to use the mouse.</li>
+        </ul>
+
+        <h3 class="sub-title">3.2 Auto-Text & Macro Templates</h3>
+        <p>Many modern clinical systems allow you to set up text shortcuts (e.g., typing `.normexam` automatically expands into a complete, standard normal systems examination paragraph, which you can then edit with patient-specific findings).</p>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(3)">Proceed to Module 3 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 3 QUIZ -->
+    <div id="module-3-quiz" class="module-section" style="display: none;">
+        <div class="quiz-box">
+            <h3 class="quiz-title">Module 3: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">Which keyboard shortcut allows a clinician to instantly search for a specific term (such as a drug allergy) within a multi-page electronic record?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q3" value="w1"> A) Ctrl + P</label>
+            <label class="quiz-option"><input type="radio" name="q3" value="correct"> B) Ctrl + F</label>
+            <label class="quiz-option"><input type="radio" name="q3" value="w2"> C) Alt + F4</label>
+            <label class="quiz-option"><input type="radio" name="q3" value="w3"> D) Shift + Delete</label>
+            
+            <p id="quiz3-error" class="error-msg">Incorrect. Review Section 3.1 regarding the 'Find' shortcut.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(3, 4)">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- ================= MODULE 4 ================= -->
+    <div id="module-4-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 4: Cybersecurity Hygiene on the Ward</h2>
+        
+        <h3 class="sub-title">4.1 Password Security & Account Sharing</h3>
+        <p>In busy wards, it is tempting for staff to share login credentials or leave a shared nursing workstation logged in all shift. <strong>This is a severe clinical safety and legal violation under the Zimbabwe Cyber and Data Protection Act.</strong></p>
+        <p>If another staff member orders the wrong medication under your login, the legal and regulatory accountability falls entirely on your registered name. Always lock your screen (<strong>Windows Key + L</strong>) whenever stepping away, even for 30 seconds.</p>
+
+        <h3 class="sub-title">4.2 Strong Passwords</h3>
+        <p>Never use predictable passwords (like `Hospital123` or your surname). Use passphrase methods: combining 3-4 unrelated words with numbers and symbols (e.g., `Mopane#Sunrise99!`).</p>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(4)">Proceed to Module 4 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 4 QUIZ -->
+    <div id="module-4-quiz" class="module-section" style="display: none;">
+        <div class="quiz-box">
+            <h3 class="quiz-title">Module 4: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">Why is sharing EHR login credentials strictly prohibited in hospital environments?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q4" value="correct"> A) Because audit trails attribute every entry and prescription to the logged-in account, making you legally accountable for actions performed under your name</label>
+            <label class="quiz-option"><input type="radio" name="q4" value="w1"> B) Because it uses too much electrical power</label>
+            <label class="quiz-option"><input type="radio" name="q4" value="w2"> C) Because the computer screen will automatically dim</label>
+            <label class="quiz-option"><input type="radio" name="q4" value="w3"> D) Because passwords expire every 10 minutes</label>
+            
+            <p id="quiz4-error" class="error-msg">Incorrect. Review Section 4.1 on accountability and audit trails.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(4, 5)">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- ================= MODULE 5 ================= -->
+    <div id="module-5-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 5: Recognizing Phishing & Social Engineering</h2>
+        
+        <h3 class="sub-title">5.1 What is Phishing?</h3>
+        <p>Hospitals are prime targets for cybercriminals. <strong>Phishing</strong> is when an attacker sends a deceptive email, SMS, or WhatsApp message pretending to be an official authority (e.g., "Hospital IT Department," "Ministry of Health Payroll," or "Medical Council").</p>
+
+        <h3 class="sub-title">5.2 Red Flags of Malicious Messages</h3>
+        <ul>
+            <li><strong>Artificial Urgency:</strong> Messages stating "Your account will be suspended in 2 hours unless you click here."</li>
+            <li><strong>Suspicious Links & Senders:</strong> Email addresses ending in unusual domains (e.g., `hr-mohcc@gmail.com` instead of official government domains).</li>
+            <li><strong>Unexpected Attachments:</strong> Files asking you to "Enable Macros" or download executable `.exe` files.</li>
+        </ul>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(5)">Proceed to Module 5 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 5 QUIZ -->
+    <div id="module-5-quiz" class="module-section" style="display: none;">
+        <div class="quiz-box">
+            <h3 class="quiz-title">Module 5: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">You receive an email claiming to be from "Hospital IT" asking you to click an urgent link and verify your EHR password. What should you do?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q5" value="w1"> A) Click the link immediately to prevent account suspension</label>
+            <label class="quiz-option"><input type="radio" name="q5" value="w2"> B) Forward the email to all other nurses in the hospital</label>
+            <label class="quiz-option"><input type="radio" name="q5" value="correct"> C) Do not click the link; report the message immediately to hospital IT/Informatics, as legitimate IT will never ask for your password via email</label>
+            <label class="quiz-option"><input type="radio" name="q5" value="w3"> D) Reply to the email with your username and password</label>
+            
+            <p id="quiz5-error" class="error-msg">Incorrect. Review Section 5.2 on phishing red flags.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(5, 6)">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- ================= MODULE 6 ================= -->
+    <div id="module-6-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 6: Professional Digital Communication & WhatsApp Ethics</h2>
+        
+        <h3 class="sub-title">6.1 The "WhatsApp Ward" Problem</h3>
+        <p>In Southern Africa, WhatsApp is widely used for clinical coordination. While convenient, it carries enormous legal risk under patient confidentiality regulations:</p>
+        <ul>
+            <li><strong>Never send un-redacted clinical photos:</strong> Showing a patient's face, bed number, or hospital name tag on a public group is a breach of patient privacy.</li>
+            <li><strong>Use secure clinical channels:</strong> Official consultations should be documented in the EHR rather than lost in informal chat histories.</li>
+            <li><strong>Auto-Backup Danger:</strong> WhatsApp media automatically saving to personal phone galleries means sensitive medical pictures mix with personal family photos.</li>
+        </ul>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(6)">Proceed to Module 6 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 6 QUIZ -->
+    <div id="module-6-quiz" class="module-section" style="display: none;">
+        <div class="quiz-box">
+            <h3 class="quiz-title">Module 6: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">When using mobile messaging for clinical handovers or specialist advice, what is an essential patient safety and confidentiality rule?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q6" value="w1"> A) Always post patient photos directly to public social media groups for second opinions</label>
+            <label class="quiz-option"><input type="radio" name="q6" value="correct"> B) Completely de-identify clinical details, never share identifiable faces or records on non-approved platforms, and document final plans in the official EHR</label>
+            <label class="quiz-option"><input type="radio" name="q6" value="w2"> C) Save all patient pictures to your personal cloud gallery</label>
+            <label class="quiz-option"><input type="radio" name="q6" value="w3"> D) Include the patient's full home address in the group chat</label>
+            
+            <p id="quiz6-error" class="error-msg">Incorrect. Review Section 6.1 on messaging ethics.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(6, 7)">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- ================= MODULE 7 ================= -->
+    <div id="module-7-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 7: Downtime Procedures & Backup Protocols</h2>
+        
+        <h3 class="sub-title">7.1 When the Power or Network Fails</h3>
+        <p>Load-shedding, network disconnects, and server maintenance are realities of African healthcare infrastructure. Every digital clinician must master <strong>Downtime Protocols</strong>:</p>
+        <ul>
+            <li><strong>Physical Shadow Forms:</strong> When systems go offline, revert immediately to standardized paper downtime registers.</li>
+            <li><strong>Reconciliation / Back-Entry:</strong> Once systems restore, paper notes must be back-entered chronologically to maintain a complete electronic record.</li>
+            <li><strong>Uninterruptible Power Supplies (UPS):</strong> Never plug non-essential devices (like kettle heaters or phone chargers) into red hospital UPS-backed power sockets.</li>
+        </ul>
+
+        <div class="analogy-box" style="border-left-color: #f59e0b; background-color: #fffbeb;">
+            <h4 style="color: #d97706;">The Golden Rules of Beginner Digital Health</h4>
+            <ol>
+                <li>Lock your screen whenever you leave your terminal (Windows + L).</li>
+                <li>Never share passwords or document care under another worker's login.</li>
+                <li>Search thoroughly before creating a new record to prevent duplicates.</li>
+                <li>Protect patient privacy across mobile and messaging platforms.</li>
+            </ol>
+        </div>
+
+        <button class="btn-primary btn-proceed" style="background-color: #f59e0b; color: #000;" onclick="startFinalExam()">Proceed to the 15-Question Final Exam ➔</button>
+    </div>
+
+    <!-- ================= FINAL EXAM (15 QUESTIONS) ================= -->
+    <div id="final-exam-section" class="module-section" style="display: none;">
+        <h2 class="mod-title">Beginners Certification Examination</h2>
+        <p style="font-size: 18px; color: #555;">Complete this comprehensive 15-question examination. You must score 100% to generate your Beginners Accredited Certificate.</p>
+
+        <form id="final-exam-form">
+            <!-- Q1 -->
+            <div class="quiz-box" style="margin-top: 20px;">
+                <p style="font-size: 18px;"><strong>1. What is the primary purpose of an Electronic Health Record (EHR) system in a hospital?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe1" value="correct"> A) To store, organize, and provide real-time, multi-departmental access to patient clinical records and care plans</label>
+                <label class="quiz-option"><input type="radio" name="fe1" value="w1"> B) To automatically calculate staff tax deductions</label>
+                <label class="quiz-option"><input type="radio" name="fe1" value="w2"> C) To replace clinical decision-making with automated software</label>
+                <label class="quiz-option"><input type="radio" name="fe1" value="w3"> D) To eliminate face-to-face patient consultations</label>
+            </div>
+
+            <!-- Q2 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>2. What is a "Unique Patient Identifier" (UPI) used for in a Patient Master Index?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe2" value="w1"> A) To determine the cost of treatment</label>
+                <label class="quiz-option"><input type="radio" name="fe2" value="correct"> B) To distinguish each patient uniquely and prevent duplicate records or mismatched medical charts</label>
+                <label class="quiz-option"><input type="radio" name="fe2" value="w2"> C) To rank patients by clinical priority</label>
+                <label class="quiz-option"><input type="radio" name="fe2" value="w3"> D) To track patient phone numbers</label>
+            </div>
+
+            <!-- Q3 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>3. What shortcut quickly locks a Windows hospital workstation when stepping away from the nursing station?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe3" value="w1"> A) Ctrl + Alt + Delete</label>
+                <label class="quiz-option"><input type="radio" name="fe3" value="w2"> B) Esc + F1</label>
+                <label class="quiz-option"><input type="radio" name="fe3" value="correct"> C) Windows Key + L</label>
+                <label class="quiz-option"><input type="radio" name="fe3" value="w3"> D) Spacebar + Enter</label>
+            </div>
+
+            <!-- Q4 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>4. Why is creating duplicate patient records dangerous for clinical care?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe4" value="correct"> A) Critical allergies, previous diagnoses, and lab histories may be split across records and missed during emergency treatment</label>
+                <label class="quiz-option"><input type="radio" name="fe4" value="w1"> B) It uses too much internet bandwidth</label>
+                <label class="quiz-option"><input type="radio" name="fe4" value="w2"> C) The computer screen will lock permanently</label>
+                <label class="quiz-option"><input type="radio" name="fe4" value="w3"> D) The printer will fail to operate</label>
+            </div>
+
+            <!-- Q5 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>5. Which key on the keyboard moves the cursor smoothly between form fields without using the mouse?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe5" value="w1"> A) Shift</label>
+                <label class="quiz-option"><input type="radio" name="fe5" value="w2"> B) Backspace</label>
+                <label class="quiz-option"><input type="radio" name="fe5" value="correct"> C) Tab</label>
+                <label class="quiz-option"><input type="radio" name="fe5" value="w3"> D) Alt</label>
+            </div>
+
+            <!-- Q6 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>6. What is a "Passphrase" in cybersecurity best practices?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe6" value="correct"> A) A password created by combining several memorable words, numbers, and symbols, making it long and hard for attackers to guess</label>
+                <label class="quiz-option"><input type="radio" name="fe6" value="w1"> B) A single word written on a sticky note</label>
+                <label class="quiz-option"><input type="radio" name="fe6" value="w2"> C) Your birthdate backwards</label>
+                <label class="quiz-option"><input type="radio" name="fe6" value="w3"> D) A code generated by the hospital generator</label>
+            </div>
+
+            <!-- Q7 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>7. If a colleague asks to borrow your login to sign a discharge order because they forgot their password, how should you respond?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe7" value="w1"> A) Give them your password as long as they promise not to share it</label>
+                <label class="quiz-option"><input type="radio" name="fe7" value="correct"> B) Refuse and direct them to IT for password reset, because sharing credentials violates hospital policy and creates false audit trails</label>
+                <label class="quiz-option"><input type="radio" name="fe7" value="w2"> C) Type the password for them so they don't see it</label>
+                <label class="quiz-option"><input type="radio" name="fe7" value="w3"> D) Write it down on a piece of paper</label>
+            </div>
+
+            <!-- Q8 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>8. What is the defining characteristic of a "Phishing" email?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe8" value="w1"> A) An email containing high-resolution medical images</label>
+                <label class="quiz-option"><input type="radio" name="fe8" value="w2"> B) An email sent by the hospital CEO</label>
+                <label class="quiz-option"><input type="radio" name="fe8" value="correct"> C) A fraudulent message attempting to trick you into revealing passwords or clicking malicious links</label>
+                <label class="quiz-option"><input type="radio" name="fe8" value="w3"> D) An email that has an attachment ending in .pdf</label>
+            </div>
+
+            <!-- Q9 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>9. What is a major risk of using personal WhatsApp for sharing un-redacted patient clinical images?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe9" value="correct"> A) Breaching patient confidentiality under data protection laws and risking unauthorized disclosure if media is stored on personal devices</label>
+                <label class="quiz-option"><input type="radio" name="fe9" value="w1"> B) Reducing phone battery life</label>
+                <label class="quiz-option"><input type="radio" name="fe9" value="w2"> C) Disconnecting the hospital WiFi</label>
+                <label class="quiz-option"><input type="radio" name="fe9" value="w3"> D) Causing the camera lens to malfunction</label>
+            </div>
+
+            <!-- Q10 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>10. What should be done immediately when an EHR system goes offline during a power outage or server breakdown?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe10" value="w1"> A) Stop treating patients until computers restart</label>
+                <label class="quiz-option"><input type="radio" name="fe10" value="w2"> B) Send all ward patients home</label>
+                <label class="quiz-option"><input type="radio" name="fe10" value="correct"> C) Activate standard paper-based downtime procedures and registers immediately</label>
+                <label class="quiz-option"><input type="radio" name="fe10" value="w3"> D) Reboot the hospital central transformer</label>
+            </div>
+
+            <!-- Q11 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>11. Why are red electrical sockets in hospital wards reserved specifically for critical systems (UPS-backed)?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe11" value="correct"> A) They are connected to battery/generator backup systems to ensure life-saving equipment and essential EHR terminals stay powered during outages</label>
+                <label class="quiz-option"><input type="radio" name="fe11" value="w1"> B) They provide higher voltage for kitchen appliances</label>
+                <label class="quiz-option"><input type="radio" name="fe11" value="w2"> C) They are used exclusively for charging staff smartphones</label>
+                <label class="quiz-option"><input type="radio" name="fe11" value="w3"> D) They are decorative power points</label>
+            </div>
+
+            <!-- Q12 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>12. What does the keyboard shortcut Ctrl + Z do?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe12" value="w1"> A) Closes the browser window</label>
+                <label class="quiz-option"><input type="radio" name="fe12" value="w2"> B) Prints the active document</label>
+                <label class="quiz-option"><input type="radio" name="fe12" value="correct"> C) Undoes the last action, restoring accidentally deleted text</label>
+                <label class="quiz-option"><input type="radio" name="fe12" value="w3"> D) Shuts down the computer</label>
+            </div>
+
+            <!-- Q13 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>13. When clinical systems are restored after an outage, what is the mandatory next step?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe13" value="correct"> A) Back-enter and reconcile paper downtime notes chronologically into the EHR</label>
+                <label class="quiz-option"><input type="radio" name="fe13" value="w1"> B) Throw away all paper records immediately</label>
+                <label class="quiz-option"><input type="radio" name="fe13" value="w2"> C) Change all patient hospital numbers</label>
+                <label class="quiz-option"><input type="radio" name="fe13" value="w3"> D) Discharge all admitted patients</label>
+            </div>
+
+            <!-- Q14 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>14. What does an "Order Entry" module in an EHR allow a clinician to do?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe14" value="w1"> A) Order food from local restaurants</label>
+                <label class="quiz-option"><input type="radio" name="fe14" value="correct"> B) Electronically request laboratory tests, radiological imaging, and pharmacy medications for a patient</label>
+                <label class="quiz-option"><input type="radio" name="fe14" value="w2"> C) Reorder office stationery</label>
+                <label class="quiz-option"><input type="radio" name="fe14" value="w3"> D) Purchase hospital uniforms</label>
+            </div>
+
+            <!-- Q15 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>15. Under Zimbabwe's Cyber and Data Protection Act, what is a healthcare worker's responsibility regarding patient digital records?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe15" value="w1"> A) Share interesting cases freely on social media</label>
+                <label class="quiz-option"><input type="radio" name="fe15" value="w2"> B) Store patient files on personal USB flash drives</label>
+                <label class="quiz-option"><input type="radio" name="fe15" value="w3"> D) Allow visitors to read clinical screens</label>
+                <label class="quiz-option"><input type="radio" name="fe15" value="correct"> C) Maintain strict confidentiality, access records only on a legitimate need-to-know basis, and protect credentials</label>
+            </div>
+
+            <p id="exam-error" class="error-msg" style="font-size: 18px; text-align: center;">You must score 100% on the final exam to generate your certificate. Please review your answers.</p>
+            <button type="button" class="btn-primary" style="background-color: #9333ea; font-size: 20px; width: 100%; padding: 20px; margin-top: 30px;" onclick="submitFinalExam()">Grade Exam & Issue Certificate</button>
+        </form>
+    </div>
+
+    <!-- ================= CERTIFICATE ISSUANCE ================= -->
+    <div id="cert-issuance-section" class="module-section" style="display: none;">
+        <div class="quiz-box" style="text-align: center; background: #faf5ff; border-color: #d8b4fe; padding: 50px;">
+            <h2 style="color: #9333ea; margin-top: 0; font-size: 32px;">🎉 Congratulations! You Passed!</h2>
+            <p style="font-size: 20px; margin-bottom: 30px;">Please enter your Full Name exactly as it should appear on your official Certificate:</p>
+            <input type="text" id="student-name-input" placeholder="e.g. Tendai Moyo" style="width: 80%; max-width: 500px; padding: 15px; font-size: 20px; border: 2px solid #a855f7; border-radius: 6px; margin-bottom: 25px;">
+            <br>
+            <button type="button" class="btn-primary" style="background-color: #9333ea; font-size: 22px; padding: 15px 40px;" onclick="generateCertificate()">Generate My Certificate</button>
+        </div>
+    </div>
+
+    <!-- ================= CERTIFICATE RENDER ================= -->
+    <div id="certificate-render" class="cert-wrapper">
+        <div class="cert-outer-border">
+            <div class="cert-inner-border">
+                
+                <!-- LOGO -->
+                <img src="https://i.postimg.cc/v1QSBVDj/Whats-App-Nextgen-Logo.jpg" alt="NextGen HealthTech Academy Logo" class="cert-logo">
+                
+                <h2 class="cert-title">Certificate of Completion</h2>
+                <p style="font-size: 20px; color: #555; margin: 15px 0;">This is to certify that</p>
+                
+                <div class="cert-name" id="cert-display-name">[Student Name]</div>
+                
+                <p style="font-size: 18px; color: #444; max-width: 700px; margin: 0 auto; line-height: 1.6;">
+                    has successfully completed the comprehensive curriculum and passed the examination for
+                </p>
+                <h3 style="color: #9333ea; font-size: 26px; margin: 25px 0;">Digital Health Skills (Beginners Edition)</h3>
+                <p style="font-size: 15px; color: #666; max-width: 800px; margin: 0 auto;">Demonstrating foundational competency in Clinical Computing, EHR Navigation, Patient Master Index Search, Ward Cybersecurity Hygiene, Phishing Detection, and Downtime Reconciliation Protocols.</p>
+                
+                <div class="cert-footer">
+                    <div class="cert-signature-box">
+                        <strong id="cert-date-display" style="font-size: 18px;">Date: 25 August 2026</strong>
+                        <div class="cert-signature-line">Harare, Zimbabwe</div>
+                    </div>
+                    <div class="cert-signature-box">
+                        
+                        <!-- SIGNATURE -->
+                        <img src="https://i.postimg.cc/sB6KgHks/Whats-App-Image-2026-08-16-at-22-42-47.jpg" alt="Director Signature" class="cert-signature-img"><br>
+                        
+                        <strong style="font-size: 18px;">Allan Kudzai Chirume</strong>
+                        <div class="cert-signature-line">Director, NextGen HealthTech Academy</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="no-print" style="margin-top: 40px; text-align: center;">
+            <button class="btn-primary" onclick="window.print()" style="background-color: #f59e0b; color: #000; padding: 15px 35px; font-size: 18px;">🖨️ Print / Save as PDF</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function updateProgress(step) {
+        const percentage = Math.min(100, Math.round((step / 8) * 100));
+        document.getElementById('course-progress').style.width = percentage + '%';
+    }
+
+    function showQuiz(modNum) {
+        document.getElementById('module-' + modNum + '-content').style.display = 'none';
+        document.getElementById('module-' + modNum + '-quiz').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function validateModule(currentMod, nextMod) {
+        const selected = document.querySelector('input[name="q' + currentMod + '"]:checked');
+        const errorEl = document.getElementById('quiz' + currentMod + '-error');
+        
+        if (selected && selected.value === 'correct') {
+            errorEl.style.display = 'none';
+            document.getElementById('module-' + currentMod + '-quiz').style.display = 'none';
+            document.getElementById('module-' + nextMod + '-content').style.display = 'block';
+            updateProgress(nextMod);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            errorEl.style.display = 'block';
+        }
+    }
+
+    function startFinalExam() {
+        document.getElementById('module-7-content').style.display = 'none';
+        document.getElementById('final-exam-section').style.display = 'block';
+        updateProgress(8);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function submitFinalExam() {
+        let allCorrect = true;
+        for (let i = 1; i <= 15; i++) {
+            const answer = document.querySelector('input[name="fe' + i + '"]:checked');
+            if (!answer || answer.value !== 'correct') {
+                allCorrect = false;
+                break;
+            }
+        }
+        
+        const errorEl = document.getElementById('exam-error');
+
+        if (allCorrect) {
+            errorEl.style.display = 'none';
+            document.getElementById('final-exam-section').style.display = 'none';
+            document.getElementById('cert-issuance-section').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            errorEl.style.display = 'block';
+        }
+    }
+
+    function generateCertificate() {
+        const nameInput = document.getElementById('student-name-input').value.trim();
+        if (!nameInput) {
+            alert('Please enter your full name.');
+            return;
+        }
+
+        document.getElementById('cert-display-name').innerText = nameInput;
+        const today = new Date();
+        const dateString = today.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+        document.getElementById('cert-date-display').innerText = 'Date: ' + dateString;
+
+        document.getElementById('cert-issuance-section').style.display = 'none';
+        document.getElementById('certificate-render').style.display = 'block';
+        document.querySelector('.progress-bar-container').style.display = 'none';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>

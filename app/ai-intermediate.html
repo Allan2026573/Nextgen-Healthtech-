@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI in Healthcare: Intermediate Edition - NextGen HealthTech Academy</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; padding: 20px; color: #333; line-height: 1.6; }
+        .course-container { max-width: 950px; margin: 0 auto; background: #ffffff; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); padding: 40px; }
+        .progress-bar-container { background-color: #e2e8f0; border-radius: 20px; height: 12px; width: 100%; margin-bottom: 25px; overflow: hidden; }
+        .progress-bar { background: linear-gradient(90deg, #002d5b, #0284c7); height: 100%; width: 12.5%; transition: width 0.4s ease; }
+        .header-banner { text-align: center; border-bottom: 2px solid #002d5b; padding-bottom: 20px; margin-bottom: 30px; }
+        .header-banner h1 { color: #002d5b; margin: 0 0 5px 0; font-size: 28px; }
+        .header-banner h2 { color: #0284c7; margin: 0 0 5px 0; font-size: 18px; }
+        .header-banner p { color: #7f8c8d; margin: 0; font-size: 14px; }
+        .mod-title { color: #002d5b; border-bottom: 2px solid #edf2f7; padding-bottom: 10px; margin-top: 25px; font-size: 22px; }
+        .sub-title { color: #1e293b; margin-top: 20px; font-size: 18px; font-weight: 600; }
+        .analogy-box { background-color: #f0f7fb; border-left: 4px solid #0284c7; padding: 18px; margin: 20px 0; border-radius: 0 6px 6px 0; }
+        .analogy-box h4 { margin-top: 0; color: #002d5b; }
+        .quiz-box { background-color: #f8fafc; padding: 35px; border-radius: 8px; margin-top: 25px; border: 1px solid #cbd5e1; }
+        .quiz-title { color: #1e293b; margin-top: 0; font-size: 20px; border-bottom: 2px solid #cbd5e1; padding-bottom: 10px; margin-bottom: 20px; }
+        .quiz-option { display: block; background: #ffffff; padding: 15px; margin-bottom: 10px; border: 1px solid #e2e8f0; border-radius: 6px; cursor: pointer; transition: background 0.2s; font-size: 16px; }
+        .quiz-option:hover { background: #f1f5f9; }
+        .quiz-option input { margin-right: 15px; transform: scale(1.2); }
+        .btn-primary { background-color: #002d5b; color: #ffffff; border: none; padding: 12px 25px; border-radius: 6px; cursor: pointer; font-size: 16px; font-weight: 600; margin-top: 20px; transition: background 0.3s; }
+        .btn-primary:hover { background-color: #001e3d; }
+        .btn-proceed { background-color: #0284c7; width: 100%; font-size: 18px; padding: 15px; margin-top: 30px; }
+        .btn-proceed:hover { background-color: #0369a1; }
+        .error-msg { color: #dc2626; display: none; font-weight: bold; margin-top: 15px; font-size: 15px; padding: 10px; background: #fee2e2; border-radius: 5px; }
+        
+        /* Certificate Styles */
+        .cert-wrapper { display: none; background: #ffffff; margin-top: 20px; }
+        .cert-outer-border { border: 12px solid #002d5b; padding: 8px; background: #fff; }
+        .cert-inner-border { border: 3px solid #4caf50; padding: 40px 50px; text-align: center; position: relative; }
+        .cert-logo { height: 100px; margin-bottom: 20px; object-fit: contain; }
+        .cert-title { font-size: 40px; color: #002d5b; text-transform: uppercase; margin: 10px 0; font-family: 'Times New Roman', Times, serif; letter-spacing: 3px; }
+        .cert-name { font-size: 34px; color: #002d5b; border-bottom: 2px solid #4caf50; display: inline-block; padding: 5px 50px; margin: 25px 0; font-family: 'Times New Roman', Times, serif; font-style: italic; font-weight: bold; }
+        .cert-footer { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 60px; padding: 0 30px; }
+        .cert-signature-box { width: 280px; text-align: center; }
+        .cert-signature-line { border-top: 1px solid #002d5b; padding-top: 8px; font-size: 15px; color: #002d5b; margin-top: 5px; }
+        .cert-signature-img { height: 80px; margin-bottom: -15px; object-fit: contain; mix-blend-mode: multiply; }
+
+        @media print {
+            @page { size: A4 landscape; margin: 0mm; }
+            html, body { width: 297mm; height: 210mm; margin: 0; padding: 0; overflow: hidden; background-color: #ffffff; }
+            body * { visibility: hidden; }
+            #certificate-render, #certificate-render * { visibility: visible; }
+            #certificate-render { position: absolute; left: 0; top: 0; width: 297mm; height: 210mm; margin: 0; padding: 10mm; box-sizing: border-box; display: flex !important; flex-direction: column; justify-content: center; }
+            .cert-inner-border { padding: 25px 40px !important; }
+            .cert-footer { margin-top: 30px !important; }
+            .cert-logo { height: 85px !important; margin-bottom: 10px !important; }
+            .cert-title { font-size: 36px !important; }
+            .cert-name { margin: 15px 0 !important; font-size: 30px !important; }
+            .cert-signature-img { height: 70px !important; margin-bottom: -10px !important; }
+            .no-print { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="course-container" id="course-container">
+    <div class="progress-bar-container no-print">
+        <div class="progress-bar" id="course-progress"></div>
+    </div>
+
+    <!-- ================= MODULE 1 ================= -->
+    <div id="module-1-content" class="module-section">
+        <div class="header-banner">
+            <h1>ARTIFICIAL INTELLIGENCE IN HEALTHCARE</h1>
+            <h2>INTERMEDIATE EDITION: CLINICAL WORKFLOWS & SYSTEMS INTEGRATION</h2>
+            <p>NEXTGEN HEALTHTECH ACADEMY ONLINE | Harare, Zimbabwe</p>
+        </div>
+
+        <h2 class="mod-title">Foreword from the Lead Educator</h2>
+        <p>Welcome to the Intermediate level. In the beginner's course, we established that AI is not a robot coming for your job, but a brilliant, yet inexperienced, digital intern. As a Lead Clinical Educator overseeing digital health rollouts at a provincial hospital level, I can tell you that understanding the basics is no longer enough for healthcare leaders.</p>
+        <p>In this course, we move from the "what" to the "how." How do we structure prompts for complex cases without causing hallucinations? How do diagnostic algorithms actually calculate sensitivity? How do we integrate these tools securely into our existing workflows like DHIS2 and OpenMRS while strictly adhering to the Zimbabwe Cyber and Data Protection Act?</p>
+        <p>You are stepping up from being a user of technology to an architect of clinical workflows. Let's begin.</p>
+        
+        <h2 class="mod-title">Module 1: Machine Learning Architectures in Clinical Medicine</h2>
+        <h3 class="sub-title">1.1 Supervised vs. Unsupervised Learning</h3>
+        <p>Clinical Decision Support Systems (CDSS) are powered by specific machine learning architectures:</p>
+        <ul>
+            <li><strong>Supervised Learning:</strong> The algorithm is trained on explicitly labeled datasets (e.g., thousands of chest X-rays labeled "TB Positive" or "TB Negative" by a radiologist). It learns a mapping function to identify these patterns in new patients. This is the backbone of most diagnostic AI tools in our hospitals today.</li>
+            <li><strong>Unsupervised Learning:</strong> The algorithm ingests raw, unlabeled data to find hidden clusters. For example, feeding it ten years of provincial clinic data to identify previously unnoticed subgroups of multimorbid hypertensive/diabetic patients based on subtle vital sign trends.</li>
+        </ul>
+
+        <h3 class="sub-title">1.2 Deep Neural Networks (DNNs)</h3>
+        <p>Traditional statistics rely on humans to pick out important variables. Deep Neural Networks, utilizing multiple layers of processing, automatically extract complex features directly from raw data—from the pixels on a radiograph to the text in a ward handover note.</p>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(1)">Proceed to Module 1 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 1 QUIZ -->
+    <div id="module-1-quiz" class="module-section" style="display: none;">
+        <div class="quiz-box">
+            <h3 class="quiz-title">Module 1: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">Which machine learning paradigm is defined by training algorithms on datasets where clinical inputs are explicitly paired with verified ground-truth labels (like a confirmed diagnosis)?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q1" value="correct"> A) Supervised Learning</label>
+            <label class="quiz-option"><input type="radio" name="q1" value="w1"> B) Unsupervised Learning</label>
+            <label class="quiz-option"><input type="radio" name="q1" value="w2"> C) Hardware Networking</label>
+            <label class="quiz-option"><input type="radio" name="q1" value="w3"> D) Manual Heuristic Coding</label>
+            
+            <p id="quiz1-error" class="error-msg">Incorrect. Please review the definitions in Section 1.1.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(1, 2)">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- ================= MODULE 2 ================= -->
+    <div id="module-2-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 2: Advanced Clinical Prompt Engineering</h2>
+        <p>Large Language Models (LLMs) like ChatGPT require precise instructions to generate safe clinical outputs. This is known as <strong>Clinical Prompt Engineering</strong>.</p>
+
+        <h3 class="sub-title">2.1 The RCIC Framework</h3>
+        <p>A professional clinical prompt follows the <strong>RCIC Framework: Role, Context, Instruction, Constraint</strong>.</p>
+        <ul>
+            <li><strong>Role:</strong> "Act as a Senior Medical Officer at a provincial hospital in Zimbabwe."</li>
+            <li><strong>Context:</strong> "The patient is an anonymized 45yo male presenting with..."</li>
+            <li><strong>Instruction:</strong> "Draft a structured handover summary in SOAP format."</li>
+            <li><strong>Constraint:</strong> "Do not include any scheduled drug dosages; flag red-flag symptoms in bold."</li>
+        </ul>
+
+        <h3 class="sub-title">2.2 Chain-of-Thought (CoT) Prompting</h3>
+        <p>When asking an AI to assist with a differential diagnosis, never ask for just the final answer. Use <strong>Chain-of-Thought Prompting</strong> by adding the phrase: <em>"Think through this step-by-step, outlining your clinical reasoning before providing the differentials."</em></p>
+        <p>This forces the model to articulate its logic, significantly reducing "hallucinations" and allowing the clinician to audit the AI's thought process for errors.</p>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(2)">Proceed to Module 2 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 2 QUIZ -->
+    <div id="module-2-quiz" class="module-section" style="display: none;">
+        <div class="quiz-box">
+            <h3 class="quiz-title">Module 2: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">Why is Chain-of-Thought (CoT) prompting a critical safety measure when using Generative AI for complex clinical decisions?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q2" value="w1"> A) It bypasses hospital firewall restrictions</label>
+            <label class="quiz-option"><input type="radio" name="q2" value="w2"> B) It automatically translates notes into local dialects</label>
+            <label class="quiz-option"><input type="radio" name="q2" value="correct"> C) It forces the model to articulate its intermediate reasoning steps, reducing hallucinations and allowing the clinician to audit the logic</label>
+            <label class="quiz-option"><input type="radio" name="q2" value="w3"> D) It securely encrypts patient names before sending them to the cloud</label>
+            
+            <p id="quiz2-error" class="error-msg">Incorrect. Think about how seeing the AI's "working out" helps a clinician.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(2, 3)">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- ================= MODULE 3 ================= -->
+    <div id="module-3-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 3: Computer Vision & Triage Metrics in Action</h2>
+        
+        <h3 class="sub-title">3.1 Convolutional Neural Networks (CNNs) in Radiology</h3>
+        <p>AI tools that read X-rays (like CAD4TB) use Convolutional Neural Networks (CNNs). These networks scan localized patches of pixels to identify low-level features (edges and shadows), which they then combine to recognize high-level clinical patterns like pleural effusions or cavitary lesions.</p>
+
+        <h3 class="sub-title">3.2 Sensitivity vs. Specificity in High-Burden Settings</h3>
+        <p>When a provincial health directorate evaluates an AI triage tool, they look at two primary metrics:</p>
+        <ul>
+            <li><strong>Sensitivity (True Positive Rate):</strong> The AI's ability to correctly identify sick patients. In active TB screening across rural districts, high sensitivity is prioritized so that no infectious patient is accidentally sent home (minimizing false negatives).</li>
+            <li><strong>Specificity (True Negative Rate):</strong> The AI's ability to correctly identify healthy people. High specificity reduces false alarms, preventing the radiology department from being overwhelmed with unnecessary confirmatory tests.</li>
+        </ul>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(3)">Proceed to Module 3 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 3 QUIZ -->
+    <div id="module-3-quiz" class="module-section" style="display: none;">
+        <div class="quiz-box">
+            <h3 class="quiz-title">Module 3: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">When deploying an AI screening tool for a highly infectious disease in a rural province, why do health authorities prioritize high Sensitivity?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q3" value="w1"> A) To reduce server bandwidth consumption</label>
+            <label class="quiz-option"><input type="radio" name="q3" value="correct"> B) To minimize false negatives, ensuring that patients with active disease are not missed and sent back into the community</label>
+            <label class="quiz-option"><input type="radio" name="q3" value="w2"> C) To ensure that no human clinician ever needs to review positive scans</label>
+            <label class="quiz-option"><input type="radio" name="q3" value="w3"> D) To eliminate the need for confirmatory laboratory testing</label>
+            
+            <p id="quiz3-error" class="error-msg">Incorrect. Review Section 3.2 on diagnostic metrics.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(3, 4)">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- ================= MODULE 4 ================= -->
+    <div id="module-4-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 4: Predictive Epidemiology & Systems Integration</h2>
+        
+        <h3 class="sub-title">4.1 Forecasting Disease Surges</h3>
+        <p>At the macro level, AI models (such as XGBoost algorithms) integrate historical clinical data from DHIS2 with satellite climate data (rainfall variations, temperature anomalies, and vegetation indexing). These models can forecast district-level malaria and cholera outbreaks 4 to 6 weeks in advance.</p>
+
+        <h3 class="sub-title">4.2 Interoperability: HL7 FHIR</h3>
+        <p>For an AI tool to be useful, it must seamlessly talk to the hospital's Electronic Health Record (EHR). The modern gold standard for this is <strong>HL7 FHIR (Fast Healthcare Interoperability Resources)</strong>. FHIR uses RESTful APIs to exchange structured clinical data (like `Patient`, `Observation`, and `DiagnosticReport`), allowing an AI tool to pull patient vitals, run a prediction, and push a risk score back into the EHR without the nurse ever having to open a separate application.</p>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(4)">Proceed to Module 4 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 4 QUIZ -->
+    <div id="module-4-quiz" class="module-section" style="display: none;">
+        <div class="quiz-box">
+            <h3 class="quiz-title">Module 4: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">Which modern health data standard uses RESTful APIs and structured modules to allow AI algorithms to interoperate seamlessly with Electronic Health Records?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q4" value="correct"> A) HL7 FHIR (Fast Healthcare Interoperability Resources)</label>
+            <label class="quiz-option"><input type="radio" name="q4" value="w1"> B) Basic CSV Spreadsheets</label>
+            <label class="quiz-option"><input type="radio" name="q4" value="w2"> C) Local Area Bluetooth Protocol</label>
+            <label class="quiz-option"><input type="radio" name="q4" value="w3"> D) Adobe PostScript</label>
+            
+            <p id="quiz4-error" class="error-msg">Incorrect. Review Section 4.2 regarding health systems integration.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(4, 5)">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- ================= MODULE 5 ================= -->
+    <div id="module-5-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 5: Conversational Triage & Bayesian Logic</h2>
+        
+        <h3 class="sub-title">5.1 Bayesian Probabilistic Reasoning</h3>
+        <p>Conversational AI triage platforms (like Ada Health) are not simple chatbots. They are built on Bayesian Inference Networks. Each time a patient answers a symptom question, the AI updates the statistical probability of various diseases in real-time, dynamically selecting the most informative next question to narrow down the differential diagnosis.</p>
+
+        <h3 class="sub-title">5.2 Clinical Safety Guardrails</h3>
+        <p>To safely deploy conversational triage in African healthcare settings, strict programmatic guardrails are required. The most important is the <strong>Hardcoded Emergency Override</strong>. If a patient inputs "sudden chest pain" or "unilateral weakness," the AI must instantly abandon the symptom questionnaire and trigger an emergency escalation to urgent human clinical care.</p>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(5)">Proceed to Module 5 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 5 QUIZ -->
+    <div id="module-5-quiz" class="module-section" style="display: none;">
+        <div class="quiz-box">
+            <h3 class="quiz-title">Module 5: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">What essential safety mechanism must be engineered into public-facing conversational AI triage systems?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q5" value="w1"> A) A requirement for the user to upload their medical aid details before proceeding</label>
+            <label class="quiz-option"><input type="radio" name="q5" value="correct"> B) Deterministic hardcoded red-flag overrides that immediately route critical symptoms to human emergency care</label>
+            <label class="quiz-option"><input type="radio" name="q5" value="w2"> C) The ability for the AI to legally prescribe scheduled antibiotics</label>
+            <label class="quiz-option"><input type="radio" name="q5" value="w3"> D) Complete prevention of human clinician interference</label>
+            
+            <p id="quiz5-error" class="error-msg">Incorrect. Review Section 5.2 on safety guardrails.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(5, 6)">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- ================= MODULE 6 ================= -->
+    <div id="module-6-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 6: African Data Sovereignty & Cybersecurity</h2>
+        
+        <h3 class="sub-title">6.1 Cyber and Data Protection Act (2021)</h3>
+        <p>In Zimbabwe, healthcare data is classified as "special category data." It requires the highest level of legal safeguarding. As a clinician, entering identifiable patient data into a public, cloud-based LLM (like ChatGPT) is a direct violation of data sovereignty and patient confidentiality laws.</p>
+
+        <h3 class="sub-title">6.2 Anonymization vs. Pseudonymization</h3>
+        <p>When preparing clinical scenarios for AI tools, you must understand the difference:</p>
+        <ul>
+            <li><strong>Pseudonymization:</strong> Replaces a name with a code (e.g., Patient #442). Because you hold a master list linking the code to the patient, the data can be re-identified. It remains legally protected.</li>
+            <li><strong>Anonymization:</strong> The irreversible removal of all direct and indirect identifiers (names, exact DOB, exact geolocations). The data can never be traced back to the individual. <strong>Only strictly anonymized data should ever be processed through public AI platforms.</strong></li>
+        </ul>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(6)">Proceed to Module 6 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 6 QUIZ -->
+    <div id="module-6-quiz" class="module-section" style="display: none;">
+        <div class="quiz-box">
+            <h3 class="quiz-title">Module 6: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">What is the primary technical distinction between Pseudonymized and Anonymized patient data?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q6" value="w1"> A) Anonymized data is encrypted with a password, while pseudonymized data is deleted entirely</label>
+            <label class="quiz-option"><input type="radio" name="q6" value="w2"> B) Pseudonymization is only used for pediatric patients</label>
+            <label class="quiz-option"><input type="radio" name="q6" value="w3"> C) There is no legal or technical difference; the terms are interchangeable</label>
+            <label class="quiz-option"><input type="radio" name="q6" value="correct"> D) Pseudonymized data can be re-identified using an external linkage key, whereas anonymized data is irreversibly de-identified</label>
+            
+            <p id="quiz6-error" class="error-msg">Incorrect. Review Section 6.2 regarding data protection methodologies.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(6, 7)">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- ================= MODULE 7 ================= -->
+    <div id="module-7-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 7: Algorithmic Bias & The Deployment Lifecycle</h2>
+        
+        <h3 class="sub-title">7.1 The Dataset Representation Gap</h3>
+        <p>The vast majority of commercial AI models were trained on datasets from North America and Europe. When deployed in Africa, these models suffer from "domain shift." For example, computer vision dermatology algorithms trained on Fitzpatrick skin types I–III (lighter skin tones) show dangerously high error rates when diagnosing conditions like melanoma or fungal infections on Fitzpatrick skin types V–VI (melanin-rich skin).</p>
+
+        <h3 class="sub-title">7.2 The Clinical Deployment Lifecycle</h3>
+        <p>Implementing an AI tool in a provincial hospital follows a strict governance lifecycle:</p>
+        <ol>
+            <li><strong>Problem Definition:</strong> Identifying a specific workflow bottleneck.</li>
+            <li><strong>Silent Shadow Testing:</strong> Running the AI alongside human clinicians without letting the AI influence active clinical care, validating its accuracy on local demographics.</li>
+            <li><strong>Workflow Integration:</strong> Embedding the tool via FHIR into the EHR.</li>
+            <li><strong>Model Drift Auditing:</strong> Continuously monitoring the AI to ensure accuracy doesn't degrade as local disease patterns evolve.</li>
+        </ol>
+
+        <button class="btn-primary btn-proceed" style="background-color: #27ae60;" onclick="startFinalExam()">Proceed to the 20-Question Final Exam ➔</button>
+    </div>
+
+
+    <!-- ================= FINAL EXAM (20 QUESTIONS) ================= -->
+    <div id="final-exam-section" class="module-section" style="display: none;">
+        <h2 class="mod-title">Intermediate Certification Examination</h2>
+        <p style="font-size: 18px; color: #555;">Complete this comprehensive 20-question examination. You must score 100% to generate your Intermediate Accredited Certificate.</p>
+
+        <form id="final-exam-form">
+            <!-- Q1 -->
+            <div class="quiz-box" style="margin-top: 20px;">
+                <p style="font-size: 18px;"><strong>1. In clinical supervised machine learning, what constitutes the "ground truth"?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe1" value="correct"> A) Confirmed, validated clinical outcomes or biopsy-verified diagnoses used to label training data</label>
+                <label class="quiz-option"><input type="radio" name="fe1" value="w1"> B) The manufacturer's marketing claims regarding accuracy</label>
+                <label class="quiz-option"><input type="radio" name="fe1" value="w2"> C) The hospital's financial billing records</label>
+                <label class="quiz-option"><input type="radio" name="fe1" value="w3"> D) Unverified self-reported symptoms from social media</label>
+            </div>
+
+            <!-- Q2 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>2. Which machine learning approach discovers hidden clusters of multimorbid patients in large, unlabeled datasets?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe2" value="w1"> A) Supervised Learning</label>
+                <label class="quiz-option"><input type="radio" name="fe2" value="w2"> B) Hardware Configuration</label>
+                <label class="quiz-option"><input type="radio" name="fe2" value="correct"> C) Unsupervised Learning</label>
+                <label class="quiz-option"><input type="radio" name="fe2" value="w3"> D) Deep Space Networking</label>
+            </div>
+
+            <!-- Q3 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>3. What advantage do Deep Neural Networks (DNNs) have over traditional statistical models in healthcare?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe3" value="correct"> A) They automatically extract complex, hierarchical features directly from raw data like pixels or text</label>
+                <label class="quiz-option"><input type="radio" name="fe3" value="w1"> B) They require zero electrical power to operate</label>
+                <label class="quiz-option"><input type="radio" name="fe3" value="w2"> C) They never make mistakes under any circumstances</label>
+                <label class="quiz-option"><input type="radio" name="fe3" value="w3"> D) They legally replace the need for hospital administration</label>
+            </div>
+
+            <!-- Q4 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>4. What does the "R" in the RCIC Clinical Prompt Framework stand for?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe4" value="w1"> A) Reasoning</label>
+                <label class="quiz-option"><input type="radio" name="fe4" value="correct"> B) Role</label>
+                <label class="quiz-option"><input type="radio" name="fe4" value="w2"> C) Radiation</label>
+                <label class="quiz-option"><input type="radio" name="fe4" value="w3"> D) Recalibration</label>
+            </div>
+
+            <!-- Q5 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>5. What is the key clinical advantage of Chain-of-Thought (CoT) Prompting?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe5" value="w1"> A) It bypasses data protection laws legally</label>
+                <label class="quiz-option"><input type="radio" name="fe5" value="w2"> B) It generates shorter, less detailed answers</label>
+                <label class="quiz-option"><input type="radio" name="fe5" value="correct"> C) It forces the AI to articulate its intermediate reasoning, reducing hallucinations and enabling logic audits</label>
+                <label class="quiz-option"><input type="radio" name="fe5" value="w3"> D) It directly bills the patient's medical insurance</label>
+            </div>
+
+            <!-- Q6 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>6. When should a clinician instruct an LLM to generate a differential diagnosis without human oversight?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe6" value="correct"> A) Never; AI outputs must always be subjected to human clinical review and verification</label>
+                <label class="quiz-option"><input type="radio" name="fe6" value="w1"> B) During night shifts when staffing is low</label>
+                <label class="quiz-option"><input type="radio" name="fe6" value="w2"> C) When the patient consents to robotic care</label>
+                <label class="quiz-option"><input type="radio" name="fe6" value="w3"> D) For all pediatric cases</label>
+            </div>
+
+            <!-- Q7 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>7. Which neural network architecture is primarily utilized in computer vision to analyze medical images?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe7" value="w1"> A) Audio Parsing Networks</label>
+                <label class="quiz-option"><input type="radio" name="fe7" value="correct"> B) Convolutional Neural Networks (CNNs)</label>
+                <label class="quiz-option"><input type="radio" name="fe7" value="w2"> C) Blockchain Ledgers</label>
+                <label class="quiz-option"><input type="radio" name="fe7" value="w3"> D) Linear Progression Models</label>
+            </div>
+
+            <!-- Q8 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>8. A triage AI model has a Sensitivity of 99%. What does this imply?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe8" value="w1"> A) It accurately identifies 99% of healthy individuals</label>
+                <label class="quiz-option"><input type="radio" name="fe8" value="correct"> B) It catches 99% of all true positive disease cases, minimizing false negatives</label>
+                <label class="quiz-option"><input type="radio" name="fe8" value="w2"> C) It is completely immune to algorithmic bias</label>
+                <label class="quiz-option"><input type="radio" name="fe8" value="w3"> D) It has a 99% margin of error</label>
+            </div>
+
+            <!-- Q9 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>9. Why is high Specificity important in clinical algorithms?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe9" value="correct"> A) It reduces false alarms, preventing clinical departments from being overwhelmed by unnecessary tests</label>
+                <label class="quiz-option"><input type="radio" name="fe9" value="w1"> B) It guarantees the software will never crash</label>
+                <label class="quiz-option"><input type="radio" name="fe9" value="w2"> C) It allows the hospital to use older computers</label>
+                <label class="quiz-option"><input type="radio" name="fe9" value="w3"> D) It increases the false positive rate intentionally</label>
+            </div>
+
+            <!-- Q10 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>10. How do predictive epidemiological models forecast disease surges?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe10" value="w1"> A) By monitoring real-time global news headlines</label>
+                <label class="quiz-option"><input type="radio" name="fe10" value="w2"> B) By calling patients individually to ask about their travel history</label>
+                <label class="quiz-option"><input type="radio" name="fe10" value="w3"> D) By restricting hospital access to high-risk zones</label>
+                <label class="quiz-option"><input type="radio" name="fe10" value="correct"> C) By integrating historical health facility data with environmental and satellite climate variables</label>
+            </div>
+
+            <!-- Q11 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>11. What is HL7 FHIR?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe11" value="correct"> A) A modern standard utilizing RESTful APIs for the seamless exchange of structured clinical data between EHRs and AI tools</label>
+                <label class="quiz-option"><input type="radio" name="fe11" value="w1"> B) A physical hardware firewall installed in rural clinics</label>
+                <label class="quiz-option"><input type="radio" name="fe11" value="w2"> C) A proprietary brand of diagnostic ultrasound machines</label>
+                <label class="quiz-option"><input type="radio" name="fe11" value="w3"> D) A new antibiotic prescribing protocol</label>
+            </div>
+
+            <!-- Q12 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>12. Why must AI tools interface seamlessly with Electronic Health Records?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe12" value="w1"> A) To increase the amount of manual data entry required by nurses</label>
+                <label class="quiz-option"><input type="radio" name="fe12" value="correct"> B) To ensure clinical workflows are not disrupted by requiring clinicians to log into multiple separate software applications</label>
+                <label class="quiz-option"><input type="radio" name="fe12" value="w2"> C) To slow down patient discharge times</label>
+                <label class="quiz-option"><input type="radio" name="fe12" value="w3"> D) To deliberately bypass hospital IT security</label>
+            </div>
+
+            <!-- Q13 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>13. How do conversational triage systems like Ada Health update clinical probabilities during a symptom check?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe13" value="w1"> A) Via randomized multiple-choice guessing</label>
+                <label class="quiz-option"><input type="radio" name="fe13" value="correct"> B) Utilizing Bayesian Inference Networks to dynamically adjust statistical probabilities based on user input</label>
+                <label class="quiz-option"><input type="radio" name="fe13" value="w2"> C) By directly calling an on-duty physician</label>
+                <label class="quiz-option"><input type="radio" name="fe13" value="w3"> D) By strictly alphabetical disease sorting</label>
+            </div>
+
+            <!-- Q14 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>14. What happens when a "red-flag" keyword is entered into a safe AI triage system?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe14" value="correct"> A) A hardcoded emergency override triggers, instantly abandoning the AI chat to escalate the patient to urgent human care</label>
+                <label class="quiz-option"><input type="radio" name="fe14" value="w1"> B) The AI prescribes pain medication</label>
+                <label class="quiz-option"><input type="radio" name="fe14" value="w2"> C) The system automatically reboots</label>
+                <label class="quiz-option"><input type="radio" name="fe14" value="w3"> D) The AI asks the user to restart the conversation</label>
+            </div>
+
+            <!-- Q15 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>15. Under Zimbabwe's Cyber and Data Protection Act, what is the consequence of pasting an identifiable patient file into a public AI tool?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe15" value="w1"> A) It improves the AI's training without consequences</label>
+                <label class="quiz-option"><input type="radio" name="fe15" value="w2"> B) It generates a discount on the software subscription</label>
+                <label class="quiz-option"><input type="radio" name="fe15" value="correct"> C) It is a direct legal violation of data sovereignty and special category patient confidentiality laws</label>
+                <label class="quiz-option"><input type="radio" name="fe15" value="w3"> D) It securely backs up the hospital's data</label>
+            </div>
+
+            <!-- Q16 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>16. Can pseudonymized patient data (e.g., Patient #442) be legally processed in public LLMs?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe16" value="w1"> A) Yes, because the name is removed</label>
+                <label class="quiz-option"><input type="radio" name="fe16" value="correct"> B) No, because pseudonymized data can still be re-identified using an external linkage key and remains legally protected</label>
+                <label class="quiz-option"><input type="radio" name="fe16" value="w2"> C) Yes, but only if the patient is over 18</label>
+                <label class="quiz-option"><input type="radio" name="fe16" value="w3"> D) Yes, if the hospital IT department approves it</label>
+            </div>
+
+            <!-- Q17 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>17. Why do Western-trained dermatology AI models often fail in African clinics?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe17" value="correct"> A) The training datasets lack representation of Fitzpatrick skin types V–VI (melanin-rich skin), leading to severe algorithmic bias</label>
+                <label class="quiz-option"><input type="radio" name="fe17" value="w1"> B) African clinic internet speeds are too slow</label>
+                <label class="quiz-option"><input type="radio" name="fe17" value="w2"> C) The cameras on African smartphones are fundamentally incompatible</label>
+                <label class="quiz-option"><input type="radio" name="fe17" value="w3"> D) Dermatology AI tools are legally banned by the WHO</label>
+            </div>
+
+            <!-- Q18 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>18. What is the purpose of "Silent Shadow Testing" in the AI deployment lifecycle?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe18" value="w1"> A) Testing the hospital's backup generators</label>
+                <label class="quiz-option"><input type="radio" name="fe18" value="w2"> B) Hiding the software costs from hospital administration</label>
+                <label class="quiz-option"><input type="radio" name="fe18" value="correct"> C) Running the algorithm on real-world local patient data without letting the AI influence active clinical care, validating accuracy safely</label>
+                <label class="quiz-option"><input type="radio" name="fe18" value="w3"> D) Training the AI on synthetic animal data</label>
+            </div>
+
+            <!-- Q19 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>19. What is "Model Drift"?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe19" value="correct"> A) The degradation of an AI's accuracy over time due to shifts in local disease patterns or changing clinical guidelines</label>
+                <label class="quiz-option"><input type="radio" name="fe19" value="w1"> B) The physical overheating of the hospital's local server racks</label>
+                <label class="quiz-option"><input type="radio" name="fe19" value="w2"> C) When doctors slowly stop using the software</label>
+                <label class="quiz-option"><input type="radio" name="fe19" value="w3"> D) A glitch that changes the software interface language</label>
+            </div>
+
+            <!-- Q20 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>20. Ultimately, who retains 100% legal and professional accountability for a clinical decision made with the assistance of AI?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe20" value="w1"> A) The AI software vendor</label>
+                <label class="quiz-option"><input type="radio" name="fe20" value="w2"> B) The hospital IT network administrator</label>
+                <label class="quiz-option"><input type="radio" name="fe20" value="w3"> D) The Provincial Medical Director</label>
+                <label class="quiz-option"><input type="radio" name="fe20" value="correct"> C) The licensed healthcare practitioner who approved and executed the decision</label>
+            </div>
+
+            <p id="exam-error" class="error-msg" style="font-size: 18px; text-align: center;">You must score 100% on the final intermediate examination to generate your certificate. Please review your answers.</p>
+            <button type="button" class="btn-primary" style="background-color: #27ae60; font-size: 20px; width: 100%; padding: 20px; margin-top: 30px;" onclick="submitFinalExam()">Grade Exam & Issue Intermediate Certificate</button>
+        </form>
+    </div>
+
+    <!-- ================= CERTIFICATE ISSUANCE ================= -->
+    <div id="cert-issuance-section" class="module-section" style="display: none;">
+        <div class="quiz-box" style="text-align: center; background: #eef2ff; border-color: #c7d2fe; padding: 50px;">
+            <h2 style="color: #3730a3; margin-top: 0; font-size: 32px;">🎉 Congratulations! You Passed!</h2>
+            <p style="font-size: 20px; margin-bottom: 30px;">Please enter your Full Name exactly as it should appear on your official Intermediate Certificate:</p>
+            <input type="text" id="student-name-input" placeholder="e.g. Tendai Moyo" style="width: 80%; max-width: 500px; padding: 15px; font-size: 20px; border: 2px solid #6366f1; border-radius: 6px; margin-bottom: 25px;">
+            <br>
+            <button type="button" class="btn-primary" style="background-color: #4f46e5; font-size: 22px; padding: 15px 40px;" onclick="generateCertificate()">Generate My Certificate</button>
+        </div>
+    </div>
+
+    <!-- ================= CERTIFICATE RENDER ================= -->
+    <div id="certificate-render" class="cert-wrapper">
+        <div class="cert-outer-border">
+            <div class="cert-inner-border">
+                
+                <!-- LOGO -->
+                <img src="https://i.postimg.cc/v1QSBVDj/Whats-App-Nextgen-Logo.jpg" alt="NextGen HealthTech Academy Logo" class="cert-logo">
+                
+                <h2 class="cert-title">Certificate of Competency</h2>
+                <p style="font-size: 20px; color: #555; margin: 15px 0;">This is to certify that</p>
+                
+                <div class="cert-name" id="cert-display-name">[Student Name]</div>
+                
+                <p style="font-size: 18px; color: #444; max-width: 700px; margin: 0 auto; line-height: 1.6;">
+                    has successfully completed the comprehensive intermediate curriculum and passed the examination for
+                </p>
+                <h3 style="color: #002d5b; font-size: 26px; margin: 25px 0;">Artificial Intelligence in Healthcare (Intermediate Edition)</h3>
+                <p style="font-size: 15px; color: #666; max-width: 800px; margin: 0 auto;">Demonstrating competency in Clinical Prompt Engineering, CNN Diagnostic Architecture, Sensitivity/Specificity Validation, Bayesian Triage, FHIR/DICOM Interoperability, African Data Sovereignty, and AI Governance.</p>
+                
+                <div class="cert-footer">
+                    <div class="cert-signature-box">
+                        <strong id="cert-date-display" style="font-size: 18px;">Date: 25 August 2026</strong>
+                        <div class="cert-signature-line">Harare, Zimbabwe</div>
+                    </div>
+                    <div class="cert-signature-box">
+                        
+                        <!-- SIGNATURE -->
+                        <img src="https://i.postimg.cc/sB6KgHks/Whats-App-Image-2026-08-16-at-22-42-47.jpg" alt="Director Signature" class="cert-signature-img"><br>
+                        
+                        <strong style="font-size: 18px;">Allan Kudzai Chirume</strong>
+                        <div class="cert-signature-line">Director, NextGen HealthTech Academy</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="no-print" style="margin-top: 40px; text-align: center;">
+            <button class="btn-primary" onclick="window.print()" style="background-color: #059669; padding: 15px 35px; font-size: 18px;">🖨️ Print / Save as PDF</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function updateProgress(step) {
+        // 8 steps total: 7 modules + 1 final exam
+        const percentage = Math.min(100, Math.round((step / 8) * 100));
+        document.getElementById('course-progress').style.width = percentage + '%';
+    }
+
+    function showQuiz(modNum) {
+        document.getElementById('module-' + modNum + '-content').style.display = 'none';
+        document.getElementById('module-' + modNum + '-quiz').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function validateModule(currentMod, nextMod) {
+        const selected = document.querySelector('input[name="q' + currentMod + '"]:checked');
+        const errorEl = document.getElementById('quiz' + currentMod + '-error');
+        
+        if (selected && selected.value === 'correct') {
+            errorEl.style.display = 'none';
+            document.getElementById('module-' + currentMod + '-quiz').style.display = 'none';
+            document.getElementById('module-' + nextMod + '-content').style.display = 'block';
+            updateProgress(nextMod);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            errorEl.style.display = 'block';
+        }
+    }
+
+    function startFinalExam() {
+        document.getElementById('module-7-content').style.display = 'none';
+        document.getElementById('final-exam-section').style.display = 'block';
+        updateProgress(8);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function submitFinalExam() {
+        let allCorrect = true;
+        // Loop through all 20 questions
+        for (let i = 1; i <= 20; i++) {
+            const answer = document.querySelector('input[name="fe' + i + '"]:checked');
+            if (!answer || answer.value !== 'correct') {
+                allCorrect = false;
+                break;
+            }
+        }
+        
+        const errorEl = document.getElementById('exam-error');
+
+        if (allCorrect) {
+            errorEl.style.display = 'none';
+            document.getElementById('final-exam-section').style.display = 'none';
+            document.getElementById('cert-issuance-section').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            errorEl.style.display = 'block';
+        }
+    }
+
+    function generateCertificate() {
+        const nameInput = document.getElementById('student-name-input').value.trim();
+        if (!nameInput) {
+            alert('Please enter your full name.');
+            return;
+        }
+
+        document.getElementById('cert-display-name').innerText = nameInput;
+        const today = new Date();
+        const dateString = today.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+        document.getElementById('cert-date-display').innerText = 'Date: ' + dateString;
+
+        document.getElementById('cert-issuance-section').style.display = 'none';
+        document.getElementById('certificate-render').style.display = 'block';
+        document.querySelector('.progress-bar-container').style.display = 'none';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Analysis in Healthcare: Advanced Edition - NextGen HealthTech Academy</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; padding: 20px; color: #333; line-height: 1.6; }
+        .course-container { max-width: 950px; margin: 0 auto; background: #ffffff; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); padding: 40px; }
+        .progress-bar-container { background-color: #e2e8f0; border-radius: 20px; height: 12px; width: 100%; margin-bottom: 25px; overflow: hidden; }
+        .progress-bar { background: linear-gradient(90deg, #312e81, #4f46e5); height: 100%; width: 12.5%; transition: width 0.4s ease; }
+        .header-banner { text-align: center; border-bottom: 2px solid #312e81; padding-bottom: 20px; margin-bottom: 30px; }
+        .header-banner h1 { color: #312e81; margin: 0 0 5px 0; font-size: 28px; }
+        .header-banner h2 { color: #4f46e5; margin: 0 0 5px 0; font-size: 18px; }
+        .header-banner p { color: #475569; margin: 0; font-size: 14px; }
+        .mod-title { color: #312e81; border-bottom: 2px solid #edf2f7; padding-bottom: 10px; margin-top: 25px; font-size: 22px; }
+        .sub-title { color: #0f172a; margin-top: 20px; font-size: 18px; font-weight: 600; }
+        .analogy-box { background-color: #eef2ff; border-left: 4px solid #4f46e5; padding: 18px; margin: 20px 0; border-radius: 0 6px 6px 0; }
+        .analogy-box h4 { margin-top: 0; color: #312e81; }
+        .quiz-box { background-color: #f8fafc; padding: 35px; border-radius: 8px; margin-top: 25px; border: 1px solid #cbd5e1; }
+        .quiz-title { color: #0f172a; margin-top: 0; font-size: 20px; border-bottom: 2px solid #cbd5e1; padding-bottom: 10px; margin-bottom: 20px; }
+        .quiz-option { display: block; background: #ffffff; padding: 15px; margin-bottom: 10px; border: 1px solid #e2e8f0; border-radius: 6px; cursor: pointer; transition: background 0.2s; font-size: 16px; }
+        .quiz-option:hover { background: #f1f5f9; }
+        .quiz-option input { margin-right: 15px; transform: scale(1.2); }
+        .btn-primary { background-color: #312e81; color: #ffffff; border: none; padding: 12px 25px; border-radius: 6px; cursor: pointer; font-size: 16px; font-weight: 600; margin-top: 20px; transition: background 0.3s; }
+        .btn-primary:hover { background-color: #1e1b4b; }
+        .btn-proceed { background-color: #4f46e5; width: 100%; font-size: 18px; padding: 15px; margin-top: 30px; }
+        .btn-proceed:hover { background-color: #4338ca; }
+        .error-msg { color: #dc2626; display: none; font-weight: bold; margin-top: 15px; font-size: 15px; padding: 10px; background: #fee2e2; border-radius: 5px; }
+        
+        /* Certificate Styles */
+        .cert-wrapper { display: none; background: #ffffff; margin-top: 20px; }
+        .cert-outer-border { border: 12px solid #312e81; padding: 8px; background: #fff; }
+        .cert-inner-border { border: 3px solid #10b981; padding: 40px 50px; text-align: center; position: relative; }
+        .cert-logo { height: 100px; margin-bottom: 20px; object-fit: contain; }
+        .cert-title { font-size: 40px; color: #312e81; text-transform: uppercase; margin: 10px 0; font-family: 'Times New Roman', Times, serif; letter-spacing: 3px; }
+        .cert-name { font-size: 34px; color: #312e81; border-bottom: 2px solid #10b981; display: inline-block; padding: 5px 50px; margin: 25px 0; font-family: 'Times New Roman', Times, serif; font-style: italic; font-weight: bold; }
+        .cert-footer { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 60px; padding: 0 30px; }
+        .cert-signature-box { width: 280px; text-align: center; }
+        .cert-signature-line { border-top: 1px solid #312e81; padding-top: 8px; font-size: 15px; color: #312e81; margin-top: 5px; }
+        .cert-signature-img { height: 80px; margin-bottom: -15px; object-fit: contain; mix-blend-mode: multiply; }
+
+        @media print {
+            @page { size: A4 landscape; margin: 0mm; }
+            html, body { width: 297mm; height: 210mm; margin: 0; padding: 0; overflow: hidden; background-color: #ffffff; }
+            body * { visibility: hidden; }
+            #certificate-render, #certificate-render * { visibility: visible; }
+            #certificate-render { position: absolute; left: 0; top: 0; width: 297mm; height: 210mm; margin: 0; padding: 10mm; box-sizing: border-box; display: flex !important; flex-direction: column; justify-content: center; }
+            .cert-inner-border { padding: 25px 40px !important; }
+            .cert-footer { margin-top: 30px !important; }
+            .cert-logo { height: 85px !important; margin-bottom: 10px !important; }
+            .cert-title { font-size: 36px !important; }
+            .cert-name { margin: 15px 0 !important; font-size: 30px !important; }
+            .cert-signature-img { height: 70px !important; margin-bottom: -10px !important; }
+            .no-print { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="course-container" id="course-container">
+    <div class="progress-bar-container no-print">
+        <div class="progress-bar" id="course-progress"></div>
+    </div>
+
+    <!-- ================= MODULE 1 ================= -->
+    <div id="module-1-content" class="module-section">
+        <div class="header-banner">
+            <h1>DATA ANALYSIS IN HEALTHCARE</h1>
+            <h2>ADVANCED EDITION: HEALTH INFORMATICS & SYSTEMS ARCHITECTURE</h2>
+            <p>NEXTGEN HEALTHTECH ACADEMY ONLINE | Harare, Zimbabwe</p>
+        </div>
+
+        <h2 class="mod-title">Foreword from the Lead Educator</h2>
+        <p>Welcome to the Advanced level. At the beginner tier, we collected the data. At the intermediate tier, we diagnosed the data. At the advanced tier, we predict the future and architect the systems that sustain national health.</p>
+        <p>As a senior health informatics leader, your responsibility extends beyond a single hospital. You are building Health Information Exchanges (HIE), deploying longitudinal tracking for chronic disease cohorts, mapping spatial epidemiology, and ensuring absolute compliance with data sovereignty laws. We will explore Predictive and Prescriptive Analytics—not just identifying a stockout, but algorithmically preventing it before it happens.</p>
+        <p>You are now architecting the digital infrastructure that secures the health of populations. Let's begin.</p>
+        
+        <h2 class="mod-title">Module 1: Predictive and Prescriptive Analytics</h2>
+        <h3 class="sub-title">1.1 Forecasting the Future (Predictive)</h3>
+        <p>Predictive Analytics uses historical data, machine learning, and statistical algorithms to determine the probability of future events. In Sub-Saharan Africa, predictive models integrate DHIS2 morbidity data with meteorological satellite data to predict malaria surges up to 6 weeks in advance based on rainfall and temperature anomalies.</p>
+
+        <h3 class="sub-title">1.2 Prescribing Solutions (Prescriptive)</h3>
+        <p>Prescriptive Analytics goes a step further: it recommends specific actions. If a predictive model forecasts a 40% surge in cholera in a specific district, a prescriptive algorithm will automatically calculate the required number of IV fluid bags, generate supply chain routing optimized for road conditions, and alert the central medical stores to dispatch the convoy.</p>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(1)">Proceed to Module 1 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 1 QUIZ -->
+    <div id="module-1-quiz" class="module-section" style="display: none;">
+        <div class="quiz-box">
+            <h3 class="quiz-title">Module 1: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">Which stage of the analytics continuum not only forecasts a future disease outbreak, but also automatically generates optimal supply chain routing to deliver IV fluids before the outbreak peaks?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q1" value="w1"> A) Descriptive Analytics</label>
+            <label class="quiz-option"><input type="radio" name="q1" value="w2"> B) Diagnostic Analytics</label>
+            <label class="quiz-option"><input type="radio" name="q1" value="w3"> C) Predictive Analytics</label>
+            <label class="quiz-option"><input type="radio" name="q1" value="correct"> D) Prescriptive Analytics</label>
+            
+            <p id="quiz1-error" class="error-msg">Incorrect. Review Section 1.2 regarding recommending specific actions.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(1, 2)">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- ================= MODULE 2 ================= -->
+    <div id="module-2-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 2: Interoperability and Health Information Exchange (HIE)</h2>
+        
+        <h3 class="sub-title">2.1 The Silo Problem</h3>
+        <p>African healthcare systems often suffer from "Data Silos." A patient's HIV records might be in OpenMRS at the clinic, their X-rays in a proprietary radiology system, and the national aggregate data in DHIS2. These systems historically could not talk to each other.</p>
+
+        <h3 class="sub-title">2.2 Application Programming Interfaces (APIs) and HL7 FHIR</h3>
+        <p>To build a Health Information Exchange (HIE), advanced analysts utilize APIs. The global standard for this is <strong>HL7 FHIR (Fast Healthcare Interoperability Resources)</strong>. FHIR standardizes health data into "Resources" (like `Patient`, `Medication`, `Observation`). This allows a specialized TB tracking software to seamlessly push case-based data directly into the national DHIS2 server without requiring a human to type it twice.</p>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(2)">Proceed to Module 2 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 2 QUIZ -->
+    <div id="module-2-quiz" class="module-section" style="display: none;">
+        <div class="quiz-box">
+            <h3 class="quiz-title">Module 2: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">What is the primary function of the HL7 FHIR standard in advanced health informatics?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q2" value="w1"> A) To physically encrypt hard drives at rural clinics</label>
+            <label class="quiz-option"><input type="radio" name="q2" value="correct"> B) To provide a standardized RESTful API framework that allows disparate health software systems (like OpenMRS and DHIS2) to seamlessly exchange clinical data</label>
+            <label class="quiz-option"><input type="radio" name="q2" value="w2"> C) To calculate the financial budget for the Ministry of Health</label>
+            <label class="quiz-option"><input type="radio" name="q2" value="w3"> D) To track the geographic locations of ambulances</label>
+            
+            <p id="quiz2-error" class="error-msg">Incorrect. Review Section 2.2 on Interoperability.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(2, 3)">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- ================= MODULE 3 ================= -->
+    <div id="module-3-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 3: Spatial Epidemiology and GIS Mapping</h2>
+        
+        <h3 class="sub-title">3.1 Geographic Information Systems (GIS)</h3>
+        <p>Diseases do not respect hospital boundaries; they move geographically. Advanced analysts use GIS software (like QGIS or the DHIS2 Maps app) to layer clinical data over geographic maps.</p>
+
+        <h3 class="sub-title">3.2 Polygon Mapping and Spatial Clustering</h3>
+        <p>By mapping cholera cases using GPS coordinates, an analyst can visually identify a <strong>Spatial Cluster</strong> (a hot spot). If you overlay a map of municipal water sources on top of the cholera cluster map, you can instantly identify which specific contaminated well is driving the outbreak, allowing public health teams to target interventions with pinpoint accuracy.</p>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(3)">Proceed to Module 3 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 3 QUIZ -->
+    <div id="module-3-quiz" class="module-section" style="display: none;">
+        <div class="quiz-box">
+            <h3 class="quiz-title">Module 3: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">How does Spatial Epidemiology (GIS mapping) enhance outbreak response compared to standard spreadsheets?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q3" value="w1"> A) It automatically cures the disease via satellite</label>
+            <label class="quiz-option"><input type="radio" name="q3" value="w2"> B) It generates financial invoices for patients based on their address</label>
+            <label class="quiz-option"><input type="radio" name="q3" value="w3"> C) It permanently deletes data from regions with low infection rates</label>
+            <label class="quiz-option"><input type="radio" name="q3" value="correct"> D) It visually overlays clinical case data with geographic and environmental infrastructure, allowing authorities to pinpoint specific outbreak sources like contaminated wells</label>
+            
+            <p id="quiz3-error" class="error-msg">Incorrect. Review Section 3.2 on GIS clustering.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(3, 4)">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- ================= MODULE 4 ================= -->
+    <div id="module-4-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 4: Longitudinal Cohort Tracking (DHIS2 Tracker)</h2>
+        
+        <h3 class="sub-title">4.1 Aggregate vs. Longitudinal Data</h3>
+        <p>Standard DHIS2 collects aggregate data (e.g., "50 patients received ARVs this month"). However, treating chronic diseases like HIV or multi-drug-resistant TB requires tracking the <em>same patient over multiple years</em>.</p>
+
+        <h3 class="sub-title">4.2 DHIS2 Tracker Programs</h3>
+        <p>The <strong>DHIS2 Tracker</strong> module registers individual entities (patients) and tracks them longitudinally across multiple clinical encounters (stages). Advanced analysts configure Tracker to trigger automated SMS alerts if a TB patient misses a critical sputum test date, drastically reducing <strong>Loss to Follow-Up (LTFU)</strong> rates.</p>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(4)">Proceed to Module 4 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 4 QUIZ -->
+    <div id="module-4-quiz" class="module-section" style="display: none;">
+        <div class="quiz-box">
+            <h3 class="quiz-title">Module 4: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">What is the primary clinical advantage of using the DHIS2 Tracker module over standard aggregate data entry for HIV or MDR-TB programs?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q4" value="correct"> A) Tracker enables longitudinal tracking of an individual patient across multiple visits over time, helping to prevent Loss to Follow-Up (LTFU)</label>
+            <label class="quiz-option"><input type="radio" name="q4" value="w1"> B) Tracker does not require an internet connection</label>
+            <label class="quiz-option"><input type="radio" name="q4" value="w2"> C) Tracker automatically administers medication</label>
+            <label class="quiz-option"><input type="radio" name="q4" value="w3"> D) Tracker only collects anonymous, total sum data</label>
+            
+            <p id="quiz4-error" class="error-msg">Incorrect. Review Section 4.2 on longitudinal tracking.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(4, 5)">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- ================= MODULE 5 ================= -->
+    <div id="module-5-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 5: Machine Learning in Public Health</h2>
+        
+        <h3 class="sub-title">5.1 Risk Stratification Modeling</h3>
+        <p>Machine learning models, such as Logistic Regression or Random Forests, are deployed to perform <strong>Risk Stratification</strong>. By ingesting thousands of historical maternal health records, an ML model can weigh dozens of variables (age, parity, blood pressure, rural distance to hospital) to assign a specific "Maternal Risk Score" to every pregnant woman. High-risk women are automatically flagged for early admission to a central hospital prior to labor.</p>
+
+        <h3 class="sub-title">5.2 Data Preprocessing</h3>
+        <p>Advanced ML models require massive data preprocessing. Analysts must handle missing variables (imputation), normalize continuous data (like age or weight), and encode categorical data (turning "Male/Female" into binary code) before the algorithm can ingest the data.</p>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(5)">Proceed to Module 5 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 5 QUIZ -->
+    <div id="module-5-quiz" class="module-section" style="display: none;">
+        <div class="quiz-box">
+            <h3 class="quiz-title">Module 5: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">In public health, how is Machine Learning practically used for "Risk Stratification" in maternal care?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q5" value="w1"> A) By deleting records of women who miss appointments</label>
+            <label class="quiz-option"><input type="radio" name="q5" value="w2"> B) By assigning every patient the exact same standardized treatment</label>
+            <label class="quiz-option"><input type="radio" name="q5" value="correct"> C) By algorithmically weighing multiple clinical variables to assign a risk score to individual patients, flagging high-risk cases for proactive intervention</label>
+            <label class="quiz-option"><input type="radio" name="q5" value="w3"> D) By physically transporting doctors to rural clinics</label>
+            
+            <p id="quiz5-error" class="error-msg">Incorrect. Review Section 5.1 on Risk Stratification.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(5, 6)">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- ================= MODULE 6 ================= -->
+    <div id="module-6-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 6: Cybersecurity and Advanced Data Governance</h2>
+        
+        <h3 class="sub-title">6.1 Compliance with the Cyber & Data Protection Act</h3>
+        <p>In Zimbabwe, building a digital health system requires strict legal compliance. Advanced architects implement <strong>Role-Based Access Control (RBAC)</strong>. A ward nurse has "read/write" access only to their specific patients. A provincial director has "read-only" access to aggregate data, but no access to individual names. The system must also maintain an immutable <strong>Audit Trail</strong>, recording exactly which user accessed which patient file at what time.</p>
+
+        <h3 class="sub-title">6.2 Encryption Standards</h3>
+        <p>Patient data must be protected both <em>in transit</em> (using TLS/SSL protocols as data moves from the clinic tablet to the cloud) and <em>at rest</em> (using AES-256 encryption on the physical database servers).</p>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(6)">Proceed to Module 6 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 6 QUIZ -->
+    <div id="module-6-quiz" class="module-section" style="display: none;">
+        <div class="quiz-box">
+            <h3 class="quiz-title">Module 6: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">What is the purpose of an "Audit Trail" in a secure health information system?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q6" value="w1"> A) To track the physical GPS location of hospital tablets</label>
+            <label class="quiz-option"><input type="radio" name="q6" value="correct"> B) To maintain an immutable, legally compliant log recording exactly which user account accessed or modified specific patient records and at what time</label>
+            <label class="quiz-option"><input type="radio" name="q6" value="w2"> C) To automatically encrypt data in transit</label>
+            <label class="quiz-option"><input type="radio" name="q6" value="w3"> D) To calculate the financial taxes owed by the hospital</label>
+            
+            <p id="quiz6-error" class="error-msg">Incorrect. Review Section 6.1 regarding security auditing.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(6, 7)">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- ================= MODULE 7 ================= -->
+    <div id="module-7-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 7: Data-Driven Health Policy & Economics</h2>
+        
+        <h3 class="sub-title">7.1 Translating Data to Policy</h3>
+        <p>The ultimate goal of advanced data analysis is to influence national health policy. If data proves that investing $100,000 in early hypertension screening at rural clinics prevents $2,000,000 in emergency stroke care at central hospitals, the analyst has provided the Ministry of Health with a compelling Health Economics argument for resource reallocation.</p>
+        
+        <div class="analogy-box" style="border-left-color: #10b981; background-color: #f0fdf4;">
+            <h4 style="color: #047857;">The Architect's Mandate</h4>
+            <p>You are no longer just looking at spreadsheets; you are looking at the vital signs of a nation. Your architecture ensures that data flows securely, outbreaks are predicted accurately, and health equity is achieved algorithmically.</p>
+        </div>
+
+        <button class="btn-primary btn-proceed" style="background-color: #10b981;" onclick="startFinalExam()">Proceed to the 30-Question Advanced Final Exam ➔</button>
+    </div>
+
+    <!-- ================= FINAL EXAM (30 QUESTIONS) ================= -->
+    <div id="final-exam-section" class="module-section" style="display: none;">
+        <h2 class="mod-title">Advanced Certification Examination</h2>
+        <p style="font-size: 18px; color: #555;">Complete this rigorous 30-question examination. You must score 100% to generate your Advanced Accredited Certificate.</p>
+
+        <form id="final-exam-form">
+            <!-- Q1 -->
+            <div class="quiz-box" style="margin-top: 20px;">
+                <p style="font-size: 18px;"><strong>1. What defines "Predictive Analytics" in health informatics?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe1" value="w1"> A) Summarizing what happened last year</label>
+                <label class="quiz-option"><input type="radio" name="fe1" value="w2"> B) Finding the root cause of an event</label>
+                <label class="quiz-option"><input type="radio" name="fe1" value="correct"> C) Using historical data and statistical algorithms to determine the probability of future clinical events or outbreaks</label>
+                <label class="quiz-option"><input type="radio" name="fe1" value="w3"> D) Recommending a specific supply chain intervention</label>
+            </div>
+            
+            <!-- Q2 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>2. How does "Prescriptive Analytics" differ from Predictive Analytics?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe2" value="w1"> A) It is less mathematically complex</label>
+                <label class="quiz-option"><input type="radio" name="fe2" value="correct"> B) While predictive forecasts an event, prescriptive goes further by recommending optimized, specific actions to prevent or mitigate that event</label>
+                <label class="quiz-option"><input type="radio" name="fe2" value="w2"> C) It only deals with pharmaceutical prescriptions</label>
+                <label class="quiz-option"><input type="radio" name="fe2" value="w3"> D) It only analyzes data from past decades</label>
+            </div>
+
+            <!-- Q3 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>3. What is a "Data Silo"?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe3" value="w1"> A) A highly secure database</label>
+                <label class="quiz-option"><input type="radio" name="fe3" value="w2"> B) A backup server kept offsite</label>
+                <label class="quiz-option"><input type="radio" name="fe3" value="w3"> C) A physical building storing paper records</label>
+                <label class="quiz-option"><input type="radio" name="fe3" value="correct"> D) Isolated pools of clinical data that cannot communicate or interoperate with other systems in the hospital network</label>
+            </div>
+
+            <!-- Q4 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>4. What is the global standard used to solve data silos via APIs?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe4" value="correct"> A) HL7 FHIR</label>
+                <label class="quiz-option"><input type="radio" name="fe4" value="w1"> B) USB 3.0</label>
+                <label class="quiz-option"><input type="radio" name="fe4" value="w2"> C) PDF Formatting</label>
+                <label class="quiz-option"><input type="radio" name="fe4" value="w3"> D) HTML5</label>
+            </div>
+
+            <!-- Q5 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>5. In the context of APIs, what is a FHIR "Resource"?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe5" value="w1"> A) A financial budget allocation</label>
+                <label class="quiz-option"><input type="radio" name="fe5" value="correct"> B) A standardized, modular packet of clinical data (like 'Patient' or 'Observation') formatted in JSON/XML for easy exchange</label>
+                <label class="quiz-option"><input type="radio" name="fe5" value="w2"> C) A nurse or doctor working on the ward</label>
+                <label class="quiz-option"><input type="radio" name="fe5" value="w3"> D) A physical server</label>
+            </div>
+
+            <!-- Q6 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>6. What does a Geographic Information System (GIS) do?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe6" value="correct"> A) Layers health data over geographic and spatial mapping to identify outbreaks and correlate them with environmental factors</label>
+                <label class="quiz-option"><input type="radio" name="fe6" value="w1"> B) Analyzes the genetic sequence of viruses</label>
+                <label class="quiz-option"><input type="radio" name="fe6" value="w2"> C) Translates medical documents</label>
+                <label class="quiz-option"><input type="radio" name="fe6" value="w3"> D) Manages hospital payroll</label>
+            </div>
+
+            <!-- Q7 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>7. If an analyst uses QGIS to map an outbreak, what is a "Spatial Cluster"?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe7" value="w1"> A) A group of computers networked together</label>
+                <label class="quiz-option"><input type="radio" name="fe7" value="w2"> B) A family sharing the same medical record</label>
+                <label class="quiz-option"><input type="radio" name="fe7" value="correct"> C) A geographic concentration of disease cases that is statistically higher than expected in a specific physical area</label>
+                <label class="quiz-option"><input type="radio" name="fe7" value="w3"> D) A type of bar chart</label>
+            </div>
+
+            <!-- Q8 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>8. Why is mapping infrastructure (like water sources) alongside clinical data useful?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe8" value="w1"> A) It makes the map look more colorful for presentations</label>
+                <label class="quiz-option"><input type="radio" name="fe8" value="correct"> B) It allows public health officials to visually identify correlations, such as a cholera cluster emerging precisely around a contaminated community well</label>
+                <label class="quiz-option"><input type="radio" name="fe8" value="w2"> C) It calculates the hospital's water bill</label>
+                <label class="quiz-option"><input type="radio" name="fe8" value="w3"> D) It reduces the need for vaccinations</label>
+            </div>
+
+            <!-- Q9 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>9. What is the fundamental difference between Aggregate Data and Longitudinal Data?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe9" value="w1"> A) Aggregate data is stored in the cloud; longitudinal data is stored on paper</label>
+                <label class="quiz-option"><input type="radio" name="fe9" value="w2"> B) Longitudinal data only measures patient height and weight</label>
+                <label class="quiz-option"><input type="radio" name="fe9" value="correct"> C) Aggregate data represents total sums over a period, while longitudinal data tracks the continuous clinical journey of specific individual patients over time</label>
+                <label class="quiz-option"><input type="radio" name="fe9" value="w3"> D) Aggregate data is illegal in Zimbabwe</label>
+            </div>
+
+            <!-- Q10 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>10. Which DHIS2 application is specifically designed for longitudinal cohort tracking?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe10" value="w1"> A) DHIS2 Pivot Tables</label>
+                <label class="quiz-option"><input type="radio" name="fe10" value="w2"> B) DHIS2 Data Visualizer</label>
+                <label class="quiz-option"><input type="radio" name="fe10" value="w3"> D) DHIS2 Aggregate Entry</label>
+                <label class="quiz-option"><input type="radio" name="fe10" value="correct"> C) DHIS2 Tracker</label>
+            </div>
+
+            <!-- Q11 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>11. How does DHIS2 Tracker mitigate Loss to Follow-Up (LTFU) in HIV care?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe11" value="w1"> A) By deleting the records of patients who do not return</label>
+                <label class="quiz-option"><input type="radio" name="fe11" value="correct"> B) By tracking patient stages longitudinally and triggering automated SMS alerts or community health worker tasks when a patient misses an ARV pickup</label>
+                <label class="quiz-option"><input type="radio" name="fe11" value="w2"> C) By forcing patients to pay a fine for missed visits</label>
+                <label class="quiz-option"><input type="radio" name="fe11" value="w3"> D) By automatically prescribing medications remotely</label>
+            </div>
+
+            <!-- Q12 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>12. What is "Risk Stratification" in machine learning?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe12" value="w1"> A) Grouping hospital servers by their risk of overheating</label>
+                <label class="quiz-option"><input type="radio" name="fe12" value="correct"> B) Algorithmically weighing multiple patient variables to assign a clinical risk score, allowing providers to prioritize the most vulnerable patients</label>
+                <label class="quiz-option"><input type="radio" name="fe12" value="w2"> C) Ensuring doctors wear appropriate PPE</label>
+                <label class="quiz-option"><input type="radio" name="fe12" value="w3"> D) Hiding high-risk data from public view</label>
+            </div>
+
+            <!-- Q13 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>13. Before a machine learning model can process clinical records, what must occur during data preprocessing?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe13" value="correct"> A) Handling missing variables, normalizing continuous data, and encoding categorical text into numerical values</label>
+                <label class="quiz-option"><input type="radio" name="fe13" value="w1"> B) Translating all records into French</label>
+                <label class="quiz-option"><input type="radio" name="fe13" value="w2"> C) Deleting all records belonging to patients under 18</label>
+                <label class="quiz-option"><input type="radio" name="fe13" value="w3"> D) Printing all the data onto paper</label>
+            </div>
+
+            <!-- Q14 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>14. What does "Imputation" refer to in data preprocessing?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe14" value="w1"> A) Removing patient names</label>
+                <label class="quiz-option"><input type="radio" name="fe14" value="w2"> B) Moving data to the cloud</label>
+                <label class="quiz-option"><input type="radio" name="fe14" value="correct"> C) Statistically estimating and filling in missing data values within a dataset to prevent the algorithm from crashing</label>
+                <label class="quiz-option"><input type="radio" name="fe14" value="w3"> D) Blaming a specific department for data errors</label>
+            </div>
+
+            <!-- Q15 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>15. Under Zimbabwe's Cyber and Data Protection Act, how must a systems architect protect patient data "in transit"?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe15" value="w1"> A) By placing the laptop in a locked briefcase</label>
+                <label class="quiz-option"><input type="radio" name="fe15" value="w2"> B) By sending it only during daylight hours</label>
+                <label class="quiz-option"><input type="radio" name="fe15" value="correct"> C) By utilizing strong encryption protocols (like TLS/SSL) as the data moves from the clinic device to the central cloud server</label>
+                <label class="quiz-option"><input type="radio" name="fe15" value="w3"> D) By deleting the data immediately after sending it</label>
+            </div>
+
+            <!-- Q16 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>16. What does protecting data "at rest" mean?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe16" value="correct"> A) Encrypting the data using strong algorithms (like AES-256) while it is stored physically on the database servers</label>
+                <label class="quiz-option"><input type="radio" name="fe16" value="w1"> B) Turning the servers off at night</label>
+                <label class="quiz-option"><input type="radio" name="fe16" value="w2"> C) Preventing staff from accessing data on weekends</label>
+                <label class="quiz-option"><input type="radio" name="fe16" value="w3"> D) Keeping paper files in a quiet room</label>
+            </div>
+
+            <!-- Q17 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>17. What is Role-Based Access Control (RBAC)?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe17" value="w1"> A) A system that forces all users to change passwords daily</label>
+                <label class="quiz-option"><input type="radio" name="fe17" value="w2"> B) A physical lock on the server room door</label>
+                <label class="quiz-option"><input type="radio" name="fe17" value="w3"> D) A system where patients control their own records</label>
+                <label class="quiz-option"><input type="radio" name="fe17" value="correct"> C) A security architecture that restricts system access strictly to what a user needs for their specific job role (e.g., nurses see only their ward, directors see only anonymized aggregates)</label>
+            </div>
+
+            <!-- Q18 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>18. Why is an immutable "Audit Trail" legally critical?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe18" value="correct"> A) It provides a permanent, unalterable log of exactly who accessed or modified patient data and when, ensuring accountability in the event of a breach</label>
+                <label class="quiz-option"><input type="radio" name="fe18" value="w1"> B) It tracks the physical footprint of the hospital building</label>
+                <label class="quiz-option"><input type="radio" name="fe18" value="w2"> C) It calculates the cost of server maintenance</label>
+                <label class="quiz-option"><input type="radio" name="fe18" value="w3"> D) It prevents users from logging in multiple times</label>
+            </div>
+
+            <!-- Q19 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>19. What is Health Economics in the context of data analysis?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe19" value="w1"> A) The study of hospital cafeteria prices</label>
+                <label class="quiz-option"><input type="radio" name="fe19" value="correct"> B) Utilizing data to prove the financial efficiency of interventions, such as showing that cheap early screening prevents expensive emergency interventions later</label>
+                <label class="quiz-option"><input type="radio" name="fe19" value="w2"> C) Charging patients based on their algorithm risk score</label>
+                <label class="quiz-option"><input type="radio" name="fe19" value="w3"> D) Printing financial reports on recycled paper</label>
+            </div>
+
+            <!-- Q20 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>20. Why do advanced predictive models correlate meteorological satellite data with clinical data in Africa?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe20" value="correct"> A) Because specific anomalies in rainfall and temperature are proven leading indicators for vector-borne disease outbreaks like malaria</label>
+                <label class="quiz-option"><input type="radio" name="fe20" value="w1"> B) To predict when hospital solar panels will generate power</label>
+                <label class="quiz-option"><input type="radio" name="fe20" value="w2"> C) To track ambulance speeds during storms</label>
+                <label class="quiz-option"><input type="radio" name="fe20" value="w3"> D) To ensure satellite dishes are aligned properly</label>
+            </div>
+
+            <!-- Q21 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>21. What does the term "Data Sovereignty" mean?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe21" value="w1"> A) The King's right to access all medical records</label>
+                <label class="quiz-option"><input type="radio" name="fe21" value="w2"> B) The right of tech companies to sell patient data</label>
+                <label class="quiz-option"><input type="radio" name="fe21" value="correct"> C) The legal concept that digital data is subject to the laws and governance structures of the country in which it is located or collected</label>
+                <label class="quiz-option"><input type="radio" name="fe21" value="w3"> D) The ability to store data entirely offline</label>
+            </div>
+
+            <!-- Q22 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>22. If a predictive model forecasts an outbreak, what is the best prescriptive response for the supply chain?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe22" value="w1"> A) Wait until the clinic officially requests stock</label>
+                <label class="quiz-option"><input type="radio" name="fe22" value="correct"> B) Proactively pre-position RDTs, medications, and IV fluids in the specific vulnerable district before the surge hits</label>
+                <label class="quiz-option"><input type="radio" name="fe22" value="w2"> C) Increase the price of medicines in that region</label>
+                <label class="quiz-option"><input type="radio" name="fe22" value="w3"> D) Shut down the local clinic to prevent theft</label>
+            </div>
+
+            <!-- Q23 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>23. Which of the following best describes a "RESTful API"?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe23" value="w1"> A) An algorithm that forces servers to sleep to save power</label>
+                <label class="quiz-option"><input type="radio" name="fe23" value="w2"> B) A physical cable connecting two servers</label>
+                <label class="quiz-option"><input type="radio" name="fe23" value="w3"> D) A proprietary email service for doctors</label>
+                <label class="quiz-option"><input type="radio" name="fe23" value="correct"> C) An architectural style for software that uses standard HTTP requests to securely GET, PUT, POST, and DELETE data between different systems</label>
+            </div>
+
+            <!-- Q24 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>24. Why might an advanced analyst choose to use Logistic Regression rather than a Deep Neural Network for a public health model?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe24" value="correct"> A) Logistic Regression provides high "explainability" (it is easy to see exactly how much weight each variable carries), whereas Neural Networks are often "black boxes"</label>
+                <label class="quiz-option"><input type="radio" name="fe24" value="w1"> B) Logistic Regression uses more electricity</label>
+                <label class="quiz-option"><input type="radio" name="fe24" value="w2"> C) Neural Networks are illegal to use</label>
+                <label class="quiz-option"><input type="radio" name="fe24" value="w3"> D) Logistic Regression can only run on mobile phones</label>
+            </div>
+
+            <!-- Q25 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>25. What is "Normalization" in machine learning data prep?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe25" value="w1"> A) Forcing patients to have normal blood pressure</label>
+                <label class="quiz-option"><input type="radio" name="fe25" value="correct"> B) Scaling numeric variables (like patient age and income) so they fall into a similar range (e.g., 0 to 1), preventing large numbers from dominating the algorithm</label>
+                <label class="quiz-option"><input type="radio" name="fe25" value="w2"> C) Erasing abnormal diagnoses from the record</label>
+                <label class="quiz-option"><input type="radio" name="fe25" value="w3"> D) Ensuring all doctors use the same brand of computer</label>
+            </div>
+
+            <!-- Q26 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>26. What happens if you skip data preprocessing and feed raw, uncleaned hospital data directly into a machine learning model?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe26" value="w1"> A) The model trains much faster and more accurately</label>
+                <label class="quiz-option"><input type="radio" name="fe26" value="w2"> B) The system will automatically clean it later</label>
+                <label class="quiz-option"><input type="radio" name="fe26" value="correct"> C) The algorithm will likely fail, crash, or produce highly inaccurate, biased predictions due to missing values and unstandardized formats</label>
+                <label class="quiz-option"><input type="radio" name="fe26" value="w3"> D) The model will generate a refund invoice</label>
+            </div>
+
+            <!-- Q27 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>27. What does "TLS/SSL" protect against?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe27" value="correct"> A) Interception or "man-in-the-middle" attacks while data is being transmitted over the internet</label>
+                <label class="quiz-option"><input type="radio" name="fe27" value="w1"> B) Physical theft of the computer server</label>
+                <label class="quiz-option"><input type="radio" name="fe27" value="w2"> C) Water damage to the server room</label>
+                <label class="quiz-option"><input type="radio" name="fe27" value="w3"> D) Doctors forgetting their passwords</label>
+            </div>
+
+            <!-- Q28 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>28. If an analyst implements "Categorical Encoding", what are they doing?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe28" value="w1"> A) Putting patient files into alphabetical folders</label>
+                <label class="quiz-option"><input type="radio" name="fe28" value="w2"> B) Writing code in C++</label>
+                <label class="quiz-option"><input type="radio" name="fe28" value="correct"> C) Converting text-based categories (like "Positive/Negative" or "Male/Female") into numerical codes (like 1/0) so algorithms can process them</label>
+                <label class="quiz-option"><input type="radio" name="fe28" value="w3"> D) Encrypting the data so it cannot be read</label>
+            </div>
+
+            <!-- Q29 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>29. When designing a dashboard for the Minister of Health, what is the best practice?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe29" value="correct"> A) Focus exclusively on high-level, actionable KPIs and prescriptive insights that directly inform policy and resource allocation</label>
+                <label class="quiz-option"><input type="radio" name="fe29" value="w1"> B) Include every single raw data point collected that month</label>
+                <label class="quiz-option"><input type="radio" name="fe29" value="w2"> C) Only use pie charts because they are the most mathematically sound</label>
+                <label class="quiz-option"><input type="radio" name="fe29" value="w3"> D) Omit any negative data to make the ministry look good</label>
+            </div>
+
+            <!-- Q30 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>30. What is the ultimate goal of an Advanced Systems Architect in African Health Informatics?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe30" value="w1"> A) To replace human clinicians with automated robots</label>
+                <label class="quiz-option"><input type="radio" name="fe30" value="w2"> B) To maximize the financial profitability of rural clinics</label>
+                <label class="quiz-option"><input type="radio" name="fe30" value="w3"> D) To ensure data is collected but never used to avoid controversy</label>
+                <label class="quiz-option"><input type="radio" name="fe30" value="correct"> C) To build interoperable, secure, and predictive digital ecosystems that proactively improve population health outcomes and ensure health equity</label>
+            </div>
+
+            <p id="exam-error" class="error-msg" style="font-size: 18px; text-align: center;">You must score 100% on the final advanced examination to generate your certificate. Please review your answers.</p>
+            <button type="button" class="btn-primary" style="background-color: #312e81; font-size: 20px; width: 100%; padding: 20px; margin-top: 30px;" onclick="submitFinalExam()">Grade Advanced Exam & Issue Certificate</button>
+        </form>
+    </div>
+
+    <!-- ================= CERTIFICATE ISSUANCE ================= -->
+    <div id="cert-issuance-section" class="module-section" style="display: none;">
+        <div class="quiz-box" style="text-align: center; background: #eef2ff; border-color: #c7d2fe; padding: 50px;">
+            <h2 style="color: #312e81; margin-top: 0; font-size: 32px;">🎉 Congratulations! You Passed!</h2>
+            <p style="font-size: 20px; margin-bottom: 30px;">Please enter your Full Name exactly as it should appear on your official Advanced Certificate:</p>
+            <input type="text" id="student-name-input" placeholder="e.g. Tendai Moyo" style="width: 80%; max-width: 500px; padding: 15px; font-size: 20px; border: 2px solid #4f46e5; border-radius: 6px; margin-bottom: 25px;">
+            <br>
+            <button type="button" class="btn-primary" style="background-color: #4338ca; font-size: 22px; padding: 15px 40px;" onclick="generateCertificate()">Generate My Certificate</button>
+        </div>
+    </div>
+
+    <!-- ================= CERTIFICATE RENDER ================= -->
+    <div id="certificate-render" class="cert-wrapper">
+        <div class="cert-outer-border">
+            <div class="cert-inner-border">
+                
+                <!-- LOGO -->
+                <img src="https://i.postimg.cc/v1QSBVDj/Whats-App-Nextgen-Logo.jpg" alt="NextGen HealthTech Academy Logo" class="cert-logo">
+                
+                <h2 class="cert-title">Certificate of Advanced Competency</h2>
+                <p style="font-size: 20px; color: #555; margin: 15px 0;">This is to certify that</p>
+                
+                <div class="cert-name" id="cert-display-name">[Student Name]</div>
+                
+                <p style="font-size: 18px; color: #444; max-width: 700px; margin: 0 auto; line-height: 1.6;">
+                    has successfully completed the comprehensive advanced curriculum and passed the examination for
+                </p>
+                <h3 style="color: #312e81; font-size: 26px; margin: 25px 0;">Data Analysis in Healthcare (Advanced Edition)</h3>
+                <p style="font-size: 15px; color: #666; max-width: 800px; margin: 0 auto;">Demonstrating executive-level competency in Predictive & Prescriptive Analytics, HL7 FHIR Interoperability, Spatial Epidemiology (GIS), DHIS2 Tracker, ML Risk Stratification, and Data Sovereignty.</p>
+                
+                <div class="cert-footer">
+                    <div class="cert-signature-box">
+                        <strong id="cert-date-display" style="font-size: 18px;">Date: 25 August 2026</strong>
+                        <div class="cert-signature-line">Harare, Zimbabwe</div>
+                    </div>
+                    <div class="cert-signature-box">
+                        
+                        <!-- SIGNATURE -->
+                        <img src="https://i.postimg.cc/sB6KgHks/Whats-App-Image-2026-08-16-at-22-42-47.jpg" alt="Director Signature" class="cert-signature-img"><br>
+                        
+                        <strong style="font-size: 18px;">Allan Kudzai Chirume</strong>
+                        <div class="cert-signature-line">Director, NextGen HealthTech Academy</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="no-print" style="margin-top: 40px; text-align: center;">
+            <button class="btn-primary" onclick="window.print()" style="background-color: #10b981; padding: 15px 35px; font-size: 18px;">🖨️ Print / Save as PDF</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function updateProgress(step) {
+        // 8 steps total: 7 modules + 1 final exam
+        const percentage = Math.min(100, Math.round((step / 8) * 100));
+        document.getElementById('course-progress').style.width = percentage + '%';
+    }
+
+    function showQuiz(modNum) {
+        document.getElementById('module-' + modNum + '-content').style.display = 'none';
+        document.getElementById('module-' + modNum + '-quiz').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function validateModule(currentMod, nextMod) {
+        const selected = document.querySelector('input[name="q' + currentMod + '"]:checked');
+        const errorEl = document.getElementById('quiz' + currentMod + '-error');
+        
+        if (selected && selected.value === 'correct') {
+            errorEl.style.display = 'none';
+            document.getElementById('module-' + currentMod + '-quiz').style.display = 'none';
+            document.getElementById('module-' + nextMod + '-content').style.display = 'block';
+            updateProgress(nextMod);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            errorEl.style.display = 'block';
+        }
+    }
+
+    function startFinalExam() {
+        document.getElementById('module-7-content').style.display = 'none';
+        document.getElementById('final-exam-section').style.display = 'block';
+        updateProgress(8);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function submitFinalExam() {
+        let allCorrect = true;
+        // Loop through all 30 questions
+        for (let i = 1; i <= 30; i++) {
+            const answer = document.querySelector('input[name="fe' + i + '"]:checked');
+            if (!answer || answer.value !== 'correct') {
+                allCorrect = false;
+                break;
+            }
+        }
+        
+        const errorEl = document.getElementById('exam-error');
+
+        if (allCorrect) {
+            errorEl.style.display = 'none';
+            document.getElementById('final-exam-section').style.display = 'none';
+            document.getElementById('cert-issuance-section').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            errorEl.style.display = 'block';
+        }
+    }
+
+    function generateCertificate() {
+        const nameInput = document.getElementById('student-name-input').value.trim();
+        if (!nameInput) {
+            alert('Please enter your full name.');
+            return;
+        }
+
+        document.getElementById('cert-display-name').innerText = nameInput;
+        const today = new Date();
+        const dateString = today.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+        document.getElementById('cert-date-display').innerText = 'Date: ' + dateString;
+
+        document.getElementById('cert-issuance-section').style.display = 'none';
+        document.getElementById('certificate-render').style.display = 'block';
+        document.querySelector('.progress-bar-container').style.display = 'none';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>

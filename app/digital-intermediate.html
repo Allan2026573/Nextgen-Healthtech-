@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Health Skills: Intermediate Edition - NextGen HealthTech Academy</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; padding: 20px; color: #333; line-height: 1.6; }
+        .course-container { max-width: 950px; margin: 0 auto; background: #ffffff; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); padding: 40px; }
+        .progress-bar-container { background-color: #e2e8f0; border-radius: 20px; height: 12px; width: 100%; margin-bottom: 25px; overflow: hidden; }
+        .progress-bar { background: linear-gradient(90deg, #6b21a8, #9333ea); height: 100%; width: 12.5%; transition: width 0.4s ease; }
+        .header-banner { text-align: center; border-bottom: 2px solid #6b21a8; padding-bottom: 20px; margin-bottom: 30px; }
+        .header-banner h1 { color: #6b21a8; margin: 0 0 5px 0; font-size: 28px; }
+        .header-banner h2 { color: #9333ea; margin: 0 0 5px 0; font-size: 18px; }
+        .header-banner p { color: #475569; margin: 0; font-size: 14px; }
+        .mod-title { color: #6b21a8; border-bottom: 2px solid #edf2f7; padding-bottom: 10px; margin-top: 25px; font-size: 22px; }
+        .sub-title { color: #0f172a; margin-top: 20px; font-size: 18px; font-weight: 600; }
+        .analogy-box { background-color: #faf5ff; border-left: 4px solid #9333ea; padding: 18px; margin: 20px 0; border-radius: 0 6px 6px 0; }
+        .analogy-box h4 { margin-top: 0; color: #581c87; }
+        .quiz-box { background-color: #f8fafc; padding: 35px; border-radius: 8px; margin-top: 25px; border: 1px solid #cbd5e1; }
+        .quiz-title { color: #0f172a; margin-top: 0; font-size: 20px; border-bottom: 2px solid #cbd5e1; padding-bottom: 10px; margin-bottom: 20px; }
+        .quiz-option { display: block; background: #ffffff; padding: 15px; margin-bottom: 10px; border: 1px solid #e2e8f0; border-radius: 6px; cursor: pointer; transition: background 0.2s; font-size: 16px; }
+        .quiz-option:hover { background: #f1f5f9; }
+        .quiz-option input { margin-right: 15px; transform: scale(1.2); }
+        .btn-primary { background-color: #6b21a8; color: #ffffff; border: none; padding: 12px 25px; border-radius: 6px; cursor: pointer; font-size: 16px; font-weight: 600; margin-top: 20px; transition: background 0.3s; }
+        .btn-primary:hover { background-color: #581c87; }
+        .btn-proceed { background-color: #9333ea; width: 100%; font-size: 18px; padding: 15px; margin-top: 30px; }
+        .btn-proceed:hover { background-color: #7e22ce; }
+        .error-msg { color: #dc2626; display: none; font-weight: bold; margin-top: 15px; font-size: 15px; padding: 10px; background: #fee2e2; border-radius: 5px; }
+        
+        /* Certificate Styles */
+        .cert-wrapper { display: none; background: #ffffff; margin-top: 20px; }
+        .cert-outer-border { border: 12px solid #6b21a8; padding: 8px; background: #fff; }
+        .cert-inner-border { border: 3px solid #f59e0b; padding: 40px 50px; text-align: center; position: relative; }
+        .cert-logo { height: 100px; margin-bottom: 20px; object-fit: contain; }
+        .cert-title { font-size: 40px; color: #6b21a8; text-transform: uppercase; margin: 10px 0; font-family: 'Times New Roman', Times, serif; letter-spacing: 3px; }
+        .cert-name { font-size: 34px; color: #6b21a8; border-bottom: 2px solid #f59e0b; display: inline-block; padding: 5px 50px; margin: 25px 0; font-family: 'Times New Roman', Times, serif; font-style: italic; font-weight: bold; }
+        .cert-footer { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 60px; padding: 0 30px; }
+        .cert-signature-box { width: 280px; text-align: center; }
+        .cert-signature-line { border-top: 1px solid #6b21a8; padding-top: 8px; font-size: 15px; color: #6b21a8; margin-top: 5px; }
+        .cert-signature-img { height: 80px; margin-bottom: -15px; object-fit: contain; mix-blend-mode: multiply; }
+
+        @media print {
+            @page { size: A4 landscape; margin: 0mm; }
+            html, body { width: 297mm; height: 210mm; margin: 0; padding: 0; overflow: hidden; background-color: #ffffff; }
+            body * { visibility: hidden; }
+            #certificate-render, #certificate-render * { visibility: visible; }
+            #certificate-render { position: absolute; left: 0; top: 0; width: 297mm; height: 210mm; margin: 0; padding: 10mm; box-sizing: border-box; display: flex !important; flex-direction: column; justify-content: center; }
+            .cert-inner-border { padding: 25px 40px !important; }
+            .cert-footer { margin-top: 30px !important; }
+            .cert-logo { height: 85px !important; margin-bottom: 10px !important; }
+            .cert-title { font-size: 36px !important; }
+            .cert-name { margin: 15px 0 !important; font-size: 30px !important; }
+            .cert-signature-img { height: 70px !important; margin-bottom: -10px !important; }
+            .no-print { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="course-container" id="course-container">
+    <div class="progress-bar-container no-print">
+        <div class="progress-bar" id="course-progress"></div>
+    </div>
+
+    <!-- ================= MODULE 1 ================= -->
+    <div id="module-1-content" class="module-section">
+        <div class="header-banner">
+            <h1>DIGITAL HEALTH SKILLS</h1>
+            <h2>INTERMEDIATE EDITION: CLINICAL WORKFLOW OPTIMIZATION & TELEMEDICINE</h2>
+            <p>NEXTGEN HEALTHTECH ACADEMY ONLINE | Harare, Zimbabwe</p>
+        </div>
+
+        <h2 class="mod-title">Foreword from the Lead Educator</h2>
+        <p>In the beginner module, we focused on not breaking the computer. Now, we focus on making the computer work for you.</p>
+        <p>As you progress in your clinical career, you will realize that entering data is only half the battle. How do you consult with a specialist at Parirenyatwa when you are stationed in a rural clinic in Manicaland? How do you ensure your diagnoses map correctly to international billing and morbidity codes? How do you know if the laboratory's system is successfully talking to your ward's EHR?</p>
+        <p>This intermediate course elevates you from a basic user to a digital workflow optimizer. We will cover Telemedicine modalities, interoperability basics, clinical coding, and how to maintain uncompromised digital safety standards.</p>
+
+        <h2 class="mod-title">Module 1: Advanced EHR Workflow Optimization</h2>
+        <h3 class="sub-title">1.1 Moving Beyond Basic Typing</h3>
+        <p>Intermediate clinicians do not type the same paragraphs repeatedly. They optimize their time using built-in Electronic Health Record (EHR) features:</p>
+        <ul>
+            <li><strong>Auto-Text / Macros:</strong> Configuring short commands (e.g., typing `.asthma` to instantly generate a full asthma admission protocol template).</li>
+            <li><strong>Customized Dashboards:</strong> Setting up your EHR home screen to immediately show pending lab results or critical alerts for your specific ward, rather than clicking through five menus.</li>
+            <li><strong>Order Sets:</strong> Grouping common clinical orders (e.g., "Malaria Admission Set" containing FBC, RDT, and IV Artesunate) so they can be executed with a single click.</li>
+        </ul>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(1)">Proceed to Module 1 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 1 QUIZ -->
+    <div id="module-1-quiz" class="module-section" style="display: none;">
+        <div class="quiz-box">
+            <h3 class="quiz-title">Module 1: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">What is the primary clinical benefit of utilizing "Order Sets" within an Electronic Health Record?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q1" value="w1"> A) It allows patients to order their own meals from the hospital cafeteria</label>
+            <label class="quiz-option"><input type="radio" name="q1" value="w2"> B) It legally bypasses the need for a doctor's signature</label>
+            <label class="quiz-option"><input type="radio" name="q1" value="correct"> C) It groups standard, protocol-driven tests and treatments together, allowing clinicians to execute them with a single click to save time and reduce omission errors</label>
+            <label class="quiz-option"><input type="radio" name="q1" value="w3"> D) It alphabetizes the ward register automatically</label>
+            
+            <p id="quiz1-error" class="error-msg">Incorrect. Review Section 1.1 on Order Sets.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(1, 2)">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- ================= MODULE 2 ================= -->
+    <div id="module-2-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 2: Telemedicine and Remote Patient Monitoring</h2>
+        
+        <h3 class="sub-title">2.1 Synchronous vs. Asynchronous Telemedicine</h3>
+        <p>Telemedicine bridges the gap between rural clinics and central specialists. It operates in two main modalities:</p>
+        <ul>
+            <li><strong>Synchronous (Real-Time):</strong> A live video or audio call between the clinician and the patient/specialist. Useful for urgent psychiatric evaluations or stroke assessments. The main limitation in rural Africa is the requirement for high-speed, stable internet.</li>
+            <li><strong>Asynchronous (Store-and-Forward):</strong> A nurse at a rural clinic takes a high-resolution photo of a skin lesion, attaches it to the patient's digital file, and securely forwards it to a dermatologist in Harare. The specialist reviews it hours later. This is highly effective in areas with fluctuating internet connectivity.</li>
+        </ul>
+
+        <div class="analogy-box">
+            <h4>The Informed Consent Rule</h4>
+            <p>Before conducting any tele-consultation, the clinician must obtain and document explicit <strong>Informed Consent</strong> for telemedicine. The patient must understand that a video call has diagnostic limitations compared to a physical examination.</p>
+        </div>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(2)">Proceed to Module 2 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 2 QUIZ -->
+    <div id="module-2-quiz" class="module-section" style="display: none;">
+        <div class="quiz-box">
+            <h3 class="quiz-title">Module 2: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">Which telemedicine modality is typically most reliable in rural African clinics that experience frequent internet buffering and low bandwidth?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q2" value="w1"> A) Synchronous high-definition video conferencing</label>
+            <label class="quiz-option"><input type="radio" name="q2" value="correct"> B) Asynchronous (Store-and-Forward) telemedicine</label>
+            <label class="quiz-option"><input type="radio" name="q2" value="w2"> C) Live robotic surgery</label>
+            <label class="quiz-option"><input type="radio" name="q2" value="w3"> D) Real-time continuous ECG broadcasting</label>
+            
+            <p id="quiz2-error" class="error-msg">Incorrect. Think about which method doesn't require a live, stable connection.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(2, 3)">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- ================= MODULE 3 ================= -->
+    <div id="module-3-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 3: Interoperability Basics (EHR & LIS)</h2>
+        
+        <h3 class="sub-title">3.1 When Systems Talk to Each Other</h3>
+        <p>In a modern hospital, the ward's Electronic Health Record (EHR) does not operate in isolation. It must communicate with the <strong>Laboratory Information System (LIS)</strong>.</p>
+        <p>When you click "Order Full Blood Count" on the ward, the EHR sends a digital message to the LIS. The lab machine analyzes the blood and automatically pushes the result back to the EHR on your ward tablet. This eliminates the need for nurses to physically walk to the lab to collect paper results.</p>
+
+        <h3 class="sub-title">3.2 The Invisible Language: HL7</h3>
+        <p>The reason the ward computer can understand the laboratory computer is because they speak a common international language called <strong>HL7 (Health Level Seven)</strong>. As an intermediate user, you don't need to code in HL7, but you must understand that if an interface "goes down," the lab results won't digitally cross over to the ward until IT restarts the HL7 connection.</p>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(3)">Proceed to Module 3 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 3 QUIZ -->
+    <div id="module-3-quiz" class="module-section" style="display: none;">
+        <div class="quiz-box">
+            <h3 class="quiz-title">Module 3: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">What does the acronym "LIS" stand for in a digital hospital environment?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q3" value="w1"> A) Local Internet Service</label>
+            <label class="quiz-option"><input type="radio" name="q3" value="w2"> B) Legal Investigation System</label>
+            <label class="quiz-option"><input type="radio" name="q3" value="correct"> C) Laboratory Information System</label>
+            <label class="quiz-option"><input type="radio" name="q3" value="w3"> D) Longitudinal Imaging Storage</label>
+            
+            <p id="quiz3-error" class="error-msg">Incorrect. Review Section 3.1 regarding laboratory software.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(3, 4)">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- ================= MODULE 4 ================= -->
+    <div id="module-4-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 4: Clinical Coding and ICD-11</h2>
+        
+        <h3 class="sub-title">4.1 Why Clinicians Must Code</h3>
+        <p>If you type "Heart Attack," another doctor types "Myocardial Infarction," and a third types "MI," a computer cannot easily group these together for national health reports. To fix this, the World Health Organization uses the <strong>ICD-11 (International Classification of Diseases, 11th Revision)</strong>.</p>
+        
+        <h3 class="sub-title">4.2 The Impact of Accurate Coding</h3>
+        <p>In digital systems, you select the diagnosis from a drop-down menu that assigns the official ICD-11 code automatically. Proper coding is vital for two reasons:</p>
+        <ol>
+            <li><strong>Epidemiology:</strong> The Ministry of Health uses these codes to track national morbidity and mortality rates accurately in DHIS2.</li>
+            <li><strong>Medical Billing:</strong> Medical Aid societies (like CIMAS or PSMAS) will reject digital claims if the ICD-11 code does not match the provided treatment.</li>
+        </ol>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(4)">Proceed to Module 4 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 4 QUIZ -->
+    <div id="module-4-quiz" class="module-section" style="display: none;">
+        <div class="quiz-box">
+            <h3 class="quiz-title">Module 4: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">What is the primary purpose of utilizing the ICD-11 system within an Electronic Health Record?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q4" value="correct"> A) To standardize clinical diagnoses into universal codes, enabling accurate morbidity tracking and ensuring seamless medical billing</label>
+            <label class="quiz-option"><input type="radio" name="q4" value="w1"> B) To encrypt patient names so hackers cannot read them</label>
+            <label class="quiz-option"><input type="radio" name="q4" value="w2"> C) To translate clinical notes into local indigenous languages</label>
+            <label class="quiz-option"><input type="radio" name="q4" value="w3"> D) To track the serial numbers of hospital computers</label>
+            
+            <p id="quiz4-error" class="error-msg">Incorrect. Review Section 4.2 on the impact of coding.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(4, 5)">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- ================= MODULE 5 ================= -->
+    <div id="module-5-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 5: Digital Audits and Data Protection</h2>
+        
+        <h3 class="sub-title">5.1 The Immutability of the Audit Trail</h3>
+        <p>In paper records, a clinician might cross out a mistake with a pen. In a digital EHR, every single keystroke is permanently recorded in the <strong>Audit Trail</strong>. The system logs exactly who logged in, what time they opened a patient's file, and what data they changed. If a legal dispute arises, hospital administration can pull the audit trail to prove exactly what happened.</p>
+
+        <h3 class="sub-title">5.2 Zimbabwe Cyber and Data Protection Act</h3>
+        <p>As an intermediate practitioner, you are responsible for enforcing data laws on your ward. Medical records are classified as <strong>Special Category Data</strong>. Snooping (opening the digital file of a patient you are not actively treating, such as a celebrity or a colleague) is not just a hospital policy violation; it is a prosecutable legal offense.</p>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(5)">Proceed to Module 5 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 5 QUIZ -->
+    <div id="module-5-quiz" class="module-section" style="display: none;">
+        <div class="quiz-box">
+            <h3 class="quiz-title">Module 5: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">Under the Zimbabwe Cyber and Data Protection Act, what legal classification is given to patient medical records?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q5" value="w1"> A) Public Domain Information</label>
+            <label class="quiz-option"><input type="radio" name="q5" value="w2"> B) General Administrative Data</label>
+            <label class="quiz-option"><input type="radio" name="q5" value="w3"> C) Open-Source Clinical Statistics</label>
+            <label class="quiz-option"><input type="radio" name="q5" value="correct"> D) Special Category Data requiring stringent legal safeguards</label>
+            
+            <p id="quiz5-error" class="error-msg">Incorrect. Review Section 5.2.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(5, 6)">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- ================= MODULE 6 ================= -->
+    <div id="module-6-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 6: Patient Portals and E-Prescribing</h2>
+        
+        <h3 class="sub-title">6.1 E-Prescriptions</h3>
+        <p>Electronic Prescribing (e-Prescribing) eliminates handwritten prescription pads. The clinician selects the drug digitally, and the system instantly checks the patient's profile for <strong>drug-allergy interactions</strong> and <strong>drug-drug interactions</strong>. The script is then transmitted directly to the pharmacy queue, completely eliminating errors caused by illegible handwriting.</p>
+
+        <h3 class="sub-title">6.2 Patient Portals</h3>
+        <p>Modern systems allow patients to log into a secure app on their phone to view their own lab results, appointment dates, and discharge instructions. While this empowers patients, clinicians must be mindful that patients read these notes. Documentation must be highly professional, avoiding derogatory abbreviations.</p>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(6)">Proceed to Module 6 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 6 QUIZ -->
+    <div id="module-6-quiz" class="module-section" style="display: none;">
+        <div class="quiz-box">
+            <h3 class="quiz-title">Module 6: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">What is a major clinical safety benefit of utilizing an E-Prescribing system instead of paper prescription pads?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q6" value="correct"> A) The system automatically cross-checks for dangerous drug-drug and drug-allergy interactions before the order is sent to the pharmacy</label>
+            <label class="quiz-option"><input type="radio" name="q6" value="w1"> B) It legally allows nurses to prescribe any medication without doctor oversight</label>
+            <label class="quiz-option"><input type="radio" name="q6" value="w2"> C) It guarantees the medication is always in stock</label>
+            <label class="quiz-option"><input type="radio" name="q6" value="w3"> D) It completely eliminates the need for the patient to pay for the drugs</label>
+            
+            <p id="quiz6-error" class="error-msg">Incorrect. Review Section 6.1 on E-Prescriptions.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(6, 7)">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- ================= MODULE 7 ================= -->
+    <div id="module-7-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 7: First-Line System Troubleshooting</h2>
+        
+        <h3 class="sub-title">7.1 Solving Issues Before Calling IT</h3>
+        <p>When a system stops working during a busy shift, an intermediate leader knows how to check the basics before raising a panic:</p>
+        <ul>
+            <li><strong>Check Physical Connections:</strong> Are the ethernet network cables and power cords securely plugged into the wall and the PC?</li>
+            <li><strong>Browser Cache:</strong> If a web-based EHR is acting strangely, press <strong>Ctrl + Shift + R</strong> to perform a hard refresh and clear the cache.</li>
+            <li><strong>Isolate the Problem:</strong> Is just your computer down, or is the whole ward down? If it is just your computer, a simple restart is the first line of defense.</li>
+        </ul>
+
+        <div class="analogy-box" style="border-left-color: #6b21a8; background-color: #faf5ff;">
+            <h4 style="color: #581c87;">The Intermediate Practitioner's Role</h4>
+            <p>You are the bridge between clinical care and the IT department. By optimizing workflows, enforcing data privacy, and handling first-line troubleshooting, you ensure that technology accelerates patient care rather than hindering it.</p>
+        </div>
+
+        <button class="btn-primary btn-proceed" style="background-color: #6b21a8; color: #ffffff;" onclick="startFinalExam()">Proceed to the 20-Question Final Exam ➔</button>
+    </div>
+
+    <!-- ================= FINAL EXAM (20 QUESTIONS) ================= -->
+    <div id="final-exam-section" class="module-section" style="display: none;">
+        <h2 class="mod-title">Intermediate Certification Examination</h2>
+        <p style="font-size: 18px; color: #555;">Complete this comprehensive 20-question examination. You must score 100% to generate your Intermediate Accredited Certificate.</p>
+
+        <form id="final-exam-form">
+            <!-- Q1 -->
+            <div class="quiz-box" style="margin-top: 20px;">
+                <p style="font-size: 18px;"><strong>1. What is an "Order Set" in an Electronic Health Record (EHR)?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe1" value="w1"> A) A physical booklet of printed forms</label>
+                <label class="quiz-option"><input type="radio" name="fe1" value="correct"> B) A pre-configured group of standard clinical orders (labs, meds, imaging) that can be executed with a single click</label>
+                <label class="quiz-option"><input type="radio" name="fe1" value="w2"> C) The queue of patients waiting in the Outpatient Department</label>
+                <label class="quiz-option"><input type="radio" name="fe1" value="w3"> D) A request sent to IT for new computers</label>
+            </div>
+
+            <!-- Q2 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>2. What is the primary benefit of using "Auto-Text" or Macro templates during clinical documentation?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe2" value="w1"> A) It automatically translates notes into local dialects</label>
+                <label class="quiz-option"><input type="radio" name="fe2" value="w2"> B) It legally signs the document for the doctor</label>
+                <label class="quiz-option"><input type="radio" name="fe2" value="w3"> D) It deletes old records to save space</label>
+                <label class="quiz-option"><input type="radio" name="fe2" value="correct"> C) It drastically reduces typing time by instantly generating standard, pre-approved clinical text paragraphs</label>
+            </div>
+
+            <!-- Q3 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>3. What defines "Store-and-Forward" (Asynchronous) Telemedicine?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe3" value="correct"> A) Capturing clinical data or images and transmitting them securely for a specialist to review at a later time</label>
+                <label class="quiz-option"><input type="radio" name="fe3" value="w1"> B) A live, real-time video call between a surgeon and a patient</label>
+                <label class="quiz-option"><input type="radio" name="fe3" value="w2"> C) Using a drone to deliver medical supplies</label>
+                <label class="quiz-option"><input type="radio" name="fe3" value="w3"> D) Storing paper files in a warehouse before sending them by truck</label>
+            </div>
+
+            <!-- Q4 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>4. What must always be obtained and documented before conducting a telemedicine consultation?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe4" value="w1"> A) A high-speed fiber internet connection</label>
+                <label class="quiz-option"><input type="radio" name="fe4" value="w2"> B) Approval from the hospital CEO</label>
+                <label class="quiz-option"><input type="radio" name="fe4" value="correct"> C) Explicit Informed Consent from the patient regarding the nature and limitations of remote care</label>
+                <label class="quiz-option"><input type="radio" name="fe4" value="w3"> D) A written letter to the patient's family</label>
+            </div>
+
+            <!-- Q5 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>5. In digital health interoperability, what does "LIS" refer to?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe5" value="w1"> A) Local Internet Service</label>
+                <label class="quiz-option"><input type="radio" name="fe5" value="correct"> B) Laboratory Information System</label>
+                <label class="quiz-option"><input type="radio" name="fe5" value="w2"> C) Legal Indemnity Software</label>
+                <label class="quiz-option"><input type="radio" name="fe5" value="w3"> D) Longitudinal Imaging Storage</label>
+            </div>
+
+            <!-- Q6 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>6. What is HL7 (Health Level Seven)?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe6" value="correct"> A) An international set of standards that allows different healthcare software applications to communicate and share data with one another</label>
+                <label class="quiz-option"><input type="radio" name="fe6" value="w1"> B) The highest clearance level for hospital cybersecurity</label>
+                <label class="quiz-option"><input type="radio" name="fe6" value="w2"> C) A specific ward located on the seventh floor of a hospital</label>
+                <label class="quiz-option"><input type="radio" name="fe6" value="w3"> D) The seventh revision of a nursing textbook</label>
+            </div>
+
+            <!-- Q7 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>7. What is the primary function of the ICD-11 coding system?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe7" value="w1"> A) To generate complex passwords for hospital staff</label>
+                <label class="quiz-option"><input type="radio" name="fe7" value="w2"> B) To catalog hospital equipment inventory</label>
+                <label class="quiz-option"><input type="radio" name="fe7" value="w3"> D) To track the geographic locations of diseases via satellite</label>
+                <label class="quiz-option"><input type="radio" name="fe7" value="correct"> C) To standardize medical diagnoses into universal alphanumeric codes for global epidemiology and medical billing</label>
+            </div>
+
+            <!-- Q8 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>8. How does accurate ICD-11 coding directly affect a hospital's financial operations?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe8" value="w1"> A) It reduces the cost of electricity</label>
+                <label class="quiz-option"><input type="radio" name="fe8" value="correct"> B) Medical Aid societies rely on accurate coding to process, verify, and payout digital insurance claims</label>
+                <label class="quiz-option"><input type="radio" name="fe8" value="w2"> C) It automatically charges patients' credit cards</label>
+                <label class="quiz-option"><input type="radio" name="fe8" value="w3"> D) It generates discounts on pharmaceutical supplies</label>
+            </div>
+
+            <!-- Q9 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>9. What is an EHR "Audit Trail"?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe9" value="correct"> A) An immutable, permanent digital log that records exactly which user accessed, edited, or viewed a specific patient file and at what time</label>
+                <label class="quiz-option"><input type="radio" name="fe9" value="w1"> B) A path used by security guards to patrol the hospital</label>
+                <label class="quiz-option"><input type="radio" name="fe9" value="w2"> C) A financial report generated at the end of the year</label>
+                <label class="quiz-option"><input type="radio" name="fe9" value="w3"> D) A system that automatically deletes old files</label>
+            </div>
+
+            <!-- Q10 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>10. Under Zimbabwe's Cyber and Data Protection Act, opening the electronic medical record of a patient you are NOT assigned to treat is considered:</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe10" value="w1"> A) Acceptable as long as you do not tell anyone</label>
+                <label class="quiz-option"><input type="radio" name="fe10" value="w2"> B) A minor administrative error</label>
+                <label class="quiz-option"><input type="radio" name="fe10" value="correct"> C) "Snooping," which is a severe violation of patient confidentiality and a prosecutable legal offense</label>
+                <label class="quiz-option"><input type="radio" name="fe10" value="w3"> D) Encouraged to expand your clinical knowledge</label>
+            </div>
+
+            <!-- Q11 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>11. How does E-Prescribing increase patient safety compared to handwritten scripts?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe11" value="w1"> A) It forces the patient to buy from specific pharmacies</label>
+                <label class="quiz-option"><input type="radio" name="fe11" value="correct"> B) It eliminates illegible handwriting errors and automatically checks the database for dangerous drug-drug or drug-allergy interactions</label>
+                <label class="quiz-option"><input type="radio" name="fe11" value="w2"> C) It removes the doctor's legal accountability for the prescription</label>
+                <label class="quiz-option"><input type="radio" name="fe11" value="w3"> D) It guarantees the drug will cure the disease faster</label>
+            </div>
+
+            <!-- Q12 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>12. What is a "Patient Portal"?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe12" value="w1"> A) The physical entrance where ambulances arrive</label>
+                <label class="quiz-option"><input type="radio" name="fe12" value="w2"> B) A machine used to transport patients between wards</label>
+                <label class="quiz-option"><input type="radio" name="fe12" value="w3"> D) A system that publicly displays patient names in the waiting room</label>
+                <label class="quiz-option"><input type="radio" name="fe12" value="correct"> C) A secure digital application or website that allows patients to view their own lab results, appointments, and medical notes</label>
+            </div>
+
+            <!-- Q13 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>13. When charting in an EHR connected to a Patient Portal, why must clinicians maintain high professional writing standards?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe13" value="correct"> A) Because the patient may log in and read the notes directly; derogatory abbreviations or unprofessional language can damage trust and cause legal issues</label>
+                <label class="quiz-option"><input type="radio" name="fe13" value="w1"> B) Because the software will not save words that are spelled incorrectly</label>
+                <label class="quiz-option"><input type="radio" name="fe13" value="w2"> C) Because the hospital charges patients by the word</label>
+                <label class="quiz-option"><input type="radio" name="fe13" value="w3"> D) Because the printer requires a specific font size</label>
+            </div>
+
+            <!-- Q14 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>14. If an entire ward's computers suddenly lose connection to the EHR, what is the best first-line troubleshooting step for a ward leader?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe14" value="w1"> A) Immediately send all patients home</label>
+                <label class="quiz-option"><input type="radio" name="fe14" value="w2"> B) Delete all shortcuts from the desktop</label>
+                <label class="quiz-option"><input type="radio" name="fe14" value="correct"> C) Check if the central network switch/router on the ward has lost power or if the physical ethernet cables are disconnected</label>
+                <label class="quiz-option"><input type="radio" name="fe14" value="w3"> D) Call the software vendor in another country</label>
+            </div>
+
+            <!-- Q15 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>15. What does pressing "Ctrl + Shift + R" do in a web-based clinical system?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe15" value="w1"> A) It shuts down the computer entirely</label>
+                <label class="quiz-option"><input type="radio" name="fe15" value="correct"> B) It performs a "hard refresh," clearing the browser cache and reloading the page, which often fixes glitchy web applications</label>
+                <label class="quiz-option"><input type="radio" name="fe15" value="w2"> C) It prints the current screen</label>
+                <label class="quiz-option"><input type="radio" name="fe15" value="w3"> D) It securely logs you out of the system</label>
+            </div>
+
+            <!-- Q16 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>16. Why is sending un-redacted clinical photos of a patient's wound via a personal WhatsApp group a major ethical violation?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe16" value="correct"> A) It breaches strict data protection and privacy laws, and the media could be automatically backed up to unsecured personal cloud galleries</label>
+                <label class="quiz-option"><input type="radio" name="fe16" value="w1"> B) It uses too much cellular data</label>
+                <label class="quiz-option"><input type="radio" name="fe16" value="w2"> C) WhatsApp lowers the image quality, making diagnosis impossible</label>
+                <label class="quiz-option"><input type="radio" name="fe16" value="w3"> D) It is only a violation if the patient is a minor</label>
+            </div>
+
+            <!-- Q17 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>17. What is "Role-Based Access Control" (RBAC)?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe17" value="w1"> A) A system that forces staff to clock in and out using fingerprint scanners</label>
+                <label class="quiz-option"><input type="radio" name="fe17" value="w2"> B) A process that randomly assigns patients to doctors</label>
+                <label class="quiz-option"><input type="radio" name="fe17" value="w3"> D) A feature that allows patients to choose their own treatment</label>
+                <label class="quiz-option"><input type="radio" name="fe17" value="correct"> C) A security principle where digital access to specific data is restricted strictly to what a user requires to perform their designated job</label>
+            </div>
+
+            <!-- Q18 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>18. A message arrives urgently requesting you to "Verify your hospital credentials by clicking this link immediately or your account will be deleted." What is this?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe18" value="correct"> A) A Phishing or Social Engineering attack attempting to steal your password using artificial urgency</label>
+                <label class="quiz-option"><input type="radio" name="fe18" value="w1"> B) A standard routine IT maintenance check</label>
+                <label class="quiz-option"><input type="radio" name="fe18" value="w2"> C) A legal requirement from the Ministry of Health</label>
+                <label class="quiz-option"><input type="radio" name="fe18" value="w3"> D) A new feature of the hospital's antivirus software</label>
+            </div>
+
+            <!-- Q19 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>19. If you perform clinical actions under a colleague's login because your account is locked, who is legally accountable for those actions?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe19" value="w1"> A) The hospital IT department</label>
+                <label class="quiz-option"><input type="radio" name="fe19" value="w2"> B) You, because you physically typed the words</label>
+                <label class="quiz-option"><input type="radio" name="fe19" value="correct"> C) The colleague whose account is logged in, as the digital audit trail attributes the signature exclusively to their credentials</label>
+                <label class="quiz-option"><input type="radio" name="fe19" value="w3"> D) The hospital CEO</label>
+            </div>
+
+            <!-- Q20 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>20. During a prolonged digital system downtime, after reverting to paper records, what must occur once the computers are back online?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe20" value="w1"> A) Shred the paper notes because the system is fixed</label>
+                <label class="quiz-option"><input type="radio" name="fe20" value="w2"> B) Wait until the end of the month to summarize the papers</label>
+                <label class="quiz-option"><input type="radio" name="fe20" value="w3"> D) Hand the paper records directly to the patient to keep</label>
+                <label class="quiz-option"><input type="radio" name="fe20" value="correct"> C) Chronological Reconciliation—clinicians must back-enter the paper notes into the EHR to ensure the digital record remains whole and unbroken</label>
+            </div>
+
+            <p id="exam-error" class="error-msg" style="font-size: 18px; text-align: center;">You must score 100% on the final intermediate examination to generate your certificate. Please review your answers.</p>
+            <button type="button" class="btn-primary" style="background-color: #6b21a8; font-size: 20px; width: 100%; padding: 20px; margin-top: 30px;" onclick="submitFinalExam()">Grade Exam & Issue Intermediate Certificate</button>
+        </form>
+    </div>
+
+    <!-- ================= CERTIFICATE ISSUANCE ================= -->
+    <div id="cert-issuance-section" class="module-section" style="display: none;">
+        <div class="quiz-box" style="text-align: center; background: #faf5ff; border-color: #d8b4fe; padding: 50px;">
+            <h2 style="color: #6b21a8; margin-top: 0; font-size: 32px;">🎉 Congratulations! You Passed!</h2>
+            <p style="font-size: 20px; margin-bottom: 30px;">Please enter your Full Name exactly as it should appear on your official Intermediate Certificate:</p>
+            <input type="text" id="student-name-input" placeholder="e.g. Tendai Moyo" style="width: 80%; max-width: 500px; padding: 15px; font-size: 20px; border: 2px solid #a855f7; border-radius: 6px; margin-bottom: 25px;">
+            <br>
+            <button type="button" class="btn-primary" style="background-color: #9333ea; font-size: 22px; padding: 15px 40px;" onclick="generateCertificate()">Generate My Certificate</button>
+        </div>
+    </div>
+
+    <!-- ================= CERTIFICATE RENDER ================= -->
+    <div id="certificate-render" class="cert-wrapper">
+        <div class="cert-outer-border">
+            <div class="cert-inner-border">
+                
+                <!-- LOGO -->
+                <img src="https://i.postimg.cc/v1QSBVDj/Whats-App-Nextgen-Logo.jpg" alt="NextGen HealthTech Academy Logo" class="cert-logo">
+                
+                <h2 class="cert-title">Certificate of Competency</h2>
+                <p style="font-size: 20px; color: #555; margin: 15px 0;">This is to certify that</p>
+                
+                <div class="cert-name" id="cert-display-name">[Student Name]</div>
+                
+                <p style="font-size: 18px; color: #444; max-width: 700px; margin: 0 auto; line-height: 1.6;">
+                    has successfully completed the comprehensive intermediate curriculum and passed the examination for
+                </p>
+                <h3 style="color: #6b21a8; font-size: 26px; margin: 25px 0;">Digital Health Skills (Intermediate Edition)</h3>
+                <p style="font-size: 15px; color: #666; max-width: 800px; margin: 0 auto;">Demonstrating competency in EHR Workflow Optimization, Telemedicine Modalities, HL7 & LIS Interoperability, ICD-11 Clinical Coding, Data Protection Audits, and First-Line Troubleshooting.</p>
+                
+                <div class="cert-footer">
+                    <div class="cert-signature-box">
+                        <strong id="cert-date-display" style="font-size: 18px;">Date: 25 August 2026</strong>
+                        <div class="cert-signature-line">Harare, Zimbabwe</div>
+                    </div>
+                    <div class="cert-signature-box">
+                        
+                        <!-- SIGNATURE -->
+                        <img src="https://i.postimg.cc/sB6KgHks/Whats-App-Image-2026-08-16-at-22-42-47.jpg" alt="Director Signature" class="cert-signature-img"><br>
+                        
+                        <strong style="font-size: 18px;">Allan Kudzai Chirume</strong>
+                        <div class="cert-signature-line">Director, NextGen HealthTech Academy</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="no-print" style="margin-top: 40px; text-align: center;">
+            <button class="btn-primary" onclick="window.print()" style="background-color: #f59e0b; color: #000; padding: 15px 35px; font-size: 18px;">🖨️ Print / Save as PDF</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function updateProgress(step) {
+        // 8 steps total: 7 modules + 1 final exam
+        const percentage = Math.min(100, Math.round((step / 8) * 100));
+        document.getElementById('course-progress').style.width = percentage + '%';
+    }
+
+    function showQuiz(modNum) {
+        document.getElementById('module-' + modNum + '-content').style.display = 'none';
+        document.getElementById('module-' + modNum + '-quiz').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function validateModule(currentMod, nextMod) {
+        const selected = document.querySelector('input[name="q' + currentMod + '"]:checked');
+        const errorEl = document.getElementById('quiz' + currentMod + '-error');
+        
+        if (selected && selected.value === 'correct') {
+            errorEl.style.display = 'none';
+            document.getElementById('module-' + currentMod + '-quiz').style.display = 'none';
+            document.getElementById('module-' + nextMod + '-content').style.display = 'block';
+            updateProgress(nextMod);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            errorEl.style.display = 'block';
+        }
+    }
+
+    function startFinalExam() {
+        document.getElementById('module-7-content').style.display = 'none';
+        document.getElementById('final-exam-section').style.display = 'block';
+        updateProgress(8);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function submitFinalExam() {
+        let allCorrect = true;
+        // Loop through all 20 questions
+        for (let i = 1; i <= 20; i++) {
+            const answer = document.querySelector('input[name="fe' + i + '"]:checked');
+            if (!answer || answer.value !== 'correct') {
+                allCorrect = false;
+                break;
+            }
+        }
+        
+        const errorEl = document.getElementById('exam-error');
+
+        if (allCorrect) {
+            errorEl.style.display = 'none';
+            document.getElementById('final-exam-section').style.display = 'none';
+            document.getElementById('cert-issuance-section').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            errorEl.style.display = 'block';
+        }
+    }
+
+    function generateCertificate() {
+        const nameInput = document.getElementById('student-name-input').value.trim();
+        if (!nameInput) {
+            alert('Please enter your full name.');
+            return;
+        }
+
+        document.getElementById('cert-display-name').innerText = nameInput;
+        const today = new Date();
+        const dateString = today.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+        document.getElementById('cert-date-display').innerText = 'Date: ' + dateString;
+
+        document.getElementById('cert-issuance-section').style.display = 'none';
+        document.getElementById('certificate-render').style.display = 'block';
+        document.querySelector('.progress-bar-container').style.display = 'none';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>

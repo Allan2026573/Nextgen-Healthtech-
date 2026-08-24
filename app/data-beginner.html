@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Analysis in Healthcare: Beginners Edition - NextGen HealthTech Academy</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; padding: 20px; color: #333; line-height: 1.6; }
+        .course-container { max-width: 950px; margin: 0 auto; background: #ffffff; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); padding: 40px; }
+        .progress-bar-container { background-color: #e2e8f0; border-radius: 20px; height: 12px; width: 100%; margin-bottom: 25px; overflow: hidden; }
+        .progress-bar { background: linear-gradient(90deg, #166534, #22c55e); height: 100%; width: 12.5%; transition: width 0.4s ease; }
+        .header-banner { text-align: center; border-bottom: 2px solid #166534; padding-bottom: 20px; margin-bottom: 30px; }
+        .header-banner h1 { color: #166534; margin: 0 0 5px 0; font-size: 28px; }
+        .header-banner h2 { color: #22c55e; margin: 0 0 5px 0; font-size: 18px; }
+        .header-banner p { color: #475569; margin: 0; font-size: 14px; }
+        .mod-title { color: #166534; border-bottom: 2px solid #edf2f7; padding-bottom: 10px; margin-top: 25px; font-size: 22px; }
+        .sub-title { color: #0f172a; margin-top: 20px; font-size: 18px; font-weight: 600; }
+        .analogy-box { background-color: #f0fdf4; border-left: 4px solid #22c55e; padding: 18px; margin: 20px 0; border-radius: 0 6px 6px 0; }
+        .analogy-box h4 { margin-top: 0; color: #166534; }
+        .quiz-box { background-color: #f8fafc; padding: 35px; border-radius: 8px; margin-top: 25px; border: 1px solid #cbd5e1; }
+        .quiz-title { color: #0f172a; margin-top: 0; font-size: 20px; border-bottom: 2px solid #cbd5e1; padding-bottom: 10px; margin-bottom: 20px; }
+        .quiz-option { display: block; background: #ffffff; padding: 15px; margin-bottom: 10px; border: 1px solid #e2e8f0; border-radius: 6px; cursor: pointer; transition: background 0.2s; font-size: 16px; }
+        .quiz-option:hover { background: #f1f5f9; }
+        .quiz-option input { margin-right: 15px; transform: scale(1.2); }
+        .btn-primary { background-color: #166534; color: #ffffff; border: none; padding: 12px 25px; border-radius: 6px; cursor: pointer; font-size: 16px; font-weight: 600; margin-top: 20px; transition: background 0.3s; }
+        .btn-primary:hover { background-color: #14532d; }
+        .btn-proceed { background-color: #22c55e; width: 100%; font-size: 18px; padding: 15px; margin-top: 30px; }
+        .btn-proceed:hover { background-color: #16a34a; }
+        .error-msg { color: #dc2626; display: none; font-weight: bold; margin-top: 15px; font-size: 15px; padding: 10px; background: #fee2e2; border-radius: 5px; }
+        
+        /* Certificate Styles */
+        .cert-wrapper { display: none; background: #ffffff; margin-top: 20px; }
+        .cert-outer-border { border: 12px solid #166534; padding: 8px; background: #fff; }
+        .cert-inner-border { border: 3px solid #f59e0b; padding: 40px 50px; text-align: center; position: relative; }
+        .cert-logo { height: 100px; margin-bottom: 20px; object-fit: contain; }
+        .cert-title { font-size: 40px; color: #166534; text-transform: uppercase; margin: 10px 0; font-family: 'Times New Roman', Times, serif; letter-spacing: 3px; }
+        .cert-name { font-size: 34px; color: #166534; border-bottom: 2px solid #f59e0b; display: inline-block; padding: 5px 50px; margin: 25px 0; font-family: 'Times New Roman', Times, serif; font-style: italic; font-weight: bold; }
+        .cert-footer { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 60px; padding: 0 30px; }
+        .cert-signature-box { width: 280px; text-align: center; }
+        .cert-signature-line { border-top: 1px solid #166534; padding-top: 8px; font-size: 15px; color: #166534; margin-top: 5px; }
+        .cert-signature-img { height: 80px; margin-bottom: -15px; object-fit: contain; mix-blend-mode: multiply; }
+
+        @media print {
+            @page { size: A4 landscape; margin: 0mm; }
+            html, body { width: 297mm; height: 210mm; margin: 0; padding: 0; overflow: hidden; background-color: #ffffff; }
+            body * { visibility: hidden; }
+            #certificate-render, #certificate-render * { visibility: visible; }
+            #certificate-render { position: absolute; left: 0; top: 0; width: 297mm; height: 210mm; margin: 0; padding: 10mm; box-sizing: border-box; display: flex !important; flex-direction: column; justify-content: center; }
+            .cert-inner-border { padding: 25px 40px !important; }
+            .cert-footer { margin-top: 30px !important; }
+            .cert-logo { height: 85px !important; margin-bottom: 10px !important; }
+            .cert-title { font-size: 36px !important; }
+            .cert-name { margin: 15px 0 !important; font-size: 30px !important; }
+            .cert-signature-img { height: 70px !important; margin-bottom: -10px !important; }
+            .no-print { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="course-container" id="course-container">
+    <div class="progress-bar-container no-print">
+        <div class="progress-bar" id="course-progress"></div>
+    </div>
+
+    <!-- ================= MODULE 1 ================= -->
+    <div id="module-1-content" class="module-section">
+        <div class="header-banner">
+            <h1>DATA ANALYSIS IN HEALTHCARE</h1>
+            <h2>BEGINNERS EDITION: FROM TALLY SHEETS TO DIGITAL SYSTEMS</h2>
+            <p>NEXTGEN HEALTHTECH ACADEMY ONLINE | Harare, Zimbabwe</p>
+        </div>
+
+        <h2 class="mod-title">Foreword from the Lead Educator</h2>
+        <p>As healthcare professionals in Zimbabwe and across Africa, we are used to saving lives with our hands, our stethoscopes, and our clinical intuition. But there is a silent partner in every ward that saves just as many lives: <strong>Data</strong>.</p>
+        <p>For decades, we relied on paper tally sheets, massive ward registers, and hand-drawn graphs on the sister-in-charge's wall. Today, health data is moving into digital systems. When you record a patient's malaria test result, you are not just doing paperwork; you are giving the Ministry of Health the exact information they need to allocate life-saving resources next month.</p>
+        <p>In this beginner's course, we will strip away the complicated math. You don't need to be a computer programmer to understand health data. You just need to understand why every single checkmark on your ward register matters to the national health grid.</p>
+
+        <h2 class="mod-title">Module 1: What is Health Data?</h2>
+        <h3 class="sub-title">1.1 Beyond Patient Records</h3>
+        <p>When we say "health data," we aren't just talking about a single patient's blood pressure. We are talking about the aggregated numbers that show the health of a whole community. Health data includes bed occupancy rates, the number of vaccines administered in a week, pharmacy stock levels, and maternal outcomes.</p>
+
+        <div class="analogy-box">
+            <h4>The Blood Pressure Analogy</h4>
+            <p>If one patient has high blood pressure, you treat the patient. But if you analyze your clinic data and realize that 60% of all adults in your district have suddenly developed high blood pressure, you don't just need more medication—you need a public health intervention for the whole district. That is the power of data analysis.</p>
+        </div>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(1)">Proceed to Module 1 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 1 QUIZ -->
+    <div id="module-1-quiz" class="module-section" style="display: none;">
+        <div class="quiz-box">
+            <h3 class="quiz-title">Module 1: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">According to the introduction, what is the primary purpose of aggregating health data beyond individual patient care?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q1" value="w1"> A) To reduce the salaries of nursing staff</label>
+            <label class="quiz-option"><input type="radio" name="q1" value="correct"> B) To identify broad community health trends so health authorities can allocate resources and plan public health interventions</label>
+            <label class="quiz-option"><input type="radio" name="q1" value="w2"> C) To make ward registers look more complicated</label>
+            <label class="quiz-option"><input type="radio" name="q1" value="w3"> D) To eliminate the need for doctors to write clinical notes</label>
+            
+            <p id="quiz1-error" class="error-msg">Incorrect. Review the Blood Pressure analogy in Section 1.1.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(1, 2)">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- ================= MODULE 2 ================= -->
+    <div id="module-2-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 2: Zimbabwe's Core Data Engine: DHIS2</h2>
+        
+        <h3 class="sub-title">2.1 What is DHIS2?</h3>
+        <p>The District Health Information Software 2 (DHIS2) is the digital backbone of our healthcare system. It is the world's largest Health Information Management System, currently used by ministries of health in over 80 low and middle-income countries. In Zimbabwe, it is the central platform where all our facility data ends up.</p>
+
+        <h3 class="sub-title">2.2 From Paper to Platform</h3>
+        <p>In the past, a rural clinic would send a physical paper report by bus to the district office, where it would be manually typed up. Today, clinics can enter routine aggregate data directly into DHIS2 via internet browsers or even mobile apps. This means the Ministry of Health in Harare can see malaria spikes or vaccine stockouts in real-time, rather than waiting weeks for paper reports.</p>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(2)">Proceed to Module 2 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 2 QUIZ -->
+    <div id="module-2-quiz" class="module-section" style="display: none;">
+        <div class="quiz-box">
+            <h3 class="quiz-title">Module 2: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">What is DHIS2 in the context of African healthcare systems?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q2" value="w1"> A) A physical book used to record birth certificates</label>
+            <label class="quiz-option"><input type="radio" name="q2" value="w2"> B) A type of medical imaging software used exclusively in radiology</label>
+            <label class="quiz-option"><input type="radio" name="q2" value="correct"> C) The world's largest digital Health Information Management System used by ministries of health to collect, manage, and analyze facility data</label>
+            <label class="quiz-option"><input type="radio" name="q2" value="w3"> D) A new brand of automated blood pressure machine</label>
+            
+            <p id="quiz2-error" class="error-msg">Incorrect. Review Section 2.1.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(2, 3)">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- ================= MODULE 3 ================= -->
+    <div id="module-3-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 3: Routine Health Information Systems (RHIS)</h2>
+        
+        <h3 class="sub-title">3.1 The Daily Metrics</h3>
+        <p>A Routine Health Information System collects data at regular intervals. As a clinician, you contribute to this every single shift. Key metrics include:</p>
+        <ul>
+            <li><strong>Bed Occupancy Rate:</strong> Are we overcrowded? Do we need to divert ambulances?</li>
+            <li><strong>Outpatient Department (OPD) Headcounts:</strong> How many patients walked through the door today compared to yesterday?</li>
+            <li><strong>Disease-Specific Tracking:</strong> In Zimbabwe, DHIS2 is heavily utilized for tracking maternal, newborn, and child health, as well as specific diseases like malaria and TB.</li>
+        </ul>
+
+        <div class="analogy-box">
+            <h4>The Power of Coding</h4>
+            <p>To make mortality and morbidity data useful, it must be standardized. HISP Zimbabwe developed a powerful solution that embeds ICD-11 (International Classification of Diseases) coding directly into DHIS2. This means instead of nurses typing random text descriptions of why a patient was admitted, they use universal codes, allowing the health ministry to instantly see exact disease burdens across the nation.</p>
+        </div>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(3)">Proceed to Module 3 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 3 QUIZ -->
+    <div id="module-3-quiz" class="module-section" style="display: none;">
+        <div class="quiz-box">
+            <h3 class="quiz-title">Module 3: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">Why is it important to embed standardized systems like ICD-11 directly into platforms like DHIS2?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q3" value="w1"> A) It makes the software look more modern to foreign investors</label>
+            <label class="quiz-option"><input type="radio" name="q3" value="correct"> B) It replaces inconsistent handwritten text with universal codes, providing health authorities with accurate, near real-time morbidity and mortality data</label>
+            <label class="quiz-option"><input type="radio" name="q3" value="w2"> C) It allows patients to diagnose themselves at home</label>
+            <label class="quiz-option"><input type="radio" name="q3" value="w3"> D) It forces nurses to spend more time on paperwork</label>
+            
+            <p id="quiz3-error" class="error-msg">Incorrect. Think about how standard codes help data aggregation.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(3, 4)">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- ================= MODULE 4 ================= -->
+    <div id="module-4-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 4: Data Quality: "Garbage In, Garbage Out"</h2>
+        
+        <h3 class="sub-title">4.1 The Clinician's Responsibility</h3>
+        <p>There is a famous saying in data analysis: <em>"Garbage In, Garbage Out" (GIGO)</em>. No matter how advanced the Ministry's computers are, if a nurse quickly scribbles the wrong age or diagnosis on a tally sheet at 2 AM, the national data will be wrong.</p>
+
+        <h3 class="sub-title">4.2 The Two Pillars of Good Data</h3>
+        <ul>
+            <li><strong>Completeness:</strong> Are all the boxes filled? An empty box for "malaria test result" doesn't tell the system if the patient was negative, or if the test was just out of stock.</li>
+            <li><strong>Timeliness:</strong> Entering data accurately but three weeks late is useless during a cholera outbreak. Data must be entered on schedule to be actionable.</li>
+        </ul>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(4)">Proceed to Module 4 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 4 QUIZ -->
+    <div id="module-4-quiz" class="module-section" style="display: none;">
+        <div class="quiz-box">
+            <h3 class="quiz-title">Module 4: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">What does the data analysis phrase "Garbage In, Garbage Out" mean in a hospital setting?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q4" value="correct"> A) If clinical staff enter inaccurate or incomplete data at the ward level, the national digital reports generated from that data will also be inaccurate and useless</label>
+            <label class="quiz-option"><input type="radio" name="q4" value="w1"> B) It refers to the proper disposal of medical waste and sharps</label>
+            <label class="quiz-option"><input type="radio" name="q4" value="w2"> C) It means that old computers should be thrown away</label>
+            <label class="quiz-option"><input type="radio" name="q4" value="w3"> D) It means patients should not eat unhealthy food</label>
+            
+            <p id="quiz4-error" class="error-msg">Incorrect. Review Section 4.1.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(4, 5)">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- ================= MODULE 5 ================= -->
+    <div id="module-5-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 5: Key Health Indicators</h2>
+        
+        <h3 class="sub-title">5.1 What is an Indicator?</h3>
+        <p>Raw numbers aren't very helpful on their own. Knowing that 50 babies were born today is nice, but is it good or bad? We use <strong>Indicators</strong>—which are usually percentages or ratios—to give numbers context.</p>
+
+        <h3 class="sub-title">5.2 Common African Health Indicators</h3>
+        <ul>
+            <li><strong>Maternal Mortality Ratio (MMR):</strong> The number of maternal deaths per 100,000 live births. This is a critical indicator of a nation's overall health system strength.</li>
+            <li><strong>Immunization Coverage:</strong> The percentage of eligible children in a district who received their vaccines. If this drops below 80%, the district is at risk for an outbreak.</li>
+            <li><strong>Facility Stock-Out Rate:</strong> The percentage of days a clinic completely ran out of essential medicines (like IV fluids or Paracetamol).</li>
+        </ul>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(5)">Proceed to Module 5 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 5 QUIZ -->
+    <div id="module-5-quiz" class="module-section" style="display: none;">
+        <div class="quiz-box">
+            <h3 class="quiz-title">Module 5: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">Why do health analysts prefer to look at "Indicators" (like percentages or ratios) rather than just raw numbers (like the total count of patients)?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q5" value="w1"> A) Because raw numbers are illegal to share under data protection laws</label>
+            <label class="quiz-option"><input type="radio" name="q5" value="w2"> B) Because indicators are easier to type into a keyboard</label>
+            <label class="quiz-option"><input type="radio" name="q5" value="correct"> C) Because indicators provide essential context and comparison (e.g., comparing deaths against total births) to show whether a situation is improving or worsening</label>
+            <label class="quiz-option"><input type="radio" name="q5" value="w3"> D) Because raw numbers cannot be stored on modern computers</label>
+            
+            <p id="quiz5-error" class="error-msg">Incorrect. Review Section 5.1.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(5, 6)">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- ================= MODULE 6 ================= -->
+    <div id="module-6-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 6: Transitioning to Digital Entry</h2>
+        
+        <h3 class="sub-title">6.1 Aggregate vs. Case-Based Data</h3>
+        <p>Historically, nurses used tally sheets to create <strong>Aggregate Data</strong> (e.g., "We saw 12 malaria cases this week"). Aggregate data is just a total sum.</p>
+        <p>Today, digital systems like DHIS2 Tracker allow for <strong>Case-Based (or Individual-Level) Data</strong>. Instead of just adding a tally mark, the clinician enters Patient Tendai's specific record. The software then automatically adds up all the individual records to create the aggregate total for the week. This saves time and drastically reduces mathematical errors on the ward.</p>
+
+        <h3 class="sub-title">6.2 Overcoming Tech Anxiety</h3>
+        <p>Many senior nurses fear moving from paper to tablets. The key is understanding that the tablet is just a new type of pen. The clinical knowledge remains exactly the same; the tablet just ensures your hard work is counted immediately at the national level.</p>
+
+        <button class="btn-primary btn-proceed" onclick="showQuiz(6)">Proceed to Module 6 Knowledge Check ➔</button>
+    </div>
+
+    <!-- MODULE 6 QUIZ -->
+    <div id="module-6-quiz" class="module-section" style="display: none;">
+        <div class="quiz-box">
+            <h3 class="quiz-title">Module 6: Knowledge Check</h3>
+            <p style="font-size: 18px; margin-bottom: 25px;">What is the main difference between "Aggregate Data" and "Case-Based Data"?</p>
+            
+            <label class="quiz-option"><input type="radio" name="q6" value="w1"> A) Aggregate data is stored on computers, while case-based data is stored on paper</label>
+            <label class="quiz-option"><input type="radio" name="q6" value="correct"> B) Aggregate data is a total sum of events (e.g., total weekly malaria cases), while case-based data tracks the detailed medical record of an individual patient</label>
+            <label class="quiz-option"><input type="radio" name="q6" value="w2"> C) Aggregate data is only used by doctors, while case-based data is only used by nurses</label>
+            <label class="quiz-option"><input type="radio" name="q6" value="w3"> D) There is no difference; they are two words for the exact same thing</label>
+            
+            <p id="quiz6-error" class="error-msg">Incorrect. Review Section 6.1 regarding data types.</p>
+            <button type="button" class="btn-primary" style="width: 100%; font-size: 18px;" onclick="validateModule(6, 7)">Submit Answer</button>
+        </div>
+    </div>
+
+    <!-- ================= MODULE 7 ================= -->
+    <div id="module-7-content" class="module-section" style="display: none;">
+        <h2 class="mod-title">Module 7: The Data-Driven Clinician</h2>
+        
+        <h3 class="sub-title">7.1 Why Your Data Matters</h3>
+        <p>As a beginner in health data, the most important lesson is realizing your impact. When you diligently fill out a digital register at the end of an exhausting 12-hour shift, you are not doing administrative chores.</p>
+        <p>You are ensuring that next month, when the national supply chain delivers essential medicines, your clinic receives the exact amount of IV fluids and antibiotics it needs to save the patients you will see next week.</p>
+        
+        <div class="analogy-box" style="border-left-color: #f59e0b; background-color: #fffbeb;">
+            <h4 style="color: #d97706;">The Golden Rules of Beginner Data Entry</h4>
+            <ol>
+                <li>Never guess a number; an empty box is better than a false number.</li>
+                <li>Timeliness is clinical safety. Enter data on schedule.</li>
+                <li>The digital system is not replacing you; it is amplifying your clinical impact across the country.</li>
+            </ol>
+        </div>
+
+        <button class="btn-primary btn-proceed" style="background-color: #f59e0b; color: #000;" onclick="startFinalExam()">Proceed to the 15-Question Final Exam ➔</button>
+    </div>
+
+    <!-- ================= FINAL EXAM (15 QUESTIONS) ================= -->
+    <div id="final-exam-section" class="module-section" style="display: none;">
+        <h2 class="mod-title">Beginners Certification Examination</h2>
+        <p style="font-size: 18px; color: #555;">Complete this comprehensive 15-question examination. You must score 100% to generate your Beginners Accredited Certificate.</p>
+
+        <form id="final-exam-form">
+            <!-- Q1 -->
+            <div class="quiz-box" style="margin-top: 20px;">
+                <p style="font-size: 18px;"><strong>1. What does the term "Health Data" encompass in a hospital setting?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe1" value="correct"> A) Both individual patient vitals and aggregated community statistics like bed occupancy and stock levels</label>
+                <label class="quiz-option"><input type="radio" name="fe1" value="w1"> B) Only the financial accounting records of the facility</label>
+                <label class="quiz-option"><input type="radio" name="fe1" value="w2"> C) Only the names of the doctors working on the ward</label>
+                <label class="quiz-option"><input type="radio" name="fe1" value="w3"> D) Only the dietary preferences of the patients</label>
+            </div>
+
+            <!-- Q2 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>2. What is DHIS2?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe2" value="w1"> A) A new antibiotic used for treating malaria</label>
+                <label class="quiz-option"><input type="radio" name="fe2" value="w2"> B) A physical filing cabinet system</label>
+                <label class="quiz-option"><input type="radio" name="fe2" value="correct"> C) A digital Health Information Management System used globally, including across Zimbabwe, to track health data</label>
+                <label class="quiz-option"><input type="radio" name="fe2" value="w3"> D) A specific type of surgical scalpel</label>
+            </div>
+
+            <!-- Q3 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>3. What happens when clinical staff enter incomplete or incorrect data into the system (Garbage In, Garbage Out)?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe3" value="w1"> A) The computer automatically fixes the mistakes using artificial intelligence</label>
+                <label class="quiz-option"><input type="radio" name="fe3" value="correct"> B) National health authorities receive inaccurate reports, leading to poor resource allocation and planning</label>
+                <label class="quiz-option"><input type="radio" name="fe3" value="w2"> C) The hospital is physically shut down</label>
+                <label class="quiz-option"><input type="radio" name="fe3" value="w3"> D) The system prints out a warning letter for the patient</label>
+            </div>
+
+            <!-- Q4 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>4. Why is embedding ICD-11 coding into DHIS2 beneficial?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe4" value="correct"> A) It standardizes diagnoses into universal codes, improving data quality and allowing for accurate national morbidity tracking</label>
+                <label class="quiz-option"><input type="radio" name="fe4" value="w1"> B) It hides the patient's diagnosis from the nurses</label>
+                <label class="quiz-option"><input type="radio" name="fe4" value="w2"> C) It allows the hospital to charge patients more money</label>
+                <label class="quiz-option"><input type="radio" name="fe4" value="w3"> D) It converts medical notes into French</label>
+            </div>
+
+            <!-- Q5 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>5. In data entry, what does "Completeness" refer to?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe5" value="w1"> A) Typing the data as fast as possible</label>
+                <label class="quiz-option"><input type="radio" name="fe5" value="w2"> B) Ensuring the patient has fully recovered before discharging them</label>
+                <label class="quiz-option"><input type="radio" name="fe5" value="w3"> D) Using complete sentences in clinical notes</label>
+                <label class="quiz-option"><input type="radio" name="fe5" value="correct"> C) Ensuring all required fields and boxes on a form or digital register are accurately filled out</label>
+            </div>
+
+            <!-- Q6 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>6. Why is "Timeliness" critical when entering health data?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe6" value="correct"> A) Because delayed data prevents authorities from responding quickly to active emergencies, like disease outbreaks or stockouts</label>
+                <label class="quiz-option"><input type="radio" name="fe6" value="w1"> B) Because computers delete data if it is not entered by 5:00 PM</label>
+                <label class="quiz-option"><input type="radio" name="fe6" value="w2"> C) Because nurses will forget how to use the tablet if they wait too long</label>
+                <label class="quiz-option"><input type="radio" name="fe6" value="w3"> D) Because the DHIS2 software only turns on during the morning</label>
+            </div>
+
+            <!-- Q7 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>7. What is an example of "Aggregate Data"?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe7" value="w1"> A) A specific patient's daily temperature chart</label>
+                <label class="quiz-option"><input type="radio" name="fe7" value="correct"> B) A tally showing that 45 total vaccines were administered in a clinic this week</label>
+                <label class="quiz-option"><input type="radio" name="fe7" value="w2"> C) A detailed doctor's referral letter for one individual</label>
+                <label class="quiz-option"><input type="radio" name="fe7" value="w3"> D) The serial number of a new hospital bed</label>
+            </div>
+
+            <!-- Q8 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>8. What is an example of "Case-Based" (Individual) Data?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe8" value="w1"> A) The total sum of all malaria patients seen in a month</label>
+                <label class="quiz-option"><input type="radio" name="fe8" value="w2"> B) A report showing the clinic's average bed occupancy</label>
+                <label class="quiz-option"><input type="radio" name="fe8" value="correct"> C) A digital file tracking the specific HIV treatment journey of Patient Tendai Moyo over time</label>
+                <label class="quiz-option"><input type="radio" name="fe8" value="w3"> D) A nationwide count of total registered nurses</label>
+            </div>
+
+            <!-- Q9 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>9. Why are health "Indicators" (like maternal mortality ratio) more useful than raw numbers to public health officials?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe9" value="correct"> A) Because they provide ratios and percentages that offer context, allowing for accurate comparison between different districts or time periods</label>
+                <label class="quiz-option"><input type="radio" name="fe9" value="w1"> B) Because indicators do not require any math to calculate</label>
+                <label class="quiz-option"><input type="radio" name="fe9" value="w2"> C) Because raw numbers are kept strictly confidential from the government</label>
+                <label class="quiz-option"><input type="radio" name="fe9" value="w3"> D) Because indicators hide the truth from the public</label>
+            </div>
+
+            <!-- Q10 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>10. What does the "Facility Stock-Out Rate" indicator measure?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe10" value="w1"> A) The number of patients who were discharged on a given day</label>
+                <label class="quiz-option"><input type="radio" name="fe10" value="w2"> B) The rate at which hospital furniture breaks down</label>
+                <label class="quiz-option"><input type="radio" name="fe10" value="correct"> C) The percentage of time a health facility completely ran out of vital essential medicines</label>
+                <label class="quiz-option"><input type="radio" name="fe10" value="w3"> D) The amount of money the hospital pharmacy earned</label>
+            </div>
+
+            <!-- Q11 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>11. How does entering accurate data directly impact the clinical supplies of a hospital?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe11" value="w1"> A) It doesn't; supplies are delivered randomly</label>
+                <label class="quiz-option"><input type="radio" name="fe11" value="correct"> B) Accurate digital reporting allows national supply chains to see exact consumption rates and deliver the correct amount of medicines for the next month</label>
+                <label class="quiz-option"><input type="radio" name="fe11" value="w2"> C) It allows the hospital to sell excess medicines to private pharmacies</label>
+                <label class="quiz-option"><input type="radio" name="fe11" value="w3"> D) It forces pharmaceutical companies to lower their prices</label>
+            </div>
+
+            <!-- Q12 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>12. What is the primary advantage of modern digital health systems over traditional paper tally sheets?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe12" value="correct"> A) Digital systems allow for real-time visibility by health authorities and reduce manual mathematical tallying errors</label>
+                <label class="quiz-option"><input type="radio" name="fe12" value="w1"> B) Digital systems completely eliminate the need for nurses to speak to patients</label>
+                <label class="quiz-option"><input type="radio" name="fe12" value="w2"> C) Digital systems are immune to power outages</label>
+                <label class="quiz-option"><input type="radio" name="fe12" value="w3"> D) Digital systems do not require any user training</label>
+            </div>
+
+            <!-- Q13 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>13. When you encounter a field on a digital form but do not know the patient's information, what is the golden rule of beginner data entry?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe13" value="w1"> A) Guess a reasonable number so the form looks complete</label>
+                <label class="quiz-option"><input type="radio" name="fe13" value="w2"> B) Always enter "zero"</label>
+                <label class="quiz-option"><input type="radio" name="fe13" value="correct"> C) Never guess; an empty box is better than falsified data</label>
+                <label class="quiz-option"><input type="radio" name="fe13" value="w3"> D) Ask another patient in the waiting room for the answer</label>
+            </div>
+
+            <!-- Q14 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>14. If a district realizes via DHIS2 that adult hypertension rates have spiked by 60%, what is the most appropriate data-driven response?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe14" value="correct"> A) Plan a broad public health intervention and education campaign for the district while ensuring adequate medication stock</label>
+                <label class="quiz-option"><input type="radio" name="fe14" value="w1"> B) Delete the data because the numbers seem too high</label>
+                <label class="quiz-option"><input type="radio" name="fe14" value="w2"> C) Blame the nurses for entering the data incorrectly</label>
+                <label class="quiz-option"><input type="radio" name="fe14" value="w3"> D) Do nothing and wait for the rates to drop naturally</label>
+            </div>
+
+            <!-- Q15 -->
+            <div class="quiz-box">
+                <p style="font-size: 18px;"><strong>15. Which of the following diseases are routinely tracked in Zimbabwe using the DHIS2 platform?</strong></p>
+                <label class="quiz-option"><input type="radio" name="fe15" value="w1"> A) Only seasonal allergies</label>
+                <label class="quiz-option"><input type="radio" name="fe15" value="w2"> B) Exclusively rare genetic disorders</label>
+                <label class="quiz-option"><input type="radio" name="fe15" value="w3"> D) Only sports-related injuries</label>
+                <label class="quiz-option"><input type="radio" name="fe15" value="correct"> C) Malaria, TB, HIV/AIDS, and maternal/child health conditions</label>
+            </div>
+
+            <p id="exam-error" class="error-msg" style="font-size: 18px; text-align: center;">You must score 100% on the final exam to generate your certificate. Please review your answers.</p>
+            <button type="button" class="btn-primary" style="background-color: #166534; font-size: 20px; width: 100%; padding: 20px; margin-top: 30px;" onclick="submitFinalExam()">Grade Exam & Issue Certificate</button>
+        </form>
+    </div>
+
+    <!-- ================= CERTIFICATE ISSUANCE ================= -->
+    <div id="cert-issuance-section" class="module-section" style="display: none;">
+        <div class="quiz-box" style="text-align: center; background: #f0fdf4; border-color: #86efac; padding: 50px;">
+            <h2 style="color: #166534; margin-top: 0; font-size: 32px;">🎉 Congratulations! You Passed!</h2>
+            <p style="font-size: 20px; margin-bottom: 30px;">Please enter your Full Name exactly as it should appear on your official Certificate:</p>
+            <input type="text" id="student-name-input" placeholder="e.g. Tendai Moyo" style="width: 80%; max-width: 500px; padding: 15px; font-size: 20px; border: 2px solid #22c55e; border-radius: 6px; margin-bottom: 25px;">
+            <br>
+            <button type="button" class="btn-primary" style="background-color: #16a34a; font-size: 22px; padding: 15px 40px;" onclick="generateCertificate()">Generate My Certificate</button>
+        </div>
+    </div>
+
+    <!-- ================= CERTIFICATE RENDER ================= -->
+    <div id="certificate-render" class="cert-wrapper">
+        <div class="cert-outer-border">
+            <div class="cert-inner-border">
+                
+                <!-- LOGO -->
+                <img src="https://i.postimg.cc/v1QSBVDj/Whats-App-Nextgen-Logo.jpg" alt="NextGen HealthTech Academy Logo" class="cert-logo">
+                
+                <h2 class="cert-title">Certificate of Completion</h2>
+                <p style="font-size: 20px; color: #555; margin: 15px 0;">This is to certify that</p>
+                
+                <div class="cert-name" id="cert-display-name">[Student Name]</div>
+                
+                <p style="font-size: 18px; color: #444; max-width: 700px; margin: 0 auto; line-height: 1.6;">
+                    has successfully completed the comprehensive curriculum and passed the examination for
+                </p>
+                <h3 style="color: #166534; font-size: 26px; margin: 25px 0;">Data Analysis in Healthcare (Beginners Edition)</h3>
+                <p style="font-size: 15px; color: #666; max-width: 800px; margin: 0 auto;">Demonstrating foundational competency in Routine Health Information Systems, DHIS2 Fundamentals, Aggregate vs. Case-Based Data, Clinical Data Quality (Completeness & Timeliness), and Universal Health Metrics.</p>
+                
+                <div class="cert-footer">
+                    <div class="cert-signature-box">
+                        <strong id="cert-date-display" style="font-size: 18px;">Date: 25 August 2026</strong>
+                        <div class="cert-signature-line">Harare, Zimbabwe</div>
+                    </div>
+                    <div class="cert-signature-box">
+                        
+                        <!-- SIGNATURE -->
+                        <img src="https://i.postimg.cc/sB6KgHks/Whats-App-Image-2026-08-16-at-22-42-47.jpg" alt="Director Signature" class="cert-signature-img"><br>
+                        
+                        <strong style="font-size: 18px;">Allan Kudzai Chirume</strong>
+                        <div class="cert-signature-line">Director, NextGen HealthTech Academy</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="no-print" style="margin-top: 40px; text-align: center;">
+            <button class="btn-primary" onclick="window.print()" style="background-color: #f59e0b; color: #000; padding: 15px 35px; font-size: 18px;">🖨️ Print / Save as PDF</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function updateProgress(step) {
+        // 8 steps total: 7 modules + 1 final exam
+        const percentage = Math.min(100, Math.round((step / 8) * 100));
+        document.getElementById('course-progress').style.width = percentage + '%';
+    }
+
+    function showQuiz(modNum) {
+        document.getElementById('module-' + modNum + '-content').style.display = 'none';
+        document.getElementById('module-' + modNum + '-quiz').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function validateModule(currentMod, nextMod) {
+        const selected = document.querySelector('input[name="q' + currentMod + '"]:checked');
+        const errorEl = document.getElementById('quiz' + currentMod + '-error');
+        
+        if (selected && selected.value === 'correct') {
+            errorEl.style.display = 'none';
+            document.getElementById('module-' + currentMod + '-quiz').style.display = 'none';
+            document.getElementById('module-' + nextMod + '-content').style.display = 'block';
+            updateProgress(nextMod);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            errorEl.style.display = 'block';
+        }
+    }
+
+    function startFinalExam() {
+        document.getElementById('module-7-content').style.display = 'none';
+        document.getElementById('final-exam-section').style.display = 'block';
+        updateProgress(8);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function submitFinalExam() {
+        let allCorrect = true;
+        // Loop through all 15 questions
+        for (let i = 1; i <= 15; i++) {
+            const answer = document.querySelector('input[name="fe' + i + '"]:checked');
+            if (!answer || answer.value !== 'correct') {
+                allCorrect = false;
+                break;
+            }
+        }
+        
+        const errorEl = document.getElementById('exam-error');
+
+        if (allCorrect) {
+            errorEl.style.display = 'none';
+            document.getElementById('final-exam-section').style.display = 'none';
+            document.getElementById('cert-issuance-section').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            errorEl.style.display = 'block';
+        }
+    }
+
+    function generateCertificate() {
+        const nameInput = document.getElementById('student-name-input').value.trim();
+        if (!nameInput) {
+            alert('Please enter your full name.');
+            return;
+        }
+
+        document.getElementById('cert-display-name').innerText = nameInput;
+        const today = new Date();
+        const dateString = today.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+        document.getElementById('cert-date-display').innerText = 'Date: ' + dateString;
+
+        document.getElementById('cert-issuance-section').style.display = 'none';
+        document.getElementById('certificate-render').style.display = 'block';
+        document.querySelector('.progress-bar-container').style.display = 'none';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
